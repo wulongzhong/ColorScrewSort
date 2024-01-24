@@ -1,0 +1,20 @@
+syntax = "proto3";
+package ConfigPB;
+
+enum LevelType
+{
+    Normal = 0;
+    Mask = 1;
+}
+
+message StickData{
+    repeated int32 stick = 1;
+}
+
+message LevelData
+{
+    int32 no = 1;
+    LevelType typeLevel = 2;
+    repeated int32 sortStick = 3;
+    repeated StickData data = 4;
+}
