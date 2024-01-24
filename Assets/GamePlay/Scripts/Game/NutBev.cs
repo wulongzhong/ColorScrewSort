@@ -27,7 +27,6 @@ public class NutBev : MonoBehaviour
 
     public void MoveToNewStick(StickBev stickBev)
     {
-
     }
 
     public void MoveToUp()

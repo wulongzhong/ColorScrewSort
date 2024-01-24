@@ -5,6 +5,12 @@ using UnityEngine;
 public abstract class ProcedureBase : MonoBehaviour
 {
     public ProcedureMgr ProcedureMgr { get; set; }
+
+    public virtual void OnInit()
+    {
+        Debug.Log(this.GetType().FullName + ":Init");
+    }
+
     public virtual void OnEnter() { this.enabled = true; Debug.Log(this.GetType().FullName + ":Enter"); }
 
     public virtual void OnExit() {  this.enabled = false; Debug.Log(this.GetType().FullName + ":Exit"); }

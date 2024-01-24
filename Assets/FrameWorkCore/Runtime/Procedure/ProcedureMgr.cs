@@ -17,6 +17,7 @@ public class ProcedureMgr : MonoBehaviour
         dicType2Procedures = new Dictionary<Type, ProcedureBase>();
         foreach (ProcedureBase procedure in GetComponents<ProcedureBase>())
         {
+            procedure.OnInit();
             dicType2Procedures[procedure.GetType()] = procedure;
         }
 
@@ -39,7 +40,9 @@ public class ProcedureMgr : MonoBehaviour
                 return kv.Value;
             }
         }
-
+#if ENABLE_LOG
+        Debug.LogError($"加载流程失败:{(typeof(TProcedure)).FullName}");
+#endif
         return null;
     }
 

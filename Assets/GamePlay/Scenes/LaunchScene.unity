@@ -471,6 +471,8 @@ GameObject:
   - component: {fileID: 1531283819}
   - component: {fileID: 1531283820}
   - component: {fileID: 1531283821}
+  - component: {fileID: 1531283822}
+  - component: {fileID: 1531283823}
   m_Layer: 0
   m_Name: Procudure
   m_TagString: Untagged
@@ -529,6 +531,30 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 424fe09051e699d4f8dd5a014048e82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1531283822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531283817}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f13cf858ca7de41bf15c91965db370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1531283823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531283817}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39328fd097a6fd641a2d2b3616dff293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1757076808
@@ -716,7 +742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144830977950031087, guid: 2b917251a0fb7654b8a9a81bb54ef929, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

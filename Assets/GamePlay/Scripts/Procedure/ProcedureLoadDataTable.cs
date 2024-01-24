@@ -6,10 +6,11 @@ public class ProcedureLoadDataTable : ProcedureBase
 {
     public override void OnEnter()
     {
-        Splash.Instance.RefreshProgress(10);
+        Splash.Instance.RefreshProgress(Splash.ProgressState.LoadTable, 0);
         base.OnEnter();
-        Splash.Instance.RefreshProgress(11);
+        Splash.Instance.RefreshProgress(Splash.ProgressState.LoadTable, 1);
         DataTableMgr.Instance.InitDataTable();
-        Splash.Instance.RefreshProgress(12);
+        Splash.Instance.RefreshProgress(Splash.ProgressState.LoadTable, 2);
+        this.ProcedureMgr.ChangeProcedure<ProcedureLoadScene>();
     }
 }

@@ -25,5 +25,8 @@ public class DataTableMgr : MonoBehaviour
         DTSound dTSound = new DTSound(table);
 
         resLoader.Dispose();
+#if ENABLE_LOG
+        Debug.Log("结束加载配置");
+#endif
     }
 }
