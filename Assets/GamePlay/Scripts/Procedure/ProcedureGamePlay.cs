@@ -7,5 +7,6 @@ public class ProcedureGamePlay : ProcedureBase
     public override void OnEnter()
     {
         base.OnEnter();
+        UIMgr.Instance.OpenUI<UILevelPlaying>();
     }
 }

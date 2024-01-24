@@ -31,12 +31,13 @@ public class UIGlobalCfg : ScriptableObject
     public void RefreshGlobalCfg()
     {
         var allAssetPath = System.IO.Directory.GetFiles(uiPrefabRootPath);
-        foreach(var path in allAssetPath)
+        foreach(var tempPath in allAssetPath)
         {
-            if (path.Contains(".meta"))
+            if (tempPath.Contains(".meta"))
             {
                 continue;
             }
+            var path = tempPath.Replace('\\', '/');
 
             var cfg = listSortInfo.Find(cfg => cfg.prefabPath == path);
             if(cfg != null)
@@ -45,7 +46,7 @@ public class UIGlobalCfg : ScriptableObject
             }
 
             cfg = new UIBaseCfg();
-            cfg.uiName = path.Split('.')[^2];
+            cfg.uiName = path.Split('.', '/', '\\')[^2];
             cfg.prefabPath = path;
             cfg.sortLayer = UIBaseCfg.SortLayer.Default;
             listSortInfo.Add(cfg);
@@ -58,6 +59,10 @@ public class UIGlobalCfg : ScriptableObject
 
     public void Init()
     {
+#if UNITY_EDITOR
+        RefreshGlobalCfg();
+#endif
+
         dicUIName2Cfg = new Dictionary<string, UIBaseCfg>();
         foreach(var baseCfg in listSortInfo)
         {

@@ -15,6 +15,9 @@ MonoBehaviour:
   uiPrefabRootPath: Assets/GamePlay/Prefabs/UI
   uiCodeRootPath: Assets/GamePlay/Scripts/UI
   listSortInfo:
-  - uiName: Assets/GamePlay/Prefabs/UI\UIMain
-    sortLayer: 100
-    prefabPath: Assets/GamePlay/Prefabs/UI\UIMain.prefab
+  - uiName: UILevelPlaying
+    sortLayer: 0
+    prefabPath: Assets/GamePlay/Prefabs/UI/UILevelPlaying.prefab
+  - uiName: UIMain
+    sortLayer: 0
+    prefabPath: Assets/GamePlay/Prefabs/UI/UIMain.prefab

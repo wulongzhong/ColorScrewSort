@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Linq;
+using ConfigPB;
 
 public class UIMgr : MonoBehaviour
 {
+    public static UIMgr Instance;
+
     public UIGlobalCfg globalCfg;
     private Dictionary<string, UIBase> dicUI;
     private Dictionary<UIBaseCfg.SortLayer, List<UIBase>> dicLayer2UIBaseBev;
 
     private void Awake()
     {
+        Instance = this;
+        globalCfg.Init();
         dicUI = new Dictionary<string, UIBase>();
         dicLayer2UIBaseBev = new Dictionary<UIBaseCfg.SortLayer, List<UIBase>>();
 
@@ -25,7 +30,7 @@ public class UIMgr : MonoBehaviour
         }
     }
 
-    public UIBase OpenUI<T>(object userData) where T : UIBase
+    public UIBase OpenUI<T>(object userData = null) where T : UIBase
     {
         string uiName = typeof(T).Name;
         if (dicUI.ContainsKey(uiName) && dicUI[uiName].gameObject.activeSelf)
