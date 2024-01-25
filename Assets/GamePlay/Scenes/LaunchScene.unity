@@ -159,6 +159,7 @@ Transform:
   - {fileID: 1009321264}
   - {fileID: 1399511416}
   - {fileID: 1347690067}
+  - {fileID: 1173971338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &845697393
@@ -215,6 +216,65 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3265be17440f37f43be15fa7b4e4cbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1173971337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173971338}
+  - component: {fileID: 1173971340}
+  - component: {fileID: 1173971339}
+  m_Layer: 0
+  m_Name: PlayerData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1173971338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173971337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 845697392}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1173971339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173971337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe0710e9cb5f1a43b5defd59eb02b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveToDriveInterval: 1
+  saveToServerInterval: 10
+--- !u!114 &1173971340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173971337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239bce2a6c4fc334a953190639dc2f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1192334909
@@ -473,6 +533,7 @@ GameObject:
   - component: {fileID: 1531283821}
   - component: {fileID: 1531283822}
   - component: {fileID: 1531283823}
+  - component: {fileID: 1531283824}
   m_Layer: 0
   m_Name: Procudure
   m_TagString: Untagged
@@ -555,6 +616,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39328fd097a6fd641a2d2b3616dff293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1531283824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531283817}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1b30fde236f0e478ff892f828ea990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1757076808

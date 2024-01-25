@@ -7054,7 +7054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   localizationModuleType: 0
-  btnDefaultClickSoundId: 114
+  btnDefaultClickSoundId: 101
   arrStaticLocalizationText: []
   arrPlaySoundBtn: []
   arrBtnSoundId: []

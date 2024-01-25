@@ -691,7 +691,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: ENABLE_LOG
+    Android: ENABLE_LOG;CLOSE_LOCALIZATION
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

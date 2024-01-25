@@ -32,6 +32,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fd8fd1f284a8cf4d94e87ddaaa3abdc
+    m_Address: Assets/GamePlay/Sound
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77a2bfcb087060840b184b9b6a3c5042
+    m_Address: Assets/GamePlay/Art
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05d3e2b2fc2672e4d9a8edc1ed0a06af
+    m_Address: Assets/GamePlay/DataTable/level
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d86578b39e1634e44891267dbeec9951
+    m_Address: Assets/GamePlay/DataTable/levelhard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6385a3854b5207e41bbcbf477159005d
+    m_Address: Assets/GamePlay/DataTable/speciallevel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9d71bbcc160df5b4b81f36e0c04382a3, type: 2}
   m_SchemaSet:

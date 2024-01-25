@@ -54,10 +54,14 @@ public class UIBase : MonoBehaviour
         canvas = GetComponent<Canvas>();
         animator = GetComponent<Animator>();
         raycaster = GetComponent<GraphicRaycaster>();
+
+#if !CLOSE_LOCALIZATION
+
         foreach(var text in arrStaticLocalizationText)
         {
             text.text = DTLocalization.Instance.GetString(localizationModuleType, text.text);
         }
+#endif
 
         if (arrPlaySoundBtn != null && arrPlaySoundBtn.Length > 0)
         {
