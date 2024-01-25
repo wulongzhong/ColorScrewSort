@@ -10,7 +10,7 @@ public class StickBev : MonoBehaviour
     public List<MeshRenderer> listLoopModels;
     public GameObject goTop;
 
-    public float distanceHop = 0.3864f;
+    public const float distanceHop = 0.3864f;
 
     public GameObject goX;
     public GameObject goY;
@@ -23,7 +23,7 @@ public class StickBev : MonoBehaviour
         {
             listLoopModels[i].enabled = i < height - 1;
         }
-        goTop.transform.localPosition = new Vector3(0, distanceHop * (height - 1), 0);
+        goTop.transform.localPosition = new Vector3(0, distanceHop * (height - 1) + 0.2f, 0);
     }
 
     public void PlayVictoryEffect()

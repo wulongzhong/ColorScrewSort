@@ -1,7 +1,10 @@
 using ConfigPB;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class LevelPlayMgr : MonoBehaviour
@@ -14,19 +17,27 @@ public class LevelPlayMgr : MonoBehaviour
     public Camera mainCamera;
     public MeshRenderer rendererBackGround;
     public GameObject stickPrefab;
+    public GameObject nutPrefab;
+    public List<Material> listColorMat;
 
     private LevelData levelData;
     private int levelHeight;
 
     private List<StickBev> listStickBev;
 
+    private Material matBackGround;
+    private ResLoader matBackGroundResLoader;
+
     private void Awake()
     {
         Instance = this;
+        matBackGround = new Material(rendererBackGround.material);
+        rendererBackGround.material = matBackGround;
     }
 
     public void Init()
     {
+        RefreshBGSkin();
         listStickBev = new List<StickBev>();
         //LoadLevel(NormalDataHandler.Instance.CurrLevelId, false);
         LoadLevel(34, false);
@@ -34,7 +45,14 @@ public class LevelPlayMgr : MonoBehaviour
 
     public void RefreshBGSkin()
     {
+        if(matBackGroundResLoader != null)
+        {
+            matBackGroundResLoader.Dispose();
+            matBackGroundResLoader = null;
+        }
+        matBackGroundResLoader = new ResLoader();
 
+        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>("Assets/ExRes/Texture2D/theme8.png");
     }
 
     public void LoadLevel(int levelId, bool bHard)
@@ -71,7 +89,7 @@ public class LevelPlayMgr : MonoBehaviour
         InitLevelView();
     }
 
-    public void InitLevelView()
+    public async void InitLevelView()
     {
         for(int i = 0; i < levelData.Data.Count; i++)
         {
@@ -83,6 +101,28 @@ public class LevelPlayMgr : MonoBehaviour
         }
 
         RereshStickPos();
+
+
+        for(int i = 0; i < levelData.Data.Count; i++)
+        {
+            var stick = levelData.Data[i].Stick;
+            for (int j = 0; j < stick.Count; ++j)
+            {
+                var nut = CreateNut(stick[j]);
+                nut.transform.parent = listStickBev[i].transform;
+                nut.transform.position = listStickBev[i].transform.position + new Vector3(0, 6, 0);
+                nut.transform.DOLocalMove(new Vector3(0, StickBev.distanceHop * j + 0.3f, 0), 1.0f);
+                await UniTask.Delay(50);
+            }
+        }
+    }
+
+    public GameObject CreateNut(int color)
+    {
+        var go = Instantiate(nutPrefab);
+        go.transform.localScale = Vector3.one;
+        go.transform.Find("Model").GetComponent<MeshRenderer>().material = listColorMat[color + 1];
+        return go;
     }
 
     public void RereshStickPos()
