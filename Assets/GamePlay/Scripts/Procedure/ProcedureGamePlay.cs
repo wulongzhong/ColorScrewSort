@@ -8,5 +8,6 @@ public class ProcedureGamePlay : ProcedureBase
     {
         base.OnEnter();
         UIMgr.Instance.OpenUI<UILevelPlaying>();
+        LevelPlayMgr.Instance.Init();
     }
 }

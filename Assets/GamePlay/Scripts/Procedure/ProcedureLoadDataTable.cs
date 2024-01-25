@@ -11,6 +11,6 @@ public class ProcedureLoadDataTable : ProcedureBase
         Splash.Instance.RefreshProgress(Splash.ProgressState.LoadTable, 1);
         DataTableMgr.Instance.InitDataTable();
         Splash.Instance.RefreshProgress(Splash.ProgressState.LoadTable, 2);
-        this.ProcedureMgr.ChangeProcedure<ProcedureLoadScene>();
+        this.ProcedureMgr.ChangeProcedure<ProcedureLoadPlayerData>();
     }
 }

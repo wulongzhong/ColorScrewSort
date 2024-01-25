@@ -8,6 +8,7 @@ public class ProcedureLoadScene : ProcedureBase
 {
     SceneLoader sceneLoader;
     private AsyncOperationHandle asyncOperationHandle;
+    private bool bActive = false;
 
     public override void OnInit()
     {
@@ -16,7 +17,8 @@ public class ProcedureLoadScene : ProcedureBase
     public override void OnEnter()
     {
         base.OnEnter();
-        if(sceneLoader != null)
+        bActive = false;
+        if (sceneLoader != null)
         {
             sceneLoader.Dispose();
             sceneLoader = null;
@@ -34,7 +36,18 @@ public class ProcedureLoadScene : ProcedureBase
         {
             return;
         }
-        ((SceneInstance)asyncOperationHandle.Result).ActivateAsync();
+
+        if (!bActive)
+        {
+            ((SceneInstance)asyncOperationHandle.Result).ActivateAsync();
+            bActive = true;
+        }
+
+        if (!((SceneInstance)asyncOperationHandle.Result).Scene.isLoaded)
+        {
+            return;
+        }
+
         Splash.Instance.RefreshProgress(Splash.ProgressState.LoadGameScene, 9);
         Splash.Instance.Finish();
         this.ProcedureMgr.ChangeProcedure<ProcedureGamePlay>();
