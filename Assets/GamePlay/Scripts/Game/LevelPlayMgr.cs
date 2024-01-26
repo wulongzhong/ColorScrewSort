@@ -69,6 +69,9 @@ public class LevelPlayMgr : MonoBehaviour
             levelPath = $"Assets/GamePlay/DataTable/levelhard/Lv_{levelId}.txt";
         }
         levelData = LevelData.Parser.ParseJson(resLoader.LoadAsset<TextAsset>(levelPath).text);
+#if ENABLE_LOG
+        Debug.Log(levelData);
+#endif
         levelHeight = 0;
         foreach (var stickData in levelData.Data)
         {
@@ -108,6 +111,10 @@ public class LevelPlayMgr : MonoBehaviour
             var stick = levelData.Data[i].Stick;
             for (int j = 0; j < stick.Count; ++j)
             {
+                if(stick[j] == 0)
+                {
+                    continue;
+                }
                 var nut = CreateNut(stick[j]);
                 nut.transform.parent = listStickBev[i].transform;
                 nut.transform.position = listStickBev[i].transform.position + new Vector3(0, 6, 0);
@@ -121,7 +128,7 @@ public class LevelPlayMgr : MonoBehaviour
     {
         var go = Instantiate(nutPrefab);
         go.transform.localScale = Vector3.one;
-        go.transform.Find("Model").GetComponent<MeshRenderer>().material = listColorMat[color + 1];
+        go.transform.Find("Model").GetComponent<MeshRenderer>().material = listColorMat[color - 1];
         return go;
     }
 
