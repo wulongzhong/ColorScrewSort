@@ -11,6 +11,31 @@ public partial class UILevelPlaying : UIBase, IEventHandle
     public override void OnInit()
     {
         base.OnInit();
+
+        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evt) => {
+
+        });
+
+        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evt) => {
+
+        });
+
+        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evt) => {
+
+        });
+
+        this.btnSkip.onClick.AddListener(() => {
+
+        });
+        this.btnRollBack.onClick.AddListener(() => {
+            LevelPlayMgr.Instance.CacelMove();
+        });
+        this.btnAddStick.onClick.AddListener(() => {
+            LevelPlayMgr.Instance.AddStick();
+        });
+        this.btnRestart.onClick.AddListener(() => {
+            LevelPlayMgr.Instance.RefreshLevel();
+        });
     }
 
     public override void OnOpen(object userData)

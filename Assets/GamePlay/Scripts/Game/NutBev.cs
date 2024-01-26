@@ -25,21 +25,7 @@ public class NutBev : MonoBehaviour
         }
     }
 
-    public void MoveToNewStick(StickBev stickBev)
-    {
-    }
-
-    public void MoveToUp()
-    {
-
-    }
-
-    public void MoveToDown()
-    {
-
-    }
-
-    public void OpenMask()
+    public void PlayDownEffect()
     {
 
     }
