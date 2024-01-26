@@ -13,7 +13,7 @@ public static class EventArgsPool
         {
             return pool[eventType];
         }
-        return default(T);
+        return Activator.CreateInstance(eventType) as EventArgsBase;
     }
 
     public static void Release(EventArgsBase evtArgs)
