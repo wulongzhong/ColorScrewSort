@@ -47,10 +47,14 @@ public class StickBev : MonoBehaviour
         if(listNutBev.Count > 0)
         {
             topColor = listNutBev[^1].color;
+            if (listNutBev[^1].bMasking)
+            {
+                listNutBev[^1].ClearMask();
+            }
             topColorCount = 1;
             for(int i = listNutBev.Count - 2; i >= 0; --i)
             {
-                if (listNutBev[i].color == topColor)
+                if (listNutBev[i].color == topColor && !listNutBev[i].bMasking)
                 {
                     ++topColorCount;
                 }

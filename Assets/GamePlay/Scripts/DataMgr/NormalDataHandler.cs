@@ -18,13 +18,13 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         set { normalData.GoldCount = value; BDirty = true; BNowSave = true; }
     }
 
-    public int CurrLevelId
+    public int CurrNormalLevelId
     {
         get { return normalData.CurrLevelId; }
         set { normalData.CurrLevelId = value; BDirty = true; BNowSave = true; }
     }
 
-    public bool CurrIsHard
+    public bool CurrNormalLevelIsHard
     {
         get;
         set;
