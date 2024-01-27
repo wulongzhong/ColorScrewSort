@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class StickBev : MonoBehaviour
 {
+    public class StickEndEvent : EventArgsBase
+    {
+        public override void Clear()
+        {
+        }
+    }
+
     public ParticleSystem victoryEffect;
     public ParticleSystem heigherVictoryEffect;
     public ParticleSystem doneEffect;
@@ -64,10 +71,13 @@ public class StickBev : MonoBehaviour
                 }
             }
         }
+    }
 
-        if(topColorCount == LevelPlayMgr.Instance.levelHeight)
+    public void RefreshEffect()
+    {
+        if (topColorCount == LevelPlayMgr.Instance.levelHeight)
         {
-            if(!bEnd)
+            if (!bEnd)
             {
                 bEnd = true;
                 PlayVictoryEffect();
@@ -77,18 +87,38 @@ public class StickBev : MonoBehaviour
         {
             if (bEnd)
             {
+                bEnd = false;
                 StopVictoryEffect();
             }
         }
     }
 
-    public async void PlayVictoryEffect()
+    public void PlayVictoryEffect()
     {
-        await UniTask.Delay(500);
+        if (LevelPlayMgr.Instance.levelHeight <= 5)
+        {
+            victoryEffect.gameObject.SetActive(true);
+            victoryEffect.Play();
+        }
+        else
+        {
+            heigherVictoryEffect.gameObject.SetActive(true);
+            heigherVictoryEffect.Play();
+        }
+        doneEffect.gameObject.SetActive(true);
+        float size = goTop.transform.localPosition.y + 0.5f;
+        doneEffect.transform.localPosition = new Vector3(0, size / 2 + 0.3f, 0);
+        var shape = doneEffect.shape;
+        shape.scale = new Vector3(1, 1, size);
+        doneEffect.Play();
+        GpEventMgr.Instance.PostEvent(EventArgsPool.Get<StickEndEvent>());
     }
 
     public void StopVictoryEffect()
     {
-
+        victoryEffect.gameObject.SetActive(false);
+        heigherVictoryEffect.gameObject.SetActive(false);
+        doneEffect.gameObject.SetActive(false);
+        doneEffect.Stop();
     }
 }

@@ -30,6 +30,12 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         set;
     }
 
+    public bool CurrIsNormalLevel
+    {
+        get;
+        set;
+    }
+
     public List<int> GetUnlockedBackGroundId()
     {
         return normalData.UnlockedBackGroundId.ToList();

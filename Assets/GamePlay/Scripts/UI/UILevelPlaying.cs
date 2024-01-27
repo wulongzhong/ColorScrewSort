@@ -12,15 +12,20 @@ public partial class UILevelPlaying : UIBase, IEventHandle
     {
         base.OnInit();
 
-        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evt) => {
+        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evtArg) => {
+            LevelPlayMgr.LevelWinEvent evt = (LevelPlayMgr.LevelWinEvent)evtArg;
+            fxHard.Play();
+        });
+
+        GpEventMgr.Instance.Register<StickBev.StickEndEvent>(this, (evtArg) => {
+            fxNormal.Play();
+        });
+
+        GpEventMgr.Instance.Register<LevelPlayMgr.LevelNotContinueEvent>(this, (evtArg) => {
 
         });
 
-        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evt) => {
-
-        });
-
-        GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evt) => {
+        GpEventMgr.Instance.Register<LevelPlayMgr.LevelMoveNutEvent>(this, (evtArg) => {
 
         });
 
@@ -36,6 +41,21 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         this.btnRestart.onClick.AddListener(() => {
             LevelPlayMgr.Instance.RefreshLevel();
         });
+
+        if(NormalDataHandler.Instance.CurrIsNormalLevel)
+        {
+            tLevel.enabled = true;
+            step.gameObject.SetActive(true);
+
+            tLevel.text = NormalDataHandler.Instance.CurrNormalLevelId.ToString();
+            step.GetChild(0).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
+            step.GetChild(1).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
+        }
+        else
+        {
+            tLevel.enabled = false;
+            step.gameObject.SetActive(false);
+        }
     }
 
     public override void OnOpen(object userData)

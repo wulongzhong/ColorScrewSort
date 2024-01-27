@@ -26,6 +26,10 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UnityEngine.UI.Button PopupNoMove;
     [SerializeField]
+    protected UnityEngine.ParticleSystem fxNormal;
+    [SerializeField]
+    protected UnityEngine.ParticleSystem fxHard;
+    [SerializeField]
     protected TMPro.TextMeshProUGUI tLevel;
     [SerializeField]
     protected UnityEngine.RectTransform step;

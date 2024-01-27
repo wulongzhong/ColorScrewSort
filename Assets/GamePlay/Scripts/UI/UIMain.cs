@@ -9,6 +9,28 @@ public partial class UIMain : UIBase, IEventHandle
     public override void OnInit()
     {
         base.OnInit();
+
+        btnRemoveADs.onClick.AddListener(() =>
+        {
+
+        });
+
+        btnFreeGem.onClick.AddListener(() =>
+        {
+
+        });
+
+        btnCustomize.onClick.AddListener(() =>
+        {
+
+        });
+
+        btnTapToStart.onClick.AddListener(() =>
+        {
+            LevelPlayMgr.Instance.bWaitPlay = false;
+            UIMgr.Instance.CloseUI<UIMain>(true);
+            UIMgr.Instance.OpenUI<UILevelPlaying>();
+        });
     }
     public override void OnOpen(object userData)
     {

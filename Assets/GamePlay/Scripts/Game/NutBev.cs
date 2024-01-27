@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class NutBev : MonoBehaviour
 {
@@ -13,6 +11,8 @@ public class NutBev : MonoBehaviour
 
     public Color mainColor;
     public Color emissionColor;
+
+    public ParticleSystem ps;
 
     private Material mat;
 
@@ -66,6 +66,6 @@ public class NutBev : MonoBehaviour
 
     public void PlayDownEffect()
     {
-
+        ps.Play();
     }
 }

@@ -8,12 +8,24 @@ using System.Drawing;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.XR;
-using static UnityEngine.GraphicsBuffer;
 
 public class LevelPlayMgr : MonoBehaviour
 {
     public class LevelWinEvent : EventArgsBase
     {
+        public bool bIsNormalLevel;
+        public int normalLevelId;
+        public bool bNormalIsHard;
+
+        public static LevelWinEvent Create(bool bIsNormalLevel, int normalLevelId, bool bNormalIsHard)
+        {
+            LevelWinEvent evt = (LevelWinEvent)EventArgsPool.Get<LevelWinEvent>();
+            evt.bIsNormalLevel = bIsNormalLevel;
+            evt.normalLevelId = normalLevelId;
+            evt.bNormalIsHard = bNormalIsHard;
+            return evt;
+        }
+
         public override void Clear()
         {
         }
@@ -41,6 +53,8 @@ public class LevelPlayMgr : MonoBehaviour
     }
 
     public static LevelPlayMgr Instance;
+
+    public bool bWaitPlay = true;
 
     private const int maxStickCount = 15;
     private const int maxRowStickCount = 5;
@@ -80,7 +94,8 @@ public class LevelPlayMgr : MonoBehaviour
         listStickBev = new List<StickBev>();
         nutMoveRecords = new Stack<NutMoveRecord>();
         //LoadLevel(NormalDataHandler.Instance.CurrLevelId, false);
-        LoadLevel(34, false);
+        NormalDataHandler.Instance.CurrNormalLevelIsHard = true;
+        LoadLevel(1, NormalDataHandler.Instance.CurrNormalLevelIsHard);
         //LoadSpecialLevel(3);
     }
 
@@ -141,7 +156,7 @@ public class LevelPlayMgr : MonoBehaviour
     {
         ClearLevel();
         ResLoader resLoader = new ResLoader();
-
+        NormalDataHandler.Instance.CurrIsNormalLevel = true;
         string levelPath;
         if (!bHard)
         {
@@ -174,6 +189,7 @@ public class LevelPlayMgr : MonoBehaviour
 
     public void LoadSpecialLevel(int levelId)
     {
+        NormalDataHandler.Instance.CurrIsNormalLevel = true;
         bCurrHardLevel = false;
         ResLoader resLoader = new ResLoader();
 
@@ -199,6 +215,7 @@ public class LevelPlayMgr : MonoBehaviour
 
     public void InitLevelView()
     {
+        bWaitPlay = true;
         bInitViewing = true;
         for (int i = 0; i < levelData.Data.Count; i++)
         {
@@ -212,11 +229,11 @@ public class LevelPlayMgr : MonoBehaviour
 
         for (int i = 0; i < levelData.Data.Count; i++)
         {
-            CreateStickNuts(i);
+            CreateStickNuts(i, levelData.TypeLevel == LevelType.Mask);
         }
     }
 
-    private async void CreateStickNuts(int stickIndex)
+    private async void CreateStickNuts(int stickIndex, bool bMask)
     {
         var colors = levelData.Data[stickIndex].Stick;
         var stickBev = listStickBev[stickIndex];
@@ -228,7 +245,7 @@ public class LevelPlayMgr : MonoBehaviour
                 continue;
             }
             var nutBev = CreateNut(colors[j]).GetComponent<NutBev>();
-            nutBev.Init(colors[j], bCurrHardLevel);
+            nutBev.Init(colors[j], bMask);
             nutBev.currPosY = j;
             stickBev.listNutBev.Add(nutBev);
             nutBev.transform.localScale = Vector3.zero;
@@ -240,9 +257,9 @@ public class LevelPlayMgr : MonoBehaviour
             await UniTask.Delay(300);
             float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
             float moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
-            nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime);
+            nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine);
             nutBev.transform.eulerAngles = Vector3.zero;
-            nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd);
+            nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
             await UniTask.Delay(400);
         }
         stickBev.bMoving = false;
@@ -343,6 +360,11 @@ public class LevelPlayMgr : MonoBehaviour
 
     private void Update()
     {
+        if(bInitViewing || bWaitPlay)
+        {
+            return;
+        }
+
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             var pos = Input.mousePosition;
@@ -427,9 +449,12 @@ public class LevelPlayMgr : MonoBehaviour
         var nutBev = stickBev.listNutBev[^1];
         float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
         float moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
-        nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime);
+        nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
+        {
+            nutBev.PlayDownEffect();
+        });
         nutBev.transform.eulerAngles = Vector3.zero;
-        nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd);
+        nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
     }
 
     private async void MoveNut(StickBev startStickBev, StickBev endStickBev, int moveCount = 0)
@@ -493,15 +518,18 @@ public class LevelPlayMgr : MonoBehaviour
 
                  float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
                  moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
-                 nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).OnComplete(() =>
+                 nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
                  {
                      nutBev.PlayDownEffect();
                  });
                  nutBev.transform.eulerAngles = Vector3.zero;
-                 nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd);
+                 nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
                  if (i == moveCount - 1)
                  {
                      await UniTask.Delay(Mathf.RoundToInt(moveTime * 1000));
+                     endStickBev.RefreshEffect();
+                     CheckCanContinueGame();
+                     CheckWin();
                  }
              });
         }
@@ -509,9 +537,6 @@ public class LevelPlayMgr : MonoBehaviour
         
         endStickBev.bMoving = false;
         endStickBev.RefreshState();
-
-        CheckCanContinueGame();
-        CheckWin();
 
         GpEventMgr.Instance.PostEvent(EventArgsPool.Get<LevelMoveNutEvent>());
     }
@@ -573,10 +598,14 @@ public class LevelPlayMgr : MonoBehaviour
         }
         if (bWin)
         {
+            bInitViewing = true;
             await UniTask.Delay(1000);
+            GpEventMgr.Instance.PostEvent(LevelWinEvent.Create(
+                NormalDataHandler.Instance.CurrIsNormalLevel,
+                NormalDataHandler.Instance.CurrNormalLevelId,
+                NormalDataHandler.Instance.CurrNormalLevelIsHard
+            ));
         }
-
-        GpEventMgr.Instance.PostEvent(EventArgsPool.Get<LevelWinEvent>());
     }
 
     public bool CacelMove()
