@@ -12,10 +12,15 @@ public class NormalDataHandler : IPlayerLocalDataHandler
     public bool BDirty { get; set; }
     public bool BNowSave { get; set; }
 
+    public int LastGoldCount
+    {
+        get;
+        set;
+    }
     public int GoldCount
     {
         get { return normalData.GoldCount; }
-        set { normalData.GoldCount = value; BDirty = true; BNowSave = true; }
+        set { LastGoldCount = normalData.GoldCount; normalData.GoldCount = value; BDirty = true; BNowSave = true; }
     }
 
     public int CurrNormalLevelId

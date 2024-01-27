@@ -15,7 +15,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evtArg) => {
             LevelPlayMgr.LevelWinEvent evt = (LevelPlayMgr.LevelWinEvent)evtArg;
-            PlayWin();
+            PlayWin(evt.bSkip, evt.bFinishLevel);
         });
 
         GpEventMgr.Instance.Register<StickBev.StickEndEvent>(this, (evtArg) => {
@@ -31,7 +31,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         });
 
         this.btnSkip.onClick.AddListener(() => {
-
+            LevelPlayMgr.Instance.SkipLevel();
         });
         this.btnRollBack.onClick.AddListener(() => {
             LevelPlayMgr.Instance.CacelMove();
@@ -78,9 +78,13 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         }
     }
 
-    private async void PlayWin()
+    private async void PlayWin(bool bSkip, bool bFinishLevel)
     {
-        await UniTask.Delay(1000);
+        if (!bSkip)
+        {
+            await UniTask.Delay(1000);
+        }
+        
         fxHard.Play();
         await UniTask.Delay(1200);
         panelVictoryStep.gameObject.SetActive(true);
@@ -88,7 +92,15 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         winAnimator.Play("VictoryStepback");
         await UniTask.Delay(800);
         UIMgr.Instance.CloseUI<UILevelPlaying>(true);
-        LevelPlayMgr.Instance.LoadNextLevel();
-        UIMgr.Instance.OpenUI<UIMain>(null);
+        
+        if (bFinishLevel)
+        {
+            UIMgr.Instance.OpenUI<UILevelComplete>(null);
+        }
+        else
+        {
+            LevelPlayMgr.Instance.LoadNextLevel();
+            UIMgr.Instance.OpenUI<UIMain>(null);
+        }
     }
 }

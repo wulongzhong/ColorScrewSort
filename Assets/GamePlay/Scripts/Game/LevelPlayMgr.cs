@@ -16,13 +16,16 @@ public class LevelPlayMgr : MonoBehaviour
         public bool bIsNormalLevel;
         public int normalLevelId;
         public bool bNormalIsHard;
-
-        public static LevelWinEvent Create(bool bIsNormalLevel, int normalLevelId, bool bNormalIsHard)
+        public bool bFinishLevel;
+        public bool bSkip;
+        public static LevelWinEvent Create(bool bIsNormalLevel, int normalLevelId, bool bNormalIsHard, bool bFinishLevel, bool bSkip)
         {
             LevelWinEvent evt = (LevelWinEvent)EventArgsPool.Get<LevelWinEvent>();
             evt.bIsNormalLevel = bIsNormalLevel;
             evt.normalLevelId = normalLevelId;
             evt.bNormalIsHard = bNormalIsHard;
+            evt.bFinishLevel = bFinishLevel;
+            evt.bSkip = bSkip;
             return evt;
         }
 
@@ -78,8 +81,6 @@ public class LevelPlayMgr : MonoBehaviour
 
     public bool bInitViewing = false;
 
-    private bool bCurrHardLevel = false;
-
 
     private void Awake()
     {
@@ -93,6 +94,7 @@ public class LevelPlayMgr : MonoBehaviour
         RefreshBGSkin();
         listStickBev = new List<StickBev>();
         nutMoveRecords = new Stack<NutMoveRecord>();
+        NormalDataHandler.Instance.CurrNormalLevelId = 1;
         LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, NormalDataHandler.Instance.CurrNormalLevelIsHard);
         //LoadSpecialLevel(3);
     }
@@ -123,11 +125,11 @@ public class LevelPlayMgr : MonoBehaviour
 
     public void SkipLevel()
     {
-        if (bInitViewing)
+        if (bInitViewing || bWaitPlay)
         {
             return;
         }
-        OnWin();
+        OnWin(true);
     }
 
     public void RefreshLevel()
@@ -138,6 +140,7 @@ public class LevelPlayMgr : MonoBehaviour
         }
         ClearLevel();
         InitLevelView();
+        bWaitPlay = false;
     }
 
     public void LoadNextLevel()
@@ -153,12 +156,10 @@ public class LevelPlayMgr : MonoBehaviour
         string levelPath;
         if (!bHard)
         {
-            bCurrHardLevel = false;
             levelPath = $"Assets/GamePlay/DataTable/level/Lv_{levelId}.txt";
         }
         else
         {
-            bCurrHardLevel = true;
             levelPath = $"Assets/GamePlay/DataTable/levelhard/Lv_{levelId}.txt";
         }
         levelData = LevelData.Parser.ParseJson(resLoader.LoadAsset<TextAsset>(levelPath).text);
@@ -183,7 +184,6 @@ public class LevelPlayMgr : MonoBehaviour
     public void LoadSpecialLevel(int levelId)
     {
         NormalDataHandler.Instance.CurrIsNormalLevel = true;
-        bCurrHardLevel = false;
         ResLoader resLoader = new ResLoader();
 
         string levelPath = $"Assets/GamePlay/DataTable/speciallevel/Lv_{levelId}.txt";
@@ -591,17 +591,35 @@ public class LevelPlayMgr : MonoBehaviour
         }
         if (bWin)
         {
-            bInitViewing = true;
-            OnWin();
+            OnWin(false);
         }
     }
 
-    private void OnWin()
+    private void OnWin(bool bSkip)
     {
+        bInitViewing = true;
+        bool bFinish = false;
+        if(!NormalDataHandler.Instance.CurrIsNormalLevel)
+        {
+            bFinish = true;
+        }
+        else
+        {
+            if(NormalDataHandler.Instance.CurrNormalLevelId <= 4)
+            {
+                bFinish = true;
+            }
+            else if (NormalDataHandler.Instance.CurrNormalLevelIsHard)
+            {
+                bFinish = true;
+            }
+        }
         GpEventMgr.Instance.PostEvent(LevelWinEvent.Create(
             NormalDataHandler.Instance.CurrIsNormalLevel,
             NormalDataHandler.Instance.CurrNormalLevelId,
-            NormalDataHandler.Instance.CurrNormalLevelIsHard
+            NormalDataHandler.Instance.CurrNormalLevelIsHard,
+            bFinish,
+            bSkip
         ));
 
         if (NormalDataHandler.Instance.CurrIsNormalLevel)

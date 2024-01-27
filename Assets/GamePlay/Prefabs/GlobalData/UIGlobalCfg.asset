@@ -21,3 +21,9 @@ MonoBehaviour:
   - uiName: UIMain
     sortLayer: 0
     prefabPath: Assets/GamePlay/Prefabs/UI/UIMain.prefab
+  - uiName: UILevelComplete
+    sortLayer: 0
+    prefabPath: Assets/GamePlay/Prefabs/UI/UILevelComplete.prefab
+  - uiName: TopDiamondUI
+    sortLayer: 0
+    prefabPath: Assets/GamePlay/Prefabs/UI/TopDiamondUI.prefab
