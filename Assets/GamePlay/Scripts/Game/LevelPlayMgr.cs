@@ -93,9 +93,7 @@ public class LevelPlayMgr : MonoBehaviour
         RefreshBGSkin();
         listStickBev = new List<StickBev>();
         nutMoveRecords = new Stack<NutMoveRecord>();
-        //LoadLevel(NormalDataHandler.Instance.CurrLevelId, false);
-        NormalDataHandler.Instance.CurrNormalLevelIsHard = true;
-        LoadLevel(1, NormalDataHandler.Instance.CurrNormalLevelIsHard);
+        LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, NormalDataHandler.Instance.CurrNormalLevelIsHard);
         //LoadSpecialLevel(3);
     }
 
@@ -108,7 +106,7 @@ public class LevelPlayMgr : MonoBehaviour
         }
         matBackGroundResLoader = new ResLoader();
 
-        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>("Assets/ExRes/Texture2D/theme8.png");
+        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>("Assets/ExRes/Texture2D/theme12.png");
     }
 
     public void ClearLevel()
@@ -129,17 +127,7 @@ public class LevelPlayMgr : MonoBehaviour
         {
             return;
         }
-        if (NormalDataHandler.Instance.CurrNormalLevelIsHard)
-        {
-            NormalDataHandler.Instance.CurrNormalLevelId++;
-            NormalDataHandler.Instance.CurrNormalLevelIsHard = false;
-        }
-        else
-        {
-            NormalDataHandler.Instance.CurrNormalLevelIsHard = true;
-        }
-
-        LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, NormalDataHandler.Instance.CurrNormalLevelIsHard);
+        OnWin();
     }
 
     public void RefreshLevel()
@@ -150,6 +138,11 @@ public class LevelPlayMgr : MonoBehaviour
         }
         ClearLevel();
         InitLevelView();
+    }
+
+    public void LoadNextLevel()
+    {
+        LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, NormalDataHandler.Instance.CurrNormalLevelIsHard);
     }
 
     public void LoadLevel(int levelId, bool bHard)
@@ -585,7 +578,7 @@ public class LevelPlayMgr : MonoBehaviour
         return false;
     }
 
-    public async void CheckWin()
+    public  void CheckWin()
     {
         bool bWin = true;
         foreach (var stickBev in listStickBev)
@@ -599,12 +592,37 @@ public class LevelPlayMgr : MonoBehaviour
         if (bWin)
         {
             bInitViewing = true;
-            await UniTask.Delay(1000);
-            GpEventMgr.Instance.PostEvent(LevelWinEvent.Create(
-                NormalDataHandler.Instance.CurrIsNormalLevel,
-                NormalDataHandler.Instance.CurrNormalLevelId,
-                NormalDataHandler.Instance.CurrNormalLevelIsHard
-            ));
+            OnWin();
+        }
+    }
+
+    private void OnWin()
+    {
+        GpEventMgr.Instance.PostEvent(LevelWinEvent.Create(
+            NormalDataHandler.Instance.CurrIsNormalLevel,
+            NormalDataHandler.Instance.CurrNormalLevelId,
+            NormalDataHandler.Instance.CurrNormalLevelIsHard
+        ));
+
+        if (NormalDataHandler.Instance.CurrIsNormalLevel)
+        {
+            if(NormalDataHandler.Instance.CurrNormalLevelId > 4)
+            {
+                if (NormalDataHandler.Instance.CurrNormalLevelIsHard)
+                {
+                    NormalDataHandler.Instance.CurrNormalLevelId++;
+                    NormalDataHandler.Instance.CurrNormalLevelIsHard = false;
+                }
+                else
+                {
+                    NormalDataHandler.Instance.CurrNormalLevelIsHard = true;
+                }
+            }
+            else
+            {
+                NormalDataHandler.Instance.CurrNormalLevelId++;
+            }
+            
         }
     }
 

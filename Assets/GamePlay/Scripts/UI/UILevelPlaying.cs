@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evtArg) => {
             LevelPlayMgr.LevelWinEvent evt = (LevelPlayMgr.LevelWinEvent)evtArg;
-            fxHard.Play();
+            PlayWin();
         });
 
         GpEventMgr.Instance.Register<StickBev.StickEndEvent>(this, (evtArg) => {
@@ -75,5 +76,19 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         {
             this.ClearUpEventHandle();
         }
+    }
+
+    private async void PlayWin()
+    {
+        await UniTask.Delay(1000);
+        fxHard.Play();
+        await UniTask.Delay(1200);
+        panelVictoryStep.gameObject.SetActive(true);
+        await UniTask.Delay(1000);
+        winAnimator.Play("VictoryStepback");
+        await UniTask.Delay(800);
+        UIMgr.Instance.CloseUI<UILevelPlaying>(true);
+        LevelPlayMgr.Instance.LoadNextLevel();
+        UIMgr.Instance.OpenUI<UIMain>(null);
     }
 }

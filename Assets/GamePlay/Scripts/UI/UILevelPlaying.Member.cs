@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public partial class UILevelPlaying : UIBase
 {
     [SerializeField]
+    protected UnityEngine.RectTransform panelVictoryStep;
+    [SerializeField]
     protected UnityEngine.UI.Button btnRemoveAds;
     [SerializeField]
     protected UnityEngine.UI.Button buttonListLevel;
@@ -29,6 +31,8 @@ public partial class UILevelPlaying : UIBase
     protected UnityEngine.ParticleSystem fxNormal;
     [SerializeField]
     protected UnityEngine.ParticleSystem fxHard;
+    [SerializeField]
+    protected UnityEngine.Animator winAnimator;
     [SerializeField]
     protected TMPro.TextMeshProUGUI tLevel;
     [SerializeField]
