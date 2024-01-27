@@ -9,8 +9,9 @@ using ConfigPB;
 public class UIMgr : MonoBehaviour
 {
     public static UIMgr Instance;
-
     public UIGlobalCfg globalCfg;
+    public Camera uiCamera;
+
     private Dictionary<string, UIBase> dicUI;
     private Dictionary<UIBaseCfg.SortLayer, List<UIBase>> dicLayer2UIBaseBev;
 
@@ -50,6 +51,8 @@ public class UIMgr : MonoBehaviour
         {
             sortingOrder = dicLayer2UIBaseBev[cfg.sortLayer][^1].canvas.sortingOrder + 10;
         }
+        uiBase.canvas.worldCamera = uiCamera;
+        uiBase.canvas.planeDistance = 1;
         uiBase.canvas.sortingOrder = sortingOrder;
         dicUI.Add(uiName, uiBase);
         dicLayer2UIBaseBev[cfg.sortLayer].Add(uiBase);
@@ -67,10 +70,15 @@ public class UIMgr : MonoBehaviour
         dicUI[uiName].OnClose(bRecycle);
         dicLayer2UIBaseBev[cfg.sortLayer].Remove(dicUI[uiName]);
 
-        if (!bRecycle)
+        //if (!bRecycle)
         {
+            Destroy(dicUI[uiName].gameObject);
             dicUI.Remove(uiName);
         }
+        //else
+        //{
+        //    dicUI[uiName].gameObject.SetActive(false);
+        //}
     }
 
     public T FindUI<T>() where T : UIBase

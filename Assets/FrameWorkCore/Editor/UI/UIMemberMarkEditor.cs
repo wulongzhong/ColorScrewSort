@@ -70,7 +70,7 @@ public class UIMemberMarkMemberInfoEditor : PropertyDrawer
         }
         if (bInit)
         {
-            property.FindPropertyRelative("memberName").stringValue = uiMemberMark.gameObject.name;
+            property.FindPropertyRelative("memberName").stringValue = uiMemberMark.gameObject.name.Replace(" ", string.Empty).Replace("Button", "btn");
             property.FindPropertyRelative("memberObj").objectReferenceValue = allBev[0];
             int priority = 0;
             foreach (var bev in allBev)
