@@ -111,6 +111,17 @@ public class LevelPlayMgr : MonoBehaviour
         matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>(DTTheme.Instance.GetThemeByID(NormalDataHandler.Instance.CurrSelectBackGroundId).BGResPath);
     }
 
+    public void RefreshNutSkin(int skinId)
+    {
+        foreach(var stickBev in listStickBev)
+        {
+            foreach(var nutBev in stickBev.listNutBev)
+            {
+                nutBev.RefreshSkin(skinId);
+            }
+        }
+    }
+
     public void PreviewBGSkin(int themeId)
     {
         if (matBackGroundResLoader != null)
@@ -279,7 +290,7 @@ public class LevelPlayMgr : MonoBehaviour
     {
         var go = Instantiate(nutPrefab);
         go.transform.localScale = Vector3.one;
-        go.transform.Find("Model").GetComponent<MeshRenderer>().material = listColorMat[color - 1];
+        go.GetComponent<NutBev>().mat = listColorMat[color - 1];
         return go;
     }
 

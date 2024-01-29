@@ -24,6 +24,7 @@ public class DataTableMgr : MonoBehaviour
         DTLocalization dTLocalization = new DTLocalization(table, SystemLanguage.English);
         DTSound dTSound = new DTSound(table);
         DTTheme dTTheme = new DTTheme(table);
+        DTSkin dTSkin = new DTSkin(table);
 
         resLoader.Dispose();
 #if ENABLE_LOG

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ThemeItem : MonoBehaviour
 {
     [NonSerialized]
-    public int themeId;
+    public int Id;
 
     public Button btn;
     public Image imgIcon;

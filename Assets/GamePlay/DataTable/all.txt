@@ -25,6 +25,116 @@
 			"Vietnamese": "Truyền thuyết thế giới linh hồn"
 		}
 	],
+	"Skin": [
+		{
+			"ID": 1,
+			"IconResPath": "Assets/GamePlay/Art/Skin/1.png"
+		},
+		{
+			"ID": 2,
+			"IconResPath": "Assets/GamePlay/Art/Skin/2.png"
+		},
+		{
+			"ID": 3,
+			"IconResPath": "Assets/GamePlay/Art/Skin/3.png"
+		},
+		{
+			"ID": 4,
+			"IconResPath": "Assets/GamePlay/Art/Skin/4.png"
+		},
+		{
+			"ID": 5,
+			"IconResPath": "Assets/GamePlay/Art/Skin/5.png"
+		},
+		{
+			"ID": 6,
+			"IconResPath": "Assets/GamePlay/Art/Skin/6.png"
+		},
+		{
+			"ID": 7,
+			"IconResPath": "Assets/GamePlay/Art/Skin/7.png"
+		},
+		{
+			"ID": 8,
+			"IconResPath": "Assets/GamePlay/Art/Skin/8.png"
+		},
+		{
+			"ID": 9,
+			"IconResPath": "Assets/GamePlay/Art/Skin/9.png"
+		},
+		{
+			"ID": 10,
+			"IconResPath": "Assets/GamePlay/Art/Skin/10.png"
+		},
+		{
+			"ID": 11,
+			"IconResPath": "Assets/GamePlay/Art/Skin/11.png"
+		},
+		{
+			"ID": 12,
+			"IconResPath": "Assets/GamePlay/Art/Skin/12.png"
+		},
+		{
+			"ID": 13,
+			"IconResPath": "Assets/GamePlay/Art/Skin/13.png"
+		},
+		{
+			"ID": 14,
+			"IconResPath": "Assets/GamePlay/Art/Skin/14.png"
+		},
+		{
+			"ID": 15,
+			"IconResPath": "Assets/GamePlay/Art/Skin/15.png"
+		},
+		{
+			"ID": 16,
+			"IconResPath": "Assets/GamePlay/Art/Skin/16.png"
+		},
+		{
+			"ID": 17,
+			"IconResPath": "Assets/GamePlay/Art/Skin/17.png"
+		},
+		{
+			"ID": 18,
+			"IconResPath": "Assets/GamePlay/Art/Skin/18.png"
+		},
+		{
+			"ID": 19,
+			"IconResPath": "Assets/GamePlay/Art/Skin/19.png"
+		},
+		{
+			"ID": 20,
+			"IconResPath": "Assets/GamePlay/Art/Skin/20.png"
+		},
+		{
+			"ID": 21,
+			"IconResPath": "Assets/GamePlay/Art/Skin/21.png"
+		},
+		{
+			"ID": 22,
+			"IconResPath": "Assets/GamePlay/Art/Skin/22.png"
+		},
+		{
+			"ID": 23,
+			"IconResPath": "Assets/GamePlay/Art/Skin/23.png"
+		},
+		{
+			"ID": 24,
+			"IconResPath": "Assets/GamePlay/Art/Skin/24.png"
+		},
+		{
+			"ID": 25,
+			"IconResPath": "Assets/GamePlay/Art/Skin/25.png"
+		},
+		{
+			"ID": 26,
+			"IconResPath": "Assets/GamePlay/Art/Skin/26.png"
+		},
+		{
+			"ID": 27,
+			"IconResPath": "Assets/GamePlay/Art/Skin/27.png"
+		}
+	],
 	"Sound": [
 		{
 			"AssetPath": "Assets/GamePlay/Sound/Button.ogg",

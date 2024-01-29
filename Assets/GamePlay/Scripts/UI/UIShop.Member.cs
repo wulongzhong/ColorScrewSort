@@ -2,38 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+
 public partial class UIShop : UIBase
-{
+{
     [SerializeField]
-    protected UnityEngine.UI.Image imgShopBG;
+    protected UnityEngine.UI.Image imgShopBG;
     [SerializeField]
-    protected UITopDiamond topDiamondUI;
+    protected UITopDiamond topDiamondUI;
     [SerializeField]
-    protected UnityEngine.UI.Button btnBack;
+    protected UnityEngine.UI.Button btnBack;
     [SerializeField]
-    protected UnityEngine.RectTransform tfBG;
+    protected UnityEngine.RectTransform tfBG;
     [SerializeField]
-    protected UnityEngine.RectTransform tfPopupRewardTheme;
+    protected UnityEngine.RectTransform tfPopupRewardTheme;
     [SerializeField]
-    protected UnityEngine.UI.Button btnSkin;
+    protected UnityEngine.UI.Button btnSkin;
     [SerializeField]
-    protected UnityEngine.UI.Button btnTheme;
+    protected UnityEngine.UI.Button btnTheme;
     [SerializeField]
-    protected UnityEngine.UI.Button btnLaterTheme;
+    protected UnityEngine.RectTransform tfTheme;
     [SerializeField]
-    protected UnityEngine.UI.Button btnThemeAds;
+    protected UnityEngine.RectTransform tfSkin;
     [SerializeField]
-    protected UnityEngine.UI.Button btnThemeRandom;
+    protected UnityEngine.UI.Button btnLaterTheme;
     [SerializeField]
-    protected UnityEngine.UI.Button btnThemeSelect;
+    protected UnityEngine.UI.Button btnThemeAds;
     [SerializeField]
-    protected UnityEngine.RectTransform btnThemeSelected;
+    protected UnityEngine.UI.Button btnThemeRandom;
     [SerializeField]
-    protected UnityEngine.UI.Image newUnlockThemeIcon;
+    protected UnityEngine.UI.Button btnThemeSelect;
     [SerializeField]
-    protected UnityEngine.UI.Button btnUseThemeNow;
+    protected UnityEngine.RectTransform btnThemeSelected;
     [SerializeField]
-    protected UnityEngine.RectTransform tfThemeItem;
-
-}
+    protected UnityEngine.UI.Image newUnlockThemeIcon;
+    [SerializeField]
+    protected UnityEngine.UI.Button btnUseThemeNow;
+    [SerializeField]
+    protected UnityEngine.RectTransform tfThemeItem;
+    [SerializeField]
+    protected UnityEngine.RectTransform tfSkinItem;
+}

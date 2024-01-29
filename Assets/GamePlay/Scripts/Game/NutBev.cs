@@ -9,21 +9,37 @@ public class NutBev : MonoBehaviour
     public int currPosY;
     public bool bMasking;
 
+    public Transform modelRoot;
+
     public Color mainColor;
     public Color emissionColor;
 
     public ParticleSystem ps;
 
-    private Material mat;
+    public Material mat;
 
     public void Init(int color, bool bMask)
     {
         this.color = color;
         bMasking = bMask;
+
+        RefreshSkin(NormalDataHandler.Instance.CurrSelectNutId);
+    }
+
+    public void RefreshSkin(int skinId)
+    {
+        for(int i = 0; i < modelRoot.childCount; i++)
+        {
+            modelRoot.GetChild(i).gameObject.SetActive(false);
+        }
+        var transf = modelRoot.GetChild(skinId - 1);
+        transf.gameObject.SetActive(true);
+        var meshRenderer = transf.GetComponentInChildren<MeshRenderer>();
+        meshRenderer.material = mat;
+
         if (bMasking)
         {
-            var meshRenderer = gameObject.transform.Find("Model").GetComponent<MeshRenderer>();
-            mat = new Material(meshRenderer.material);
+            mat = new Material(mat);
             meshRenderer.material = mat;
             mainColor = mat.color;
             emissionColor = mat.GetColor("_EmissionColor");

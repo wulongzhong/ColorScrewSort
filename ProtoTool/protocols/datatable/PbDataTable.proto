@@ -62,13 +62,20 @@ message Theme
 	string IconResPath = 3; // Icon资源路径 
 }
 
+message Skin
+{ 
+	int32 ID = 1; // ID 
+	string IconResPath = 2; // Icon资源路径 
+}
+
 
 // Combine struct
 message Table
 {	
 	repeated GlobalCfg GlobalCfg = 1; // table: GlobalCfg 
 	repeated Localization Localization = 2; // table: Localization 
-	repeated Sound Sound = 3; // table: Sound 
-	repeated Theme Theme = 4; // table: Theme 
+	repeated Skin Skin = 3; // table: Skin 
+	repeated Sound Sound = 4; // table: Sound 
+	repeated Theme Theme = 5; // table: Theme 
 }
 
