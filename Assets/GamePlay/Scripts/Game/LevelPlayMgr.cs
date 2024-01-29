@@ -513,6 +513,7 @@ public class LevelPlayMgr : MonoBehaviour
             {
                 startStickBev.bMoving = false;
                 startStickBev.RefreshState();
+                startStickBev.RefreshEffect();
             }
 
             _ = UniTask.Create(
@@ -673,6 +674,7 @@ public class LevelPlayMgr : MonoBehaviour
         }
         record = nutMoveRecords.Pop();
         MoveNut(record.endStickBev, record.startStickBev, record.count);
+        NormalDataHandler.Instance.PropUndoCount -= 1;
         return true;
     }
 
@@ -692,5 +694,6 @@ public class LevelPlayMgr : MonoBehaviour
         stickBev.Init(levelHeight);
         listStickBev.Add(stickBev);
         RefreshStickPos();
+        NormalDataHandler.Instance.PropAddRowCount -= 1;
     }
 }

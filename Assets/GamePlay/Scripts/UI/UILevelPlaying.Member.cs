@@ -38,8 +38,26 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UnityEngine.RectTransform step;
     [SerializeField]
+    protected UnityEngine.UI.Image tfRollAdd;
+    [SerializeField]
+    protected UnityEngine.UI.Image tfStickAdd;
+    [SerializeField]
     protected TMPro.TextMeshProUGUI tRollBack;
     [SerializeField]
     protected TMPro.TextMeshProUGUI tAddStick;
+    [SerializeField]
+    protected UnityEngine.UI.Button btnCloseMoreItem;
+    [SerializeField]
+    protected UnityEngine.UI.Button btnWatchAdsItem;
+    [SerializeField]
+    protected UnityEngine.UI.Image imageItemRollBack;
+    [SerializeField]
+    protected UnityEngine.UI.Image imageItemAddStick;
+    [SerializeField]
+    protected UnityEngine.UI.Image imageItemRollBack2;
+    [SerializeField]
+    protected UnityEngine.UI.Image imageItemAddStick2;
+    [SerializeField]
+    protected UnityEngine.UI.Button btnBuyItem;
 
 }

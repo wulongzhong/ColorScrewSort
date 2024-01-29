@@ -9,6 +9,8 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 {
     public int EventHandlerIndex { get; set; }
 
+    private bool bCurrGetPropUndo = false;
+
     public override void OnInit()
     {
         base.OnInit();
@@ -34,10 +36,28 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             LevelPlayMgr.Instance.SkipLevel();
         });
         this.btnRollBack.onClick.AddListener(() => {
-            LevelPlayMgr.Instance.CacelMove();
+            if(NormalDataHandler.Instance.PropUndoCount > 0)
+            {
+                LevelPlayMgr.Instance.CacelMove();
+                RefreshPropCount();
+            }
+            else
+            {
+                bCurrGetPropUndo = true;
+                GetMoveProp();
+            }
         });
         this.btnAddStick.onClick.AddListener(() => {
-            LevelPlayMgr.Instance.AddStick();
+            if (NormalDataHandler.Instance.PropAddRowCount > 0)
+            {
+                LevelPlayMgr.Instance.AddStick();
+                RefreshPropCount();
+            }
+            else
+            {
+                bCurrGetPropUndo = false;
+                GetMoveProp();
+            }
         });
         this.btnRestart.onClick.AddListener(() => {
             LevelPlayMgr.Instance.RefreshLevel();
@@ -48,7 +68,13 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             UIMgr.Instance.OpenUI<UIPause>();
         });
 
-        RefreshInfo();
+        this.PopupAddItem.onClick.AddListener(CloseGetMoveProp);
+        this.btnCloseMoreItem.onClick.AddListener(CloseGetMoveProp);
+        this.btnBuyItem.onClick.AddListener(OnClickBuyItem);
+        this.btnWatchAdsItem.onClick.AddListener(OnClickWatchAdsItem);
+
+        RefreshLeveInfo();
+        RefreshPropCount();
     }
 
     public override void OnOpen(object userData)
@@ -70,7 +96,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         }
     }
 
-    public void RefreshInfo()
+    public void RefreshLeveInfo()
     {
         if (NormalDataHandler.Instance.CurrIsNormalLevel)
         {
@@ -86,6 +112,14 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             tLevel.enabled = false;
             step.gameObject.SetActive(false);
         }
+    }
+
+    public void RefreshPropCount()
+    {
+        this.tRollBack.text = NormalDataHandler.Instance.PropUndoCount.ToString();
+        this.tAddStick.text = NormalDataHandler.Instance.PropAddRowCount.ToString();
+        this.tfRollAdd.gameObject.SetActive(NormalDataHandler.Instance.PropUndoCount <= 0);
+        this.tfStickAdd.gameObject.SetActive(NormalDataHandler.Instance.PropAddRowCount <= 0);
     }
 
     private async void PlayWin(bool bSkip, bool bFinishLevel)
@@ -112,5 +146,47 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             LevelPlayMgr.Instance.LoadNextLevel();
             UIMgr.Instance.OpenUI<UIMain>(null);
         }
+    }
+
+    private void GetMoveProp()
+    {
+        LevelPlayMgr.Instance.bPause = true;
+        this.PopupAddItem.gameObject.SetActive(true);
+
+        this.imageItemRollBack.gameObject.SetActive(bCurrGetPropUndo);
+        this.imageItemRollBack2.gameObject.SetActive(bCurrGetPropUndo);
+        this.imageItemAddStick.gameObject.SetActive(!bCurrGetPropUndo);
+        this.imageItemAddStick2.gameObject.SetActive(!bCurrGetPropUndo);
+    }
+
+    private void OnClickWatchAdsItem()
+    {
+
+    }
+
+    private void OnClickBuyItem()
+    {
+        if(NormalDataHandler.Instance.GoldCount < 150)
+        {
+            return;
+        }
+        NormalDataHandler.Instance.GoldCount -= 150;
+
+        if (bCurrGetPropUndo)
+        {
+            NormalDataHandler.Instance.PropUndoCount += 7;
+        }
+        else
+        {
+            NormalDataHandler.Instance.PropAddRowCount += 7;
+        }
+        
+        RefreshPropCount();
+    }
+
+    public void CloseGetMoveProp()
+    {
+        LevelPlayMgr.Instance.bPause = false;
+        this.PopupAddItem.gameObject.SetActive(false);
     }
 }

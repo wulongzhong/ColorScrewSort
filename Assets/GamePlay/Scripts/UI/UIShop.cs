@@ -39,6 +39,7 @@ public partial class UIShop : UIBase, IEventHandle
         this.btnThemeSelect.onClick.AddListener(OnClickThemeSelect);
         this.btnThemeRandom.onClick.AddListener(OnClickThemeRandom);
         this.btnLaterTheme.onClick.AddListener(() => { tfPopupRewardTheme.gameObject.SetActive(false); });
+        this.btnThemeAds.onClick.AddListener(() => UIMgr.Instance.OpenUI<UIStore>());
 
         dicAllThemeItem = new Dictionary<int, ThemeItem>();
         foreach (var kv in DTTheme.Instance.dicThemes)
