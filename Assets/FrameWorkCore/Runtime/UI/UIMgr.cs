@@ -52,6 +52,10 @@ public class UIMgr : MonoBehaviour
         {
             sortingOrder = dicLayer2UIBaseBev[cfg.sortLayer][^1].canvas.sortingOrder + 10;
         }
+        else
+        {
+            sortingOrder = (int)cfg.sortLayer;
+        }
         uiBase.canvas.worldCamera = uiCamera;
         uiBase.canvas.planeDistance = 1;
         uiBase.canvas.sortingOrder = sortingOrder;

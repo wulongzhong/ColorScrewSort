@@ -121,21 +121,20 @@ public partial class UIShop : UIBase, IEventHandle
                 this.btnThemeAds.gameObject.SetActive(true);
             }
         }
-        else
+        else if (!NormalDataHandler.Instance.GetUnlockedBackGroundId().Contains(themeItem.themeId))
         {
-            if (!NormalDataHandler.Instance.GetUnlockedBackGroundId().Contains(themeItem.themeId))
-            {
-                this.bPreviewing = true;
-                imgShopBG.enabled = false;
-                tfBG.gameObject.SetActive(false);
-                LevelPlayMgr.Instance.PreviewBGSkin(themeItem.themeId);
-                this.btnThemeAds.gameObject.SetActive(true);
-            }
-            else
-            {
-                this.btnThemeSelected.gameObject.SetActive(true);
-            }
+            this.bPreviewing = true;
+            imgShopBG.enabled = false;
+            tfBG.gameObject.SetActive(false);
+            LevelPlayMgr.Instance.PreviewBGSkin(themeItem.themeId);
+            this.btnThemeAds.gameObject.SetActive(true);
         }
+        if(themeItem == selectedThemeItem)
+        {
+            this.btnThemeSelect.gameObject.SetActive(false);
+            this.btnThemeSelected.gameObject.SetActive(true);
+        }
+
         lastClickThemeItem = themeItem;
     }
 
@@ -152,6 +151,12 @@ public partial class UIShop : UIBase, IEventHandle
 
     private void OnClickThemeRandom()
     {
+        if (NormalDataHandler.Instance.GoldCount < 150)
+        {
+            UIMgr.Instance.OpenUI<UIStore>();
+            return;
+        }
+
         var listAllThemesId = DTTheme.Instance.dicThemes.Values.ToList();
         for(int i = listAllThemesId.Count - 1; i >= 0; i--)
         {

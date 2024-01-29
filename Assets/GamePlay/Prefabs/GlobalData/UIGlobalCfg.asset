@@ -33,3 +33,6 @@ MonoBehaviour:
   - uiName: UIPause
     sortLayer: 200
     prefabPath: Assets/GamePlay/Prefabs/UI/UIPause.prefab
+  - uiName: UIStore
+    sortLayer: 200
+    prefabPath: Assets/GamePlay/Prefabs/UI/UIStore.prefab
