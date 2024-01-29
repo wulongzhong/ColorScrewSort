@@ -75,6 +75,35 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         set { normalData.CurrSelectNutId = value; BDirty = true; }
     }
 
+    public int CurrChestFragCount
+    {
+        get { return normalData.CurrChestFragCount; }
+        set { normalData.CurrChestFragCount = value; BDirty = true; }
+    }
+    public int CurrThemeFragCount
+    {
+        get { return normalData.CurrThemeFragCount; }
+        set { normalData.CurrThemeFragCount = value; BDirty = true; }
+    }
+
+    public int CurrThemeFragId
+    {
+        get { return normalData.CurrThemeFragId; }
+        set { normalData.CurrThemeFragId = value; BDirty = true; }
+    }
+
+    public int PropUndoCount
+    {
+        get { return normalData.PropUndoCount; }
+        set { normalData.PropUndoCount = value; BDirty = true; }
+    }
+
+    public int PropAddRowCount
+    {
+        get { return normalData.PropAddRowCount; }
+        set { normalData.PropAddRowCount = value; BDirty = true; }
+    }
+
     public NormalDataHandler(PlayerData playerData)
     {
         if(playerData.NormalData == null)

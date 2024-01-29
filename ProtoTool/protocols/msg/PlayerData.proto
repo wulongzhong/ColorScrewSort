@@ -9,6 +9,13 @@ message NormalData{
     int32 currSelectBackGroundId = 5;//当前选择的背景ID
     repeated int32 unlockedNutId = 6;//已解锁的螺母的ID
     int32 currSelectNutId = 7;//当前选择的螺母ID
+
+    int32 currChestFragCount = 8;//当前宝箱碎片数量
+    int32 currThemeFragCount = 9;//当前皮肤碎片数量
+    int32 currThemeFragId = 10;//当前解锁皮肤碎片ID
+
+    int32 propUndoCount = 11;//道具撤回数量
+    int32 propAddRowCount = 12;//道具增加一个螺丝数量
 }
 
 message PlayerData{

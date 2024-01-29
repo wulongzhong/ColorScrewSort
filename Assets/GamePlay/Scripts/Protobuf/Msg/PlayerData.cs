@@ -24,18 +24,20 @@ namespace Msg {
     static PlayerDataReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChBQbGF5ZXJEYXRhLnByb3RvEgNNc2ciwgEKCk5vcm1hbERhdGESEQoJZ29s",
+            "ChBQbGF5ZXJEYXRhLnByb3RvEgNNc2ciwwIKCk5vcm1hbERhdGESEQoJZ29s",
             "ZENvdW50GAEgASgFEhMKC2N1cnJMZXZlbElkGAIgASgFEh4KFm5leHRTcGVj",
             "aWFsTGV2ZWxPcGVuSWQYAyABKAUSHAoUdW5sb2NrZWRCYWNrR3JvdW5kSWQY",
             "BCADKAUSHgoWY3VyclNlbGVjdEJhY2tHcm91bmRJZBgFIAEoBRIVCg11bmxv",
-            "Y2tlZE51dElkGAYgAygFEhcKD2N1cnJTZWxlY3ROdXRJZBgHIAEoBSJXCgpQ",
-            "bGF5ZXJEYXRhEg4KBnVzZXJJZBgBIAEoAxIUCgx1c2VyRGV2aWNlSWQYAiAB",
-            "KAkSIwoKbm9ybWFsRGF0YRgDIAEoCzIPLk1zZy5Ob3JtYWxEYXRhYgZwcm90",
-            "bzM="));
+            "Y2tlZE51dElkGAYgAygFEhcKD2N1cnJTZWxlY3ROdXRJZBgHIAEoBRIaChJj",
+            "dXJyQ2hlc3RGcmFnQ291bnQYCCABKAUSGgoSY3VyclRoZW1lRnJhZ0NvdW50",
+            "GAkgASgFEhcKD2N1cnJUaGVtZUZyYWdJZBgKIAEoBRIVCg1wcm9wVW5kb0Nv",
+            "dW50GAsgASgFEhcKD3Byb3BBZGRSb3dDb3VudBgMIAEoBSJXCgpQbGF5ZXJE",
+            "YXRhEg4KBnVzZXJJZBgBIAEoAxIUCgx1c2VyRGV2aWNlSWQYAiABKAkSIwoK",
+            "bm9ybWFsRGF0YRgDIAEoCzIPLk1zZy5Ob3JtYWxEYXRhYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Msg.NormalData), global::Msg.NormalData.Parser, new[]{ "GoldCount", "CurrLevelId", "NextSpecialLevelOpenId", "UnlockedBackGroundId", "CurrSelectBackGroundId", "UnlockedNutId", "CurrSelectNutId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Msg.NormalData), global::Msg.NormalData.Parser, new[]{ "GoldCount", "CurrLevelId", "NextSpecialLevelOpenId", "UnlockedBackGroundId", "CurrSelectBackGroundId", "UnlockedNutId", "CurrSelectNutId", "CurrChestFragCount", "CurrThemeFragCount", "CurrThemeFragId", "PropUndoCount", "PropAddRowCount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Msg.PlayerData), global::Msg.PlayerData.Parser, new[]{ "UserId", "UserDeviceId", "NormalData" }, null, null, null, null)
           }));
     }
@@ -85,6 +87,11 @@ namespace Msg {
       currSelectBackGroundId_ = other.currSelectBackGroundId_;
       unlockedNutId_ = other.unlockedNutId_.Clone();
       currSelectNutId_ = other.currSelectNutId_;
+      currChestFragCount_ = other.currChestFragCount_;
+      currThemeFragCount_ = other.currThemeFragCount_;
+      currThemeFragId_ = other.currThemeFragId_;
+      propUndoCount_ = other.propUndoCount_;
+      propAddRowCount_ = other.propAddRowCount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -197,6 +204,81 @@ namespace Msg {
       }
     }
 
+    /// <summary>Field number for the "currChestFragCount" field.</summary>
+    public const int CurrChestFragCountFieldNumber = 8;
+    private int currChestFragCount_;
+    /// <summary>
+    ///当前宝箱碎片数量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CurrChestFragCount {
+      get { return currChestFragCount_; }
+      set {
+        currChestFragCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "currThemeFragCount" field.</summary>
+    public const int CurrThemeFragCountFieldNumber = 9;
+    private int currThemeFragCount_;
+    /// <summary>
+    ///当前皮肤碎片数量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CurrThemeFragCount {
+      get { return currThemeFragCount_; }
+      set {
+        currThemeFragCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "currThemeFragId" field.</summary>
+    public const int CurrThemeFragIdFieldNumber = 10;
+    private int currThemeFragId_;
+    /// <summary>
+    ///当前解锁皮肤碎片ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CurrThemeFragId {
+      get { return currThemeFragId_; }
+      set {
+        currThemeFragId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "propUndoCount" field.</summary>
+    public const int PropUndoCountFieldNumber = 11;
+    private int propUndoCount_;
+    /// <summary>
+    ///道具撤回数量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PropUndoCount {
+      get { return propUndoCount_; }
+      set {
+        propUndoCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "propAddRowCount" field.</summary>
+    public const int PropAddRowCountFieldNumber = 12;
+    private int propAddRowCount_;
+    /// <summary>
+    ///道具增加一个螺丝数量
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PropAddRowCount {
+      get { return propAddRowCount_; }
+      set {
+        propAddRowCount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -219,6 +301,11 @@ namespace Msg {
       if (CurrSelectBackGroundId != other.CurrSelectBackGroundId) return false;
       if(!unlockedNutId_.Equals(other.unlockedNutId_)) return false;
       if (CurrSelectNutId != other.CurrSelectNutId) return false;
+      if (CurrChestFragCount != other.CurrChestFragCount) return false;
+      if (CurrThemeFragCount != other.CurrThemeFragCount) return false;
+      if (CurrThemeFragId != other.CurrThemeFragId) return false;
+      if (PropUndoCount != other.PropUndoCount) return false;
+      if (PropAddRowCount != other.PropAddRowCount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -233,6 +320,11 @@ namespace Msg {
       if (CurrSelectBackGroundId != 0) hash ^= CurrSelectBackGroundId.GetHashCode();
       hash ^= unlockedNutId_.GetHashCode();
       if (CurrSelectNutId != 0) hash ^= CurrSelectNutId.GetHashCode();
+      if (CurrChestFragCount != 0) hash ^= CurrChestFragCount.GetHashCode();
+      if (CurrThemeFragCount != 0) hash ^= CurrThemeFragCount.GetHashCode();
+      if (CurrThemeFragId != 0) hash ^= CurrThemeFragId.GetHashCode();
+      if (PropUndoCount != 0) hash ^= PropUndoCount.GetHashCode();
+      if (PropAddRowCount != 0) hash ^= PropAddRowCount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -273,6 +365,26 @@ namespace Msg {
         output.WriteRawTag(56);
         output.WriteInt32(CurrSelectNutId);
       }
+      if (CurrChestFragCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(CurrChestFragCount);
+      }
+      if (CurrThemeFragCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(CurrThemeFragCount);
+      }
+      if (CurrThemeFragId != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(CurrThemeFragId);
+      }
+      if (PropUndoCount != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(PropUndoCount);
+      }
+      if (PropAddRowCount != 0) {
+        output.WriteRawTag(96);
+        output.WriteInt32(PropAddRowCount);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -305,6 +417,26 @@ namespace Msg {
         output.WriteRawTag(56);
         output.WriteInt32(CurrSelectNutId);
       }
+      if (CurrChestFragCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(CurrChestFragCount);
+      }
+      if (CurrThemeFragCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(CurrThemeFragCount);
+      }
+      if (CurrThemeFragId != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(CurrThemeFragId);
+      }
+      if (PropUndoCount != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(PropUndoCount);
+      }
+      if (PropAddRowCount != 0) {
+        output.WriteRawTag(96);
+        output.WriteInt32(PropAddRowCount);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -331,6 +463,21 @@ namespace Msg {
       size += unlockedNutId_.CalculateSize(_repeated_unlockedNutId_codec);
       if (CurrSelectNutId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrSelectNutId);
+      }
+      if (CurrChestFragCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrChestFragCount);
+      }
+      if (CurrThemeFragCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrThemeFragCount);
+      }
+      if (CurrThemeFragId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrThemeFragId);
+      }
+      if (PropUndoCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropUndoCount);
+      }
+      if (PropAddRowCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropAddRowCount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -360,6 +507,21 @@ namespace Msg {
       unlockedNutId_.Add(other.unlockedNutId_);
       if (other.CurrSelectNutId != 0) {
         CurrSelectNutId = other.CurrSelectNutId;
+      }
+      if (other.CurrChestFragCount != 0) {
+        CurrChestFragCount = other.CurrChestFragCount;
+      }
+      if (other.CurrThemeFragCount != 0) {
+        CurrThemeFragCount = other.CurrThemeFragCount;
+      }
+      if (other.CurrThemeFragId != 0) {
+        CurrThemeFragId = other.CurrThemeFragId;
+      }
+      if (other.PropUndoCount != 0) {
+        PropUndoCount = other.PropUndoCount;
+      }
+      if (other.PropAddRowCount != 0) {
+        PropAddRowCount = other.PropAddRowCount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -406,6 +568,26 @@ namespace Msg {
             CurrSelectNutId = input.ReadInt32();
             break;
           }
+          case 64: {
+            CurrChestFragCount = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            CurrThemeFragCount = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            CurrThemeFragId = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            PropUndoCount = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            PropAddRowCount = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -449,6 +631,26 @@ namespace Msg {
           }
           case 56: {
             CurrSelectNutId = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            CurrChestFragCount = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            CurrThemeFragCount = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            CurrThemeFragId = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            PropUndoCount = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            PropAddRowCount = input.ReadInt32();
             break;
           }
         }
