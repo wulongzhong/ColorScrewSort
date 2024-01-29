@@ -28,6 +28,8 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UnityEngine.UI.Button PopupNoMove;
     [SerializeField]
+    protected UITopDiamond topDiamondUI;
+    [SerializeField]
     protected UnityEngine.ParticleSystem fxNormal;
     [SerializeField]
     protected UnityEngine.ParticleSystem fxHard;

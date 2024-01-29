@@ -28,11 +28,11 @@ MonoBehaviour:
     sortLayer: 0
     prefabPath: Assets/GamePlay/Prefabs/UI/TopDiamondUI.prefab
   - uiName: UIShop
-    sortLayer: 100
+    sortLayer: 0
     prefabPath: Assets/GamePlay/Prefabs/UI/UIShop.prefab
   - uiName: UIPause
-    sortLayer: 200
+    sortLayer: 100
     prefabPath: Assets/GamePlay/Prefabs/UI/UIPause.prefab
   - uiName: UIStore
-    sortLayer: 200
+    sortLayer: 100
     prefabPath: Assets/GamePlay/Prefabs/UI/UIStore.prefab

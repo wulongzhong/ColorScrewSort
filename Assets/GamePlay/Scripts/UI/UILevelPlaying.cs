@@ -157,6 +157,9 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         this.imageItemRollBack2.gameObject.SetActive(bCurrGetPropUndo);
         this.imageItemAddStick.gameObject.SetActive(!bCurrGetPropUndo);
         this.imageItemAddStick2.gameObject.SetActive(!bCurrGetPropUndo);
+
+        topDiamondUI.gameObject.SetActive(true);
+        topDiamondUI.RefreshDiamondCount();
     }
 
     private void OnClickWatchAdsItem()
@@ -188,5 +191,6 @@ public partial class UILevelPlaying : UIBase, IEventHandle
     {
         LevelPlayMgr.Instance.bPause = false;
         this.PopupAddItem.gameObject.SetActive(false);
+        topDiamondUI.gameObject.SetActive(false);
     }
 }
