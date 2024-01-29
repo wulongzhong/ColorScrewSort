@@ -38,18 +38,21 @@ namespace ConfigPB {
             "EhEKCVVrcmFpbmlhbhgRIAEoCRIPCgdSdXNzaWFuGBIgASgJEhIKCkluZG9u",
             "ZXNpYW4YEyABKAkiVwoFU291bmQSCgoCSWQYASABKAkSEQoJQXNzZXRQYXRo",
             "GAIgASgJEg8KB0lzTXVzaWMYAyABKAgSDgoGSXNMb29wGAQgASgIEg4KBlZv",
-            "bHVtZRgFIAEoAiJ9CgVUYWJsZRImCglHbG9iYWxDZmcYASADKAsyEy5Db25m",
-            "aWdQQi5HbG9iYWxDZmcSLAoMTG9jYWxpemF0aW9uGAIgAygLMhYuQ29uZmln",
-            "UEIuTG9jYWxpemF0aW9uEh4KBVNvdW5kGAMgAygLMg8uQ29uZmlnUEIuU291",
-            "bmQqOQoWTG9jYWxpemF0aW9uTW9kdWxlVHlwZRIKCgZHbG9iYWwQABIKCgZV",
-            "SUhhbGwQARIHCgNNYXgQAmIGcHJvdG8z"));
+            "bHVtZRgFIAEoAiI7CgVUaGVtZRIKCgJJRBgBIAEoBRIRCglCR1Jlc1BhdGgY",
+            "AiABKAkSEwoLSWNvblJlc1BhdGgYAyABKAkinQEKBVRhYmxlEiYKCUdsb2Jh",
+            "bENmZxgBIAMoCzITLkNvbmZpZ1BCLkdsb2JhbENmZxIsCgxMb2NhbGl6YXRp",
+            "b24YAiADKAsyFi5Db25maWdQQi5Mb2NhbGl6YXRpb24SHgoFU291bmQYAyAD",
+            "KAsyDy5Db25maWdQQi5Tb3VuZBIeCgVUaGVtZRgEIAMoCzIPLkNvbmZpZ1BC",
+            "LlRoZW1lKjkKFkxvY2FsaXphdGlvbk1vZHVsZVR5cGUSCgoGR2xvYmFsEAAS",
+            "CgoGVUlIYWxsEAESBwoDTWF4EAJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ConfigPB.LocalizationModuleType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.GlobalCfg), global::ConfigPB.GlobalCfg.Parser, new[]{ "Key", "StringValue", "IntValue", "IntArrValue", "FloatValue", "LongValue" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Localization), global::ConfigPB.Localization.Parser, new[]{ "ModuleType", "Key", "ChineseSimplified", "English", "German", "French", "Italian", "ChineseTraditional", "Korean", "Thai", "Vietnamese", "Japanese", "Dutch", "Spanish", "Portuguese", "Polish", "Ukrainian", "Russian", "Indonesian" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Sound), global::ConfigPB.Sound.Parser, new[]{ "Id", "AssetPath", "IsMusic", "IsLoop", "Volume" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Table), global::ConfigPB.Table.Parser, new[]{ "GlobalCfg", "Localization", "Sound" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Theme), global::ConfigPB.Theme.Parser, new[]{ "ID", "BGResPath", "IconResPath" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Table), global::ConfigPB.Table.Parser, new[]{ "GlobalCfg", "Localization", "Sound", "Theme" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1724,6 +1727,279 @@ namespace ConfigPB {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Theme : pb::IMessage<Theme>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Theme> _parser = new pb::MessageParser<Theme>(() => new Theme());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Theme> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::ConfigPB.PbDataTableReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Theme() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Theme(Theme other) : this() {
+      iD_ = other.iD_;
+      bGResPath_ = other.bGResPath_;
+      iconResPath_ = other.iconResPath_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Theme Clone() {
+      return new Theme(this);
+    }
+
+    /// <summary>Field number for the "ID" field.</summary>
+    public const int IDFieldNumber = 1;
+    private int iD_;
+    /// <summary>
+    /// ID 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ID {
+      get { return iD_; }
+      set {
+        iD_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "BGResPath" field.</summary>
+    public const int BGResPathFieldNumber = 2;
+    private string bGResPath_ = "";
+    /// <summary>
+    /// 背景资源路径 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string BGResPath {
+      get { return bGResPath_; }
+      set {
+        bGResPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "IconResPath" field.</summary>
+    public const int IconResPathFieldNumber = 3;
+    private string iconResPath_ = "";
+    /// <summary>
+    /// Icon资源路径 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string IconResPath {
+      get { return iconResPath_; }
+      set {
+        iconResPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Theme);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Theme other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ID != other.ID) return false;
+      if (BGResPath != other.BGResPath) return false;
+      if (IconResPath != other.IconResPath) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ID != 0) hash ^= ID.GetHashCode();
+      if (BGResPath.Length != 0) hash ^= BGResPath.GetHashCode();
+      if (IconResPath.Length != 0) hash ^= IconResPath.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (ID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ID);
+      }
+      if (BGResPath.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(BGResPath);
+      }
+      if (IconResPath.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(IconResPath);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (ID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ID);
+      }
+      if (BGResPath.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(BGResPath);
+      }
+      if (IconResPath.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(IconResPath);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (ID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ID);
+      }
+      if (BGResPath.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(BGResPath);
+      }
+      if (IconResPath.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(IconResPath);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Theme other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ID != 0) {
+        ID = other.ID;
+      }
+      if (other.BGResPath.Length != 0) {
+        BGResPath = other.BGResPath;
+      }
+      if (other.IconResPath.Length != 0) {
+        IconResPath = other.IconResPath;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ID = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            BGResPath = input.ReadString();
+            break;
+          }
+          case 26: {
+            IconResPath = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            ID = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            BGResPath = input.ReadString();
+            break;
+          }
+          case 26: {
+            IconResPath = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   /// Combine struct
   /// </summary>
@@ -1742,7 +2018,7 @@ namespace ConfigPB {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ConfigPB.PbDataTableReflection.Descriptor.MessageTypes[3]; }
+      get { return global::ConfigPB.PbDataTableReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1765,6 +2041,7 @@ namespace ConfigPB {
       globalCfg_ = other.globalCfg_.Clone();
       localization_ = other.localization_.Clone();
       sound_ = other.sound_.Clone();
+      theme_ = other.theme_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1816,6 +2093,20 @@ namespace ConfigPB {
       get { return sound_; }
     }
 
+    /// <summary>Field number for the "Theme" field.</summary>
+    public const int ThemeFieldNumber = 4;
+    private static readonly pb::FieldCodec<global::ConfigPB.Theme> _repeated_theme_codec
+        = pb::FieldCodec.ForMessage(34, global::ConfigPB.Theme.Parser);
+    private readonly pbc::RepeatedField<global::ConfigPB.Theme> theme_ = new pbc::RepeatedField<global::ConfigPB.Theme>();
+    /// <summary>
+    /// table: Theme 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::ConfigPB.Theme> Theme {
+      get { return theme_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1834,6 +2125,7 @@ namespace ConfigPB {
       if(!globalCfg_.Equals(other.globalCfg_)) return false;
       if(!localization_.Equals(other.localization_)) return false;
       if(!sound_.Equals(other.sound_)) return false;
+      if(!theme_.Equals(other.theme_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1844,6 +2136,7 @@ namespace ConfigPB {
       hash ^= globalCfg_.GetHashCode();
       hash ^= localization_.GetHashCode();
       hash ^= sound_.GetHashCode();
+      hash ^= theme_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1865,6 +2158,7 @@ namespace ConfigPB {
       globalCfg_.WriteTo(output, _repeated_globalCfg_codec);
       localization_.WriteTo(output, _repeated_localization_codec);
       sound_.WriteTo(output, _repeated_sound_codec);
+      theme_.WriteTo(output, _repeated_theme_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1878,6 +2172,7 @@ namespace ConfigPB {
       globalCfg_.WriteTo(ref output, _repeated_globalCfg_codec);
       localization_.WriteTo(ref output, _repeated_localization_codec);
       sound_.WriteTo(ref output, _repeated_sound_codec);
+      theme_.WriteTo(ref output, _repeated_theme_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1891,6 +2186,7 @@ namespace ConfigPB {
       size += globalCfg_.CalculateSize(_repeated_globalCfg_codec);
       size += localization_.CalculateSize(_repeated_localization_codec);
       size += sound_.CalculateSize(_repeated_sound_codec);
+      size += theme_.CalculateSize(_repeated_theme_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1906,6 +2202,7 @@ namespace ConfigPB {
       globalCfg_.Add(other.globalCfg_);
       localization_.Add(other.localization_);
       sound_.Add(other.sound_);
+      theme_.Add(other.theme_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1933,6 +2230,10 @@ namespace ConfigPB {
             sound_.AddEntriesFrom(input, _repeated_sound_codec);
             break;
           }
+          case 34: {
+            theme_.AddEntriesFrom(input, _repeated_theme_codec);
+            break;
+          }
         }
       }
     #endif
@@ -1958,6 +2259,10 @@ namespace ConfigPB {
           }
           case 26: {
             sound_.AddEntriesFrom(ref input, _repeated_sound_codec);
+            break;
+          }
+          case 34: {
+            theme_.AddEntriesFrom(ref input, _repeated_theme_codec);
             break;
           }
         }

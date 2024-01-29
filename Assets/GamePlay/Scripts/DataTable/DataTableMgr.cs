@@ -23,6 +23,7 @@ public class DataTableMgr : MonoBehaviour
         DTGlobalCfg dTGlobalCfg = new DTGlobalCfg(table);
         DTLocalization dTLocalization = new DTLocalization(table, SystemLanguage.English);
         DTSound dTSound = new DTSound(table);
+        DTTheme dTTheme = new DTTheme(table);
 
         resLoader.Dispose();
 #if ENABLE_LOG

@@ -45,6 +45,7 @@ public class UIMgr : MonoBehaviour
         var go = Instantiate(prefab, this.transform);
         var uiBase = go.GetComponent<UIBase>();
         uiBase.resLoader = resLoader;
+        uiBase.OnInit();
         uiBase.OnOpen(userData);
         int sortingOrder = 0;
         if (dicLayer2UIBaseBev[cfg.sortLayer].Count > 0)

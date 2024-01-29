@@ -22,7 +22,8 @@ public partial class UIMain : UIBase, IEventHandle
 
         btnCustomize.onClick.AddListener(() =>
         {
-
+            UIMgr.Instance.CloseUI<UIMain>(true);
+            UIMgr.Instance.OpenUI<UIShop>();
         });
 
         btnTapToStart.onClick.AddListener(() =>

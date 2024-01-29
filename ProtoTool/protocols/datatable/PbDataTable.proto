@@ -55,6 +55,13 @@ message Sound
 	float Volume = 5; // 音量 
 }
 
+message Theme
+{ 
+	int32 ID = 1; // ID 
+	string BGResPath = 2; // 背景资源路径 
+	string IconResPath = 3; // Icon资源路径 
+}
+
 
 // Combine struct
 message Table
@@ -62,5 +69,6 @@ message Table
 	repeated GlobalCfg GlobalCfg = 1; // table: GlobalCfg 
 	repeated Localization Localization = 2; // table: Localization 
 	repeated Sound Sound = 3; // table: Sound 
+	repeated Theme Theme = 4; // table: Theme 
 }
 

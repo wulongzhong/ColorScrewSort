@@ -80,7 +80,7 @@ public class LevelPlayMgr : MonoBehaviour
     public int currSelectStickIndex = -1;
 
     public bool bInitViewing = false;
-
+    public bool bPause = false;
 
     private void Awake()
     {
@@ -101,14 +101,26 @@ public class LevelPlayMgr : MonoBehaviour
 
     public void RefreshBGSkin()
     {
-        if(matBackGroundResLoader != null)
+        if (matBackGroundResLoader != null)
         {
             matBackGroundResLoader.Dispose();
             matBackGroundResLoader = null;
         }
         matBackGroundResLoader = new ResLoader();
 
-        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>("Assets/ExRes/Texture2D/theme12.png");
+        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>(DTTheme.Instance.GetThemeByID(NormalDataHandler.Instance.CurrSelectBackGroundId).BGResPath);
+    }
+
+    public void PreviewBGSkin(int themeId)
+    {
+        if (matBackGroundResLoader != null)
+        {
+            matBackGroundResLoader.Dispose();
+            matBackGroundResLoader = null;
+        }
+        matBackGroundResLoader = new ResLoader();
+
+        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>(DTTheme.Instance.GetThemeByID(themeId).BGResPath);
     }
 
     public void ClearLevel()
@@ -169,7 +181,7 @@ public class LevelPlayMgr : MonoBehaviour
         levelHeight = 0;
         foreach (var stickData in levelData.Data)
         {
-            if(stickData.Stick.Count > levelHeight)
+            if (stickData.Stick.Count > levelHeight)
             {
                 levelHeight = stickData.Stick.Count;
             }
@@ -257,7 +269,7 @@ public class LevelPlayMgr : MonoBehaviour
         }
         stickBev.bMoving = false;
         stickBev.RefreshState();
-        if(colors.Count > 0 && colors[0] != 0)
+        if (colors.Count > 0 && colors[0] != 0)
         {
             bInitViewing = false;
         }
@@ -274,11 +286,11 @@ public class LevelPlayMgr : MonoBehaviour
     public void RefreshStickPos()
     {
         int rowCount = 1;
-        if(listStickBev.Count > 10)
+        if (listStickBev.Count > 10)
         {
             rowCount = 3;
         }
-        else if(listStickBev.Count > 4)
+        else if (listStickBev.Count > 4)
         {
             rowCount = 2;
         }
@@ -319,7 +331,7 @@ public class LevelPlayMgr : MonoBehaviour
             int r = 0;
             for (; r < rowCount; ++r)
             {
-                if(pos.y < rowStickCount[r])
+                if (pos.y < rowStickCount[r])
                 {
                     pos.x = r;
                     break;
@@ -331,17 +343,17 @@ public class LevelPlayMgr : MonoBehaviour
             }
             Vector3 viewPos = Vector3.zero;
             viewPos.z = (pos.x) * (-5 - ((levelHeight > 5) ? (levelHeight - 5) * 0.5f : (0)));
-            if(rowCount == 1)
+            if (rowCount == 1)
             {
                 viewPos.z -= 3.0f;
             }
 
-            if(rowCount == 2)
+            if (rowCount == 2)
             {
                 viewPos.z -= 0.5f;
             }
 
-            if(rowCount == 3)
+            if (rowCount == 3)
             {
                 viewPos.z += 2.5f;
             }
@@ -353,7 +365,7 @@ public class LevelPlayMgr : MonoBehaviour
 
     private void Update()
     {
-        if(bInitViewing || bWaitPlay)
+        if (bInitViewing || bWaitPlay || bPause)
         {
             return;
         }

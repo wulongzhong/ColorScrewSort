@@ -27,3 +27,9 @@ MonoBehaviour:
   - uiName: TopDiamondUI
     sortLayer: 0
     prefabPath: Assets/GamePlay/Prefabs/UI/TopDiamondUI.prefab
+  - uiName: UIShop
+    sortLayer: 100
+    prefabPath: Assets/GamePlay/Prefabs/UI/UIShop.prefab
+  - uiName: UIPause
+    sortLayer: 200
+    prefabPath: Assets/GamePlay/Prefabs/UI/UIPause.prefab

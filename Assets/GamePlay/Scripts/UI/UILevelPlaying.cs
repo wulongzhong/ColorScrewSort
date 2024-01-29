@@ -43,20 +43,12 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             LevelPlayMgr.Instance.RefreshLevel();
         });
 
-        if(NormalDataHandler.Instance.CurrIsNormalLevel)
+        this.btnPause.onClick.AddListener(() =>
         {
-            tLevel.enabled = true;
-            step.gameObject.SetActive(true);
+            UIMgr.Instance.OpenUI<UIPause>();
+        });
 
-            tLevel.text = NormalDataHandler.Instance.CurrNormalLevelId.ToString();
-            step.GetChild(0).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
-            step.GetChild(1).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
-        }
-        else
-        {
-            tLevel.enabled = false;
-            step.gameObject.SetActive(false);
-        }
+        RefreshInfo();
     }
 
     public override void OnOpen(object userData)
@@ -75,6 +67,24 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         if (EventHandlerIndex != 0)
         {
             this.ClearUpEventHandle();
+        }
+    }
+
+    public void RefreshInfo()
+    {
+        if (NormalDataHandler.Instance.CurrIsNormalLevel)
+        {
+            tLevel.enabled = true;
+            step.gameObject.SetActive(true);
+
+            tLevel.text = NormalDataHandler.Instance.CurrNormalLevelId.ToString();
+            step.GetChild(0).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
+            step.GetChild(1).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
+        }
+        else
+        {
+            tLevel.enabled = false;
+            step.gameObject.SetActive(false);
         }
     }
 

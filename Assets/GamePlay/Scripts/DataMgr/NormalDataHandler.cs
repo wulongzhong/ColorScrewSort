@@ -52,6 +52,11 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         BDirty = true;
     }
 
+    public bool CheckBackGroundUnlock(int id)
+    {
+        return normalData.UnlockedBackGroundId.Contains(id);
+    }
+
     public int CurrSelectBackGroundId
     {
         get { return normalData.CurrSelectBackGroundId; }
@@ -67,6 +72,11 @@ public class NormalDataHandler : IPlayerLocalDataHandler
     {
         normalData.UnlockedNutId.Add(id);
         BDirty = true;
+    }
+
+    public bool CheckNutUnlock(int id)
+    {
+        return normalData.UnlockedNutId.Contains(id);
     }
 
     public int CurrSelectNutId
@@ -109,9 +119,23 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         if(playerData.NormalData == null)
         {
             playerData.NormalData = new NormalData();
-            playerData.NormalData.CurrLevelId = 1;
         }
+
         this.normalData = playerData.NormalData;
+        if(normalData.CurrLevelId == 0)
+        {
+            normalData.CurrLevelId = 1;
+        }
+        if(normalData.UnlockedBackGroundId.Count == 0)
+        {
+            normalData.UnlockedBackGroundId.Add(6);
+            normalData.CurrSelectBackGroundId = 6;
+        }
+        if(normalData.UnlockedNutId.Count == 0)
+        {
+            normalData.UnlockedNutId.Add(1);
+            normalData.CurrSelectNutId = 1;
+        }
         Instance = this;
     }
 }

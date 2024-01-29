@@ -44,11 +44,6 @@ public class UIBase : MonoBehaviour
 
     protected bool bCloseRecycle = true;
 
-    private void Awake()
-    {
-        OnInit();
-    }
-
     public virtual void OnInit()
     {
         canvas = GetComponent<Canvas>();
