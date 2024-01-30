@@ -23,10 +23,23 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         set { LastGoldCount = normalData.GoldCount; normalData.GoldCount = value; BDirty = true; BNowSave = true; }
     }
 
+
     public int CurrNormalLevelId
     {
         get { return normalData.CurrLevelId; }
         set { normalData.CurrLevelId = value; BDirty = true; BNowSave = true; }
+    }
+
+    public int CurrSpecialLevelId
+    {
+        get { return normalData.CurrSpecialLevelId; }
+        set { normalData.CurrSpecialLevelId = value; BDirty = true; BNowSave = true; }
+    }
+
+    public int NextSpecialLevelOpenId
+    {
+        get { return normalData.NextSpecialLevelOpenId; }
+        set { normalData.NextSpecialLevelOpenId = value; BDirty = true; BNowSave = true; }
     }
 
     public bool CurrNormalLevelIsHard
@@ -98,7 +111,26 @@ public class NormalDataHandler : IPlayerLocalDataHandler
 
     public int CurrThemeFragId
     {
-        get { return normalData.CurrThemeFragId; }
+        get 
+        {
+            if (normalData.CurrThemeFragId == 0 || normalData.UnlockedBackGroundId.Contains(normalData.CurrThemeFragId))
+            {
+                var allThemeData = DTTheme.Instance.dicThemes.Values.ToList();
+                for(int i = allThemeData.Count - 1; i >= 0; i--)
+                {
+                    if (normalData.UnlockedBackGroundId.Contains(allThemeData[i].ID))
+                    {
+                        allThemeData.RemoveAt(i);
+                    }
+                }
+                if(allThemeData.Count > 0)
+                {
+                    normalData.CurrThemeFragId = allThemeData[UnityEngine.Random.Range(0, allThemeData.Count)].ID;
+                    BDirty = true;
+                }
+            }
+            return normalData.CurrThemeFragId; 
+        }
         set { normalData.CurrThemeFragId = value; BDirty = true; }
     }
 
@@ -125,6 +157,9 @@ public class NormalDataHandler : IPlayerLocalDataHandler
         if(normalData.CurrLevelId == 0)
         {
             normalData.CurrLevelId = 1;
+            normalData.CurrSpecialLevelId = 1;
+            normalData.PropAddRowCount = 2;
+            normalData.PropUndoCount = 2;
         }
         if(normalData.UnlockedBackGroundId.Count == 0)
         {
@@ -137,5 +172,7 @@ public class NormalDataHandler : IPlayerLocalDataHandler
             normalData.CurrSelectNutId = 1;
         }
         Instance = this;
+
+        normalData.NextSpecialLevelOpenId = normalData.CurrLevelId;
     }
 }

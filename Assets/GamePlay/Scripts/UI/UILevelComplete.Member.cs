@@ -28,6 +28,8 @@ public partial class UILevelComplete : UIBase
     [SerializeField]
     protected UnityEngine.UI.Button btnLaterTheme;
     [SerializeField]
+    protected UnityEngine.UI.Image themeIcon;
+    [SerializeField]
     protected UnityEngine.RectTransform tfGem;
     [SerializeField]
     protected UnityEngine.RectTransform tfUndo;

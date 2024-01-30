@@ -24,20 +24,21 @@ namespace Msg {
     static PlayerDataReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChBQbGF5ZXJEYXRhLnByb3RvEgNNc2ciwwIKCk5vcm1hbERhdGESEQoJZ29s",
-            "ZENvdW50GAEgASgFEhMKC2N1cnJMZXZlbElkGAIgASgFEh4KFm5leHRTcGVj",
-            "aWFsTGV2ZWxPcGVuSWQYAyABKAUSHAoUdW5sb2NrZWRCYWNrR3JvdW5kSWQY",
-            "BCADKAUSHgoWY3VyclNlbGVjdEJhY2tHcm91bmRJZBgFIAEoBRIVCg11bmxv",
-            "Y2tlZE51dElkGAYgAygFEhcKD2N1cnJTZWxlY3ROdXRJZBgHIAEoBRIaChJj",
-            "dXJyQ2hlc3RGcmFnQ291bnQYCCABKAUSGgoSY3VyclRoZW1lRnJhZ0NvdW50",
-            "GAkgASgFEhcKD2N1cnJUaGVtZUZyYWdJZBgKIAEoBRIVCg1wcm9wVW5kb0Nv",
-            "dW50GAsgASgFEhcKD3Byb3BBZGRSb3dDb3VudBgMIAEoBSJXCgpQbGF5ZXJE",
-            "YXRhEg4KBnVzZXJJZBgBIAEoAxIUCgx1c2VyRGV2aWNlSWQYAiABKAkSIwoK",
-            "bm9ybWFsRGF0YRgDIAEoCzIPLk1zZy5Ob3JtYWxEYXRhYgZwcm90bzM="));
+            "ChBQbGF5ZXJEYXRhLnByb3RvEgNNc2ci3wIKCk5vcm1hbERhdGESEQoJZ29s",
+            "ZENvdW50GAEgASgFEhMKC2N1cnJMZXZlbElkGAIgASgFEhoKEmN1cnJTcGVj",
+            "aWFsTGV2ZWxJZBgDIAEoBRIeChZuZXh0U3BlY2lhbExldmVsT3BlbklkGAQg",
+            "ASgFEhwKFHVubG9ja2VkQmFja0dyb3VuZElkGAUgAygFEh4KFmN1cnJTZWxl",
+            "Y3RCYWNrR3JvdW5kSWQYBiABKAUSFQoNdW5sb2NrZWROdXRJZBgHIAMoBRIX",
+            "Cg9jdXJyU2VsZWN0TnV0SWQYCCABKAUSGgoSY3VyckNoZXN0RnJhZ0NvdW50",
+            "GAkgASgFEhoKEmN1cnJUaGVtZUZyYWdDb3VudBgKIAEoBRIXCg9jdXJyVGhl",
+            "bWVGcmFnSWQYCyABKAUSFQoNcHJvcFVuZG9Db3VudBgMIAEoBRIXCg9wcm9w",
+            "QWRkUm93Q291bnQYDSABKAUiVwoKUGxheWVyRGF0YRIOCgZ1c2VySWQYASAB",
+            "KAMSFAoMdXNlckRldmljZUlkGAIgASgJEiMKCm5vcm1hbERhdGEYAyABKAsy",
+            "Dy5Nc2cuTm9ybWFsRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Msg.NormalData), global::Msg.NormalData.Parser, new[]{ "GoldCount", "CurrLevelId", "NextSpecialLevelOpenId", "UnlockedBackGroundId", "CurrSelectBackGroundId", "UnlockedNutId", "CurrSelectNutId", "CurrChestFragCount", "CurrThemeFragCount", "CurrThemeFragId", "PropUndoCount", "PropAddRowCount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Msg.NormalData), global::Msg.NormalData.Parser, new[]{ "GoldCount", "CurrLevelId", "CurrSpecialLevelId", "NextSpecialLevelOpenId", "UnlockedBackGroundId", "CurrSelectBackGroundId", "UnlockedNutId", "CurrSelectNutId", "CurrChestFragCount", "CurrThemeFragCount", "CurrThemeFragId", "PropUndoCount", "PropAddRowCount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Msg.PlayerData), global::Msg.PlayerData.Parser, new[]{ "UserId", "UserDeviceId", "NormalData" }, null, null, null, null)
           }));
     }
@@ -82,6 +83,7 @@ namespace Msg {
     public NormalData(NormalData other) : this() {
       goldCount_ = other.goldCount_;
       currLevelId_ = other.currLevelId_;
+      currSpecialLevelId_ = other.currSpecialLevelId_;
       nextSpecialLevelOpenId_ = other.nextSpecialLevelOpenId_;
       unlockedBackGroundId_ = other.unlockedBackGroundId_.Clone();
       currSelectBackGroundId_ = other.currSelectBackGroundId_;
@@ -131,8 +133,23 @@ namespace Msg {
       }
     }
 
+    /// <summary>Field number for the "currSpecialLevelId" field.</summary>
+    public const int CurrSpecialLevelIdFieldNumber = 3;
+    private int currSpecialLevelId_;
+    /// <summary>
+    ///特殊关卡ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CurrSpecialLevelId {
+      get { return currSpecialLevelId_; }
+      set {
+        currSpecialLevelId_ = value;
+      }
+    }
+
     /// <summary>Field number for the "nextSpecialLevelOpenId" field.</summary>
-    public const int NextSpecialLevelOpenIdFieldNumber = 3;
+    public const int NextSpecialLevelOpenIdFieldNumber = 4;
     private int nextSpecialLevelOpenId_;
     /// <summary>
     ///下一个特殊关卡的开启ID
@@ -147,9 +164,9 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "unlockedBackGroundId" field.</summary>
-    public const int UnlockedBackGroundIdFieldNumber = 4;
+    public const int UnlockedBackGroundIdFieldNumber = 5;
     private static readonly pb::FieldCodec<int> _repeated_unlockedBackGroundId_codec
-        = pb::FieldCodec.ForInt32(34);
+        = pb::FieldCodec.ForInt32(42);
     private readonly pbc::RepeatedField<int> unlockedBackGroundId_ = new pbc::RepeatedField<int>();
     /// <summary>
     ///已解锁的背景ID
@@ -161,7 +178,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "currSelectBackGroundId" field.</summary>
-    public const int CurrSelectBackGroundIdFieldNumber = 5;
+    public const int CurrSelectBackGroundIdFieldNumber = 6;
     private int currSelectBackGroundId_;
     /// <summary>
     ///当前选择的背景ID
@@ -176,9 +193,9 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "unlockedNutId" field.</summary>
-    public const int UnlockedNutIdFieldNumber = 6;
+    public const int UnlockedNutIdFieldNumber = 7;
     private static readonly pb::FieldCodec<int> _repeated_unlockedNutId_codec
-        = pb::FieldCodec.ForInt32(50);
+        = pb::FieldCodec.ForInt32(58);
     private readonly pbc::RepeatedField<int> unlockedNutId_ = new pbc::RepeatedField<int>();
     /// <summary>
     ///已解锁的螺母的ID
@@ -190,7 +207,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "currSelectNutId" field.</summary>
-    public const int CurrSelectNutIdFieldNumber = 7;
+    public const int CurrSelectNutIdFieldNumber = 8;
     private int currSelectNutId_;
     /// <summary>
     ///当前选择的螺母ID
@@ -205,7 +222,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "currChestFragCount" field.</summary>
-    public const int CurrChestFragCountFieldNumber = 8;
+    public const int CurrChestFragCountFieldNumber = 9;
     private int currChestFragCount_;
     /// <summary>
     ///当前宝箱碎片数量
@@ -220,7 +237,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "currThemeFragCount" field.</summary>
-    public const int CurrThemeFragCountFieldNumber = 9;
+    public const int CurrThemeFragCountFieldNumber = 10;
     private int currThemeFragCount_;
     /// <summary>
     ///当前皮肤碎片数量
@@ -235,7 +252,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "currThemeFragId" field.</summary>
-    public const int CurrThemeFragIdFieldNumber = 10;
+    public const int CurrThemeFragIdFieldNumber = 11;
     private int currThemeFragId_;
     /// <summary>
     ///当前解锁皮肤碎片ID
@@ -250,7 +267,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "propUndoCount" field.</summary>
-    public const int PropUndoCountFieldNumber = 11;
+    public const int PropUndoCountFieldNumber = 12;
     private int propUndoCount_;
     /// <summary>
     ///道具撤回数量
@@ -265,7 +282,7 @@ namespace Msg {
     }
 
     /// <summary>Field number for the "propAddRowCount" field.</summary>
-    public const int PropAddRowCountFieldNumber = 12;
+    public const int PropAddRowCountFieldNumber = 13;
     private int propAddRowCount_;
     /// <summary>
     ///道具增加一个螺丝数量
@@ -296,6 +313,7 @@ namespace Msg {
       }
       if (GoldCount != other.GoldCount) return false;
       if (CurrLevelId != other.CurrLevelId) return false;
+      if (CurrSpecialLevelId != other.CurrSpecialLevelId) return false;
       if (NextSpecialLevelOpenId != other.NextSpecialLevelOpenId) return false;
       if(!unlockedBackGroundId_.Equals(other.unlockedBackGroundId_)) return false;
       if (CurrSelectBackGroundId != other.CurrSelectBackGroundId) return false;
@@ -315,6 +333,7 @@ namespace Msg {
       int hash = 1;
       if (GoldCount != 0) hash ^= GoldCount.GetHashCode();
       if (CurrLevelId != 0) hash ^= CurrLevelId.GetHashCode();
+      if (CurrSpecialLevelId != 0) hash ^= CurrSpecialLevelId.GetHashCode();
       if (NextSpecialLevelOpenId != 0) hash ^= NextSpecialLevelOpenId.GetHashCode();
       hash ^= unlockedBackGroundId_.GetHashCode();
       if (CurrSelectBackGroundId != 0) hash ^= CurrSelectBackGroundId.GetHashCode();
@@ -351,38 +370,42 @@ namespace Msg {
         output.WriteRawTag(16);
         output.WriteInt32(CurrLevelId);
       }
-      if (NextSpecialLevelOpenId != 0) {
+      if (CurrSpecialLevelId != 0) {
         output.WriteRawTag(24);
+        output.WriteInt32(CurrSpecialLevelId);
+      }
+      if (NextSpecialLevelOpenId != 0) {
+        output.WriteRawTag(32);
         output.WriteInt32(NextSpecialLevelOpenId);
       }
       unlockedBackGroundId_.WriteTo(output, _repeated_unlockedBackGroundId_codec);
       if (CurrSelectBackGroundId != 0) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(CurrSelectBackGroundId);
       }
       unlockedNutId_.WriteTo(output, _repeated_unlockedNutId_codec);
       if (CurrSelectNutId != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteInt32(CurrSelectNutId);
       }
       if (CurrChestFragCount != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteInt32(CurrChestFragCount);
       }
       if (CurrThemeFragCount != 0) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteInt32(CurrThemeFragCount);
       }
       if (CurrThemeFragId != 0) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(88);
         output.WriteInt32(CurrThemeFragId);
       }
       if (PropUndoCount != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteInt32(PropUndoCount);
       }
       if (PropAddRowCount != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteInt32(PropAddRowCount);
       }
       if (_unknownFields != null) {
@@ -403,38 +426,42 @@ namespace Msg {
         output.WriteRawTag(16);
         output.WriteInt32(CurrLevelId);
       }
-      if (NextSpecialLevelOpenId != 0) {
+      if (CurrSpecialLevelId != 0) {
         output.WriteRawTag(24);
+        output.WriteInt32(CurrSpecialLevelId);
+      }
+      if (NextSpecialLevelOpenId != 0) {
+        output.WriteRawTag(32);
         output.WriteInt32(NextSpecialLevelOpenId);
       }
       unlockedBackGroundId_.WriteTo(ref output, _repeated_unlockedBackGroundId_codec);
       if (CurrSelectBackGroundId != 0) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(CurrSelectBackGroundId);
       }
       unlockedNutId_.WriteTo(ref output, _repeated_unlockedNutId_codec);
       if (CurrSelectNutId != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteInt32(CurrSelectNutId);
       }
       if (CurrChestFragCount != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteInt32(CurrChestFragCount);
       }
       if (CurrThemeFragCount != 0) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteInt32(CurrThemeFragCount);
       }
       if (CurrThemeFragId != 0) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(88);
         output.WriteInt32(CurrThemeFragId);
       }
       if (PropUndoCount != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteInt32(PropUndoCount);
       }
       if (PropAddRowCount != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteInt32(PropAddRowCount);
       }
       if (_unknownFields != null) {
@@ -452,6 +479,9 @@ namespace Msg {
       }
       if (CurrLevelId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrLevelId);
+      }
+      if (CurrSpecialLevelId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrSpecialLevelId);
       }
       if (NextSpecialLevelOpenId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(NextSpecialLevelOpenId);
@@ -496,6 +526,9 @@ namespace Msg {
       }
       if (other.CurrLevelId != 0) {
         CurrLevelId = other.CurrLevelId;
+      }
+      if (other.CurrSpecialLevelId != 0) {
+        CurrSpecialLevelId = other.CurrSpecialLevelId;
       }
       if (other.NextSpecialLevelOpenId != 0) {
         NextSpecialLevelOpenId = other.NextSpecialLevelOpenId;
@@ -547,44 +580,48 @@ namespace Msg {
             break;
           }
           case 24: {
+            CurrSpecialLevelId = input.ReadInt32();
+            break;
+          }
+          case 32: {
             NextSpecialLevelOpenId = input.ReadInt32();
             break;
           }
-          case 34:
-          case 32: {
+          case 42:
+          case 40: {
             unlockedBackGroundId_.AddEntriesFrom(input, _repeated_unlockedBackGroundId_codec);
             break;
           }
-          case 40: {
+          case 48: {
             CurrSelectBackGroundId = input.ReadInt32();
             break;
           }
-          case 50:
-          case 48: {
+          case 58:
+          case 56: {
             unlockedNutId_.AddEntriesFrom(input, _repeated_unlockedNutId_codec);
             break;
           }
-          case 56: {
+          case 64: {
             CurrSelectNutId = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 72: {
             CurrChestFragCount = input.ReadInt32();
             break;
           }
-          case 72: {
+          case 80: {
             CurrThemeFragCount = input.ReadInt32();
             break;
           }
-          case 80: {
+          case 88: {
             CurrThemeFragId = input.ReadInt32();
             break;
           }
-          case 88: {
+          case 96: {
             PropUndoCount = input.ReadInt32();
             break;
           }
-          case 96: {
+          case 104: {
             PropAddRowCount = input.ReadInt32();
             break;
           }
@@ -612,44 +649,48 @@ namespace Msg {
             break;
           }
           case 24: {
+            CurrSpecialLevelId = input.ReadInt32();
+            break;
+          }
+          case 32: {
             NextSpecialLevelOpenId = input.ReadInt32();
             break;
           }
-          case 34:
-          case 32: {
+          case 42:
+          case 40: {
             unlockedBackGroundId_.AddEntriesFrom(ref input, _repeated_unlockedBackGroundId_codec);
             break;
           }
-          case 40: {
+          case 48: {
             CurrSelectBackGroundId = input.ReadInt32();
             break;
           }
-          case 50:
-          case 48: {
+          case 58:
+          case 56: {
             unlockedNutId_.AddEntriesFrom(ref input, _repeated_unlockedNutId_codec);
             break;
           }
-          case 56: {
+          case 64: {
             CurrSelectNutId = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 72: {
             CurrChestFragCount = input.ReadInt32();
             break;
           }
-          case 72: {
+          case 80: {
             CurrThemeFragCount = input.ReadInt32();
             break;
           }
-          case 80: {
+          case 88: {
             CurrThemeFragId = input.ReadInt32();
             break;
           }
-          case 88: {
+          case 96: {
             PropUndoCount = input.ReadInt32();
             break;
           }
-          case 96: {
+          case 104: {
             PropAddRowCount = input.ReadInt32();
             break;
           }

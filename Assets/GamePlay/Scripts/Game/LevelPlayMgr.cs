@@ -80,7 +80,7 @@ public class LevelPlayMgr : MonoBehaviour
     private Material matBackGround;
     private ResLoader matBackGroundResLoader;
 
-    private LevelData levelData;
+    public LevelData levelData;
     public int levelHeight;
     private List<StickBev> listStickBev;
     public Stack<NutMoveRecord> nutMoveRecords;
@@ -101,7 +101,7 @@ public class LevelPlayMgr : MonoBehaviour
         RefreshBGSkin();
         listStickBev = new List<StickBev>();
         nutMoveRecords = new Stack<NutMoveRecord>();
-        NormalDataHandler.Instance.CurrNormalLevelId = 1;
+        //NormalDataHandler.Instance.CurrNormalLevelId = 1;
         LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, NormalDataHandler.Instance.CurrNormalLevelIsHard);
         //LoadSpecialLevel(3);
     }
@@ -115,7 +115,7 @@ public class LevelPlayMgr : MonoBehaviour
         }
         matBackGroundResLoader = new ResLoader();
 
-        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture2D>(DTTheme.Instance.GetThemeByID(NormalDataHandler.Instance.CurrSelectBackGroundId).BGResPath);
+        matBackGround.mainTexture = matBackGroundResLoader.LoadAsset<Texture>(DTTheme.Instance.GetThemeByID(NormalDataHandler.Instance.CurrSelectBackGroundId).BGResPath);
     }
 
     public void RefreshNutSkin(int skinId)
@@ -173,9 +173,14 @@ public class LevelPlayMgr : MonoBehaviour
         bWaitPlay = false;
     }
 
-    public void LoadNextLevel()
+    public void LoadNextNormalLevel()
     {
         LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, NormalDataHandler.Instance.CurrNormalLevelIsHard);
+    }
+
+    public void LoadNextSpecialLevel()
+    {
+        LoadSpecialLevel(NormalDataHandler.Instance.CurrSpecialLevelId);
     }
 
     public void LoadLevel(int levelId, bool bHard)
@@ -213,7 +218,8 @@ public class LevelPlayMgr : MonoBehaviour
 
     public void LoadSpecialLevel(int levelId)
     {
-        NormalDataHandler.Instance.CurrIsNormalLevel = true;
+        ClearLevel();
+        NormalDataHandler.Instance.CurrIsNormalLevel = false;
         ResLoader resLoader = new ResLoader();
 
         string levelPath = $"Assets/GamePlay/DataTable/speciallevel/Lv_{levelId}.txt";
@@ -733,7 +739,10 @@ public class LevelPlayMgr : MonoBehaviour
             {
                 NormalDataHandler.Instance.CurrNormalLevelId++;
             }
-            
+        }
+        else
+        {
+            NormalDataHandler.Instance.CurrSpecialLevelId++;
         }
 
         SoundMgr.Instance.PlaySound("108");

@@ -39,3 +39,6 @@ MonoBehaviour:
   - uiName: UIGuide
     sortLayer: 100
     prefabPath: Assets/GamePlay/Prefabs/UI/UIGuide.prefab
+  - uiName: UISpecialLevelTip
+    sortLayer: 0
+    prefabPath: Assets/GamePlay/Prefabs/UI/UISpecialLevelTip.prefab

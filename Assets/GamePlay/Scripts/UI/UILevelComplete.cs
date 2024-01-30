@@ -20,15 +20,34 @@ public partial class UILevelComplete : UIBase, IEventHandle
         {
             if (!animing)
             {
-                UIMgr.Instance.CloseUI<UILevelComplete>(true);
-                LevelPlayMgr.Instance.LoadNextLevel();
-                UIMgr.Instance.OpenUI<UIMain>();
+                if (NormalDataHandler.Instance.CurrIsNormalLevel && !NormalDataHandler.Instance.CurrNormalLevelIsHard && NormalDataHandler.Instance.CurrNormalLevelId - 1 == NormalDataHandler.Instance.NextSpecialLevelOpenId)
+                {
+                    UIMgr.Instance.CloseUI<UILevelComplete>(true);
+                    UIMgr.Instance.OpenUI<UISpecialLevelTip>();
+                }
+                else
+                {
+                    if (NormalDataHandler.Instance.CurrIsNormalLevel && !NormalDataHandler.Instance.CurrNormalLevelIsHard
+                        && LevelPlayMgr.Instance.levelData.TypeLevel == ConfigPB.LevelType.Mask
+                    )
+                    {
+                        NormalDataHandler.Instance.NextSpecialLevelOpenId = NormalDataHandler.Instance.CurrNormalLevelId + 1;
+                    }
+
+                    UIMgr.Instance.CloseUI<UILevelComplete>(true);
+                    LevelPlayMgr.Instance.LoadNextNormalLevel();
+                    UIMgr.Instance.OpenUI<UIMain>();
+                }
             }
         });
 
         this.btnClaimChest.onClick.AddListener(() => {
             OnClickClaimChest();
         });
+
+        this.btnLaterTheme.onClick.AddListener(OnClickLaterTheme);
+        this.btnClaimTheme.onClick.AddListener(OnClickUseTheme);
+
         PlayAni();
     }
 
@@ -39,11 +58,13 @@ public partial class UILevelComplete : UIBase, IEventHandle
         this.tfThemeProcess.gameObject.SetActive(false);
     }
 
+    private int newThemeId;
     private async void PlayAni()
     {
         animing = true;
         NormalDataHandler.Instance.GoldCount += 10;
         topDiamondUI.PlayDiamondFly();
+        themeIcon.sprite = iconTheme.sprite = resLoader.LoadAsset<Sprite>(DTTheme.Instance.GetThemeByID(NormalDataHandler.Instance.CurrThemeFragId).IconResPath);
         await UniTask.Delay(500);
         //play silder;
         this.tfLevelChest.gameObject.SetActive(true);
@@ -141,9 +162,11 @@ public partial class UILevelComplete : UIBase, IEventHandle
 
         if (NormalDataHandler.Instance.CurrThemeFragCount >= 5)
         {
+            newThemeId = NormalDataHandler.Instance.CurrThemeFragId;
             PopupWin.gameObject.SetActive(false);
             PopupRewardTheme.gameObject.SetActive(true);
             NormalDataHandler.Instance.CurrThemeFragCount -= 5;
+            NormalDataHandler.Instance.AddUnlockedBackGroundId(newThemeId);
 
             while (PopupRewardTheme.gameObject.activeSelf)
             {
@@ -180,11 +203,15 @@ public partial class UILevelComplete : UIBase, IEventHandle
 
     private void OnClickUseTheme()
     {
+        NormalDataHandler.Instance.CurrSelectBackGroundId = newThemeId;
+        LevelPlayMgr.Instance.RefreshBGSkin();
         PopupRewardTheme.gameObject.SetActive(false);
+        PopupWin.gameObject.SetActive(true);
     }
     private void OnClickLaterTheme()
     {
         PopupRewardTheme.gameObject.SetActive(false);
+        PopupWin.gameObject.SetActive(true);
     }
 
     protected override void OnUpdate()

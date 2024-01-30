@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70598ae5359d2094384740933bd5e788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bWaitPlay: 1
   mainCamera: {fileID: 961739752}
   rendererBackGround: {fileID: 316015415}
   stickPrefab: {fileID: 1242256408676471, guid: 7ec71907c72c63a4ea7f9ab0746136d0, type: 3}
@@ -264,6 +265,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 90dff2cf79faa834fb658d758a0a3a87, type: 2}
   - {fileID: 2100000, guid: 1bb3e489abc60d44f9829000cae9f4ef, type: 2}
   - {fileID: 2100000, guid: ef4f843c1aa4cf54bb308f3c7c9793ff, type: 2}
+  levelHeight: 0
+  currSelectStickIndex: -1
+  bInitViewing: 0
+  bPause: 0
 --- !u!4 &258303343
 Transform:
   m_ObjectHideFlags: 0

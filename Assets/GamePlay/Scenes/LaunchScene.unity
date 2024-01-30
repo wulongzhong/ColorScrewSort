@@ -325,6 +325,100 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalCfg: {fileID: 11400000, guid: f109910483cc1984286a63cbba0f3b24, type: 2}
   uiCamera: {fileID: 1244456544}
+--- !u!1 &1213990749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213990752}
+  - component: {fileID: 1213990751}
+  - component: {fileID: 1213990750}
+  m_Layer: 0
+  m_Name: Reporter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1213990750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213990749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b013e8334d0a2b24e80a9908eb693e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1213990751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213990749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4074b5af724a2014da31684348793a0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  show: 0
+  UserData: 
+  fps: 0
+  fpsText: 
+  images:
+    clearImage: {fileID: 2800000, guid: af406b888effe9943b7a3442b271380c, type: 3}
+    collapseImage: {fileID: 2800000, guid: d0de10020ba1e424780ba9971dcbb370, type: 3}
+    clearOnNewSceneImage: {fileID: 2800000, guid: 593e605662238d1499cef096b619dece, type: 3}
+    showTimeImage: {fileID: 2800000, guid: b7733805f7bc1284a8d43cf2f4623963, type: 3}
+    showSceneImage: {fileID: 2800000, guid: eb802e6d060aac54c83472da30944bb8, type: 3}
+    userImage: {fileID: 2800000, guid: 82f08c68f6889d343b7f9c8d428b3dbf, type: 3}
+    showMemoryImage: {fileID: 2800000, guid: 7c4e381920a61954db3918b668e3eb7f, type: 3}
+    softwareImage: {fileID: 2800000, guid: 98534e39b54e98949a5d99e0966895a0, type: 3}
+    dateImage: {fileID: 2800000, guid: 09b1f6e9ea862f248851bba7dfe0e108, type: 3}
+    showFpsImage: {fileID: 2800000, guid: 3cbb043346d874840b097bd012f1b1ad, type: 3}
+    infoImage: {fileID: 2800000, guid: d576a0da23588cf4f994848246632a9e, type: 3}
+    saveLogsImage: {fileID: 2800000, guid: 6a85e2985751c314395cf26f014af6db, type: 3}
+    searchImage: {fileID: 2800000, guid: 86596d529e9e7f9439e2fda66a152ad0, type: 3}
+    copyImage: {fileID: 2800000, guid: dca7d88ddcc5c0a4ab838b409ed37297, type: 3}
+    closeImage: {fileID: 2800000, guid: f1230c851668e04419c42526313f2a1b, type: 3}
+    buildFromImage: {fileID: 2800000, guid: 0a93f67e32216ce4abac143bddd66b3b, type: 3}
+    systemInfoImage: {fileID: 2800000, guid: 1b41a1a47a5c7b04581cce62d79bc2a0, type: 3}
+    graphicsInfoImage: {fileID: 2800000, guid: d25b423ca75e7174c85f0c25083eb691, type: 3}
+    backImage: {fileID: 2800000, guid: b0b0be04687b6cb4396f8e383b97f60e, type: 3}
+    logImage: {fileID: 2800000, guid: c687adaeae8cd4d4aa1de5213be52029, type: 3}
+    warningImage: {fileID: 2800000, guid: 7637191e93058564b8356a82026be461, type: 3}
+    errorImage: {fileID: 2800000, guid: e92879ec10631464194850f1e7d3fc79, type: 3}
+    barImage: {fileID: 2800000, guid: 6857c030c42b9804abfb2d8eacfd276d, type: 3}
+    button_activeImage: {fileID: 2800000, guid: c68129aefaabad543ab3cb4cfd008797, type: 3}
+    even_logImage: {fileID: 2800000, guid: 595335e4ad14e6448917a41e1e7c9a97, type: 3}
+    odd_logImage: {fileID: 2800000, guid: 2b259d21125804045b926b9115fa46c9, type: 3}
+    selectedImage: {fileID: 2800000, guid: 617489b636bc53c44bd44cf3b9755feb, type: 3}
+    reporterScrollerSkin: {fileID: 11400000, guid: 19019c7f030dbba48add0b94e205bc3a, type: 2}
+  size: {x: 64, y: 64}
+  maxSize: 20
+  numOfCircleToShow: 1
+  Initialized: 0
+--- !u!4 &1213990752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213990749}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244456542
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,3 +1028,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 845697392}
   - {fileID: 6301599008351354844}
+  - {fileID: 1213990752}

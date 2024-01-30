@@ -173,10 +173,15 @@ public partial class UIShop : UIBase, IEventHandle
             LevelPlayMgr.Instance.PreviewBGSkin(themeItem.Id);
             this.btnThemeAds.gameObject.SetActive(true);
         }
-        if(themeItem == selectedThemeItem)
+        else if (themeItem == selectedThemeItem)
         {
             this.btnThemeSelect.gameObject.SetActive(false);
             this.btnThemeSelected.gameObject.SetActive(true);
+        }
+        else
+        {
+            this.btnThemeSelect.gameObject.SetActive(true);
+            this.btnThemeSelected.gameObject.SetActive(false);
         }
 
         lastClickThemeItem = themeItem;
@@ -326,8 +331,14 @@ public partial class UIShop : UIBase, IEventHandle
         lastClickSkinItem = skinItem;
     }
 
+    int clickCount = 0;
     private void OnClickThemeGroup()
     {
+        ++clickCount;
+        if(clickCount >= 10)
+        {
+            NormalDataHandler.Instance.GoldCount += 10000;
+        }
         bThemeGroupMode = true;
 
         this.tfTheme.gameObject.SetActive(true);

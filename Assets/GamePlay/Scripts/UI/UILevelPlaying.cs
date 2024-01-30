@@ -114,10 +114,10 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         if (NormalDataHandler.Instance.CurrIsNormalLevel)
         {
             tLevel.enabled = true;
-            step.gameObject.SetActive(true);
+            step.gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelId > 4);
 
             tLevel.text = NormalDataHandler.Instance.CurrNormalLevelId.ToString();
-            step.GetChild(0).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
+            step.GetChild(0).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
             step.GetChild(1).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
         }
         else
@@ -156,7 +156,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         }
         else
         {
-            LevelPlayMgr.Instance.LoadNextLevel();
+            LevelPlayMgr.Instance.LoadNextNormalLevel();
             UIMgr.Instance.OpenUI<UIMain>(null);
         }
     }
