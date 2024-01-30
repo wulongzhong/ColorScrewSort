@@ -62,10 +62,10 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UnityEngine.UI.Image imageItemAddStick;
     [SerializeField]
+    protected UnityEngine.UI.Button btnBuyItem;
+    [SerializeField]
     protected UnityEngine.UI.Image imageItemRollBack2;
     [SerializeField]
     protected UnityEngine.UI.Image imageItemAddStick2;
-    [SerializeField]
-    protected UnityEngine.UI.Button btnBuyItem;
 
 }

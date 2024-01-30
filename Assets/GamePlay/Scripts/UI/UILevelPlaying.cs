@@ -125,7 +125,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             tLevel.enabled = true;
             step.gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelId > 4);
 
-            tLevel.text = NormalDataHandler.Instance.CurrNormalLevelId.ToString();
+            tLevel.text = $"LEVEL {NormalDataHandler.Instance.CurrNormalLevelId}";
             step.GetChild(0).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
             step.GetChild(1).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
 

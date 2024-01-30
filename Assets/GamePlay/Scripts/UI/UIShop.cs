@@ -343,6 +343,11 @@ public partial class UIShop : UIBase, IEventHandle
 
         this.tfTheme.gameObject.SetActive(true);
         this.tfSkin.gameObject.SetActive(false);
+
+        btnTheme.transform.GetChild(0).gameObject.SetActive(true);
+        btnTheme.transform.GetChild(1).gameObject.SetActive(false);
+        btnSkin.transform.GetChild(0).gameObject.SetActive(false);
+        btnSkin.transform.GetChild(1).gameObject.SetActive(true);
     }
 
     private void OnClickSkinGroup()
@@ -350,5 +355,10 @@ public partial class UIShop : UIBase, IEventHandle
         bThemeGroupMode = false;
         this.tfTheme.gameObject.SetActive(false);
         this.tfSkin.gameObject.SetActive(true);
+
+        btnTheme.transform.GetChild(0).gameObject.SetActive(false);
+        btnTheme.transform.GetChild(1).gameObject.SetActive(true);
+        btnSkin.transform.GetChild(0).gameObject.SetActive(true);
+        btnSkin.transform.GetChild(1).gameObject.SetActive(false);
     }
 }

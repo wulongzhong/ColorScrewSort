@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// 启动界面是单独的特殊UI，手写动画过渡等相关的，不要使用插件，并且直接通过单例调用，因为不被UI管理器所管理
@@ -22,6 +23,8 @@ public class Splash : MonoBehaviour
     [Header("进度提示文本")]
     public TMPro.TextMeshProUGUI tLoading;
 
+    public Image imgFill;
+
     public static Splash Instance;
     private int lastProgress = 0;
     private bool bWaitUnloadScene = false;
@@ -29,6 +32,7 @@ public class Splash : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        imgFill.fillAmount = 0;
     }
 
     public void RefreshProgress(ProgressState progressState, int progress)
@@ -40,6 +44,7 @@ public class Splash : MonoBehaviour
         }
         lastProgress = currProgress;
         tLoading.text = $"Loading {currProgress}/100";
+        imgFill.fillAmount = currProgress * 0.01f;
     }
 
     private void Update()
