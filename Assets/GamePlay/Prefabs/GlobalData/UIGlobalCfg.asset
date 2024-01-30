@@ -36,3 +36,6 @@ MonoBehaviour:
   - uiName: UIStore
     sortLayer: 100
     prefabPath: Assets/GamePlay/Prefabs/UI/UIStore.prefab
+  - uiName: UIGuide
+    sortLayer: 100
+    prefabPath: Assets/GamePlay/Prefabs/UI/UIGuide.prefab

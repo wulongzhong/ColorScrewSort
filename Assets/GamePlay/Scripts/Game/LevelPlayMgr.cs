@@ -48,6 +48,13 @@ public class LevelPlayMgr : MonoBehaviour
         }
     }
 
+    public class LevelPopNutEvent : EventArgsBase
+    {
+        public override void Clear()
+        {
+        }
+    }
+
     public struct NutMoveRecord
     {
         public StickBev startStickBev;
@@ -382,7 +389,7 @@ public class LevelPlayMgr : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyUp(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             var pos = Input.mousePosition;
             var ray = mainCamera.ScreenPointToRay(pos);
@@ -446,6 +453,39 @@ public class LevelPlayMgr : MonoBehaviour
         }
     }
 
+    private void RefreshCanPullTip(StickBev popStickBev)
+    {
+        foreach(var stick in listStickBev)
+        {
+            if(stick == popStickBev)
+            {
+                continue;
+            }
+            if(stick.listNutBev.Count == levelHeight)
+            {
+                stick.goFull.SetActive(true);
+            }
+            else if(stick.listNutBev.Count == 0 || stick.topColor == popStickBev.topColor)
+            {
+                stick.goY.SetActive(true);
+            }
+            else
+            {
+                stick.goX.SetActive(true);
+            }
+        }
+    }
+
+    private void ClearCanPullTip()
+    {
+        foreach(var stick in listStickBev)
+        {
+            stick.goX.SetActive(false);
+            stick.goY.SetActive(false);
+            stick.goFull.SetActive(false);
+        }
+    }
+
     private bool PopStickFirst(StickBev stickBev)
     {
         if(stickBev.listNutBev.Count == 0)
@@ -462,6 +502,13 @@ public class LevelPlayMgr : MonoBehaviour
         {
             SoundMgr.Instance.StopLoopSound("106");
         });
+
+        if(NormalDataHandler.Instance.CurrNormalLevelId <= 4)
+        {
+            RefreshCanPullTip(stickBev);
+        }
+
+        GpEventMgr.Instance.PostEvent(EventArgsPool.Get<LevelPopNutEvent>());
         return true;
     }
 
@@ -479,10 +526,19 @@ public class LevelPlayMgr : MonoBehaviour
         });
         nutBev.transform.eulerAngles = Vector3.zero;
         nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
+        if (NormalDataHandler.Instance.CurrNormalLevelId <= 4)
+        {
+            ClearCanPullTip();
+        }
     }
 
     private async void MoveNut(StickBev startStickBev, StickBev endStickBev, int moveCount = 0)
     {
+        if (NormalDataHandler.Instance.CurrNormalLevelId <= 4)
+        {
+            ClearCanPullTip();
+        }
+
         startStickBev.bMoving = true;
         endStickBev.bMoving = true;
 
@@ -510,6 +566,8 @@ public class LevelPlayMgr : MonoBehaviour
             startStickBev.listNutBev.Remove(nutBev);
             endStickBev.listNutBev.Add(nutBev);
         }
+
+        GpEventMgr.Instance.PostEvent(EventArgsPool.Get<LevelMoveNutEvent>());
 
         for (int tempI = 0; tempI < moveCount; ++tempI)
         {
@@ -567,8 +625,6 @@ public class LevelPlayMgr : MonoBehaviour
         
         endStickBev.bMoving = false;
         endStickBev.RefreshState();
-
-        GpEventMgr.Instance.PostEvent(EventArgsPool.Get<LevelMoveNutEvent>());
     }
 
     public bool CheckCanCancelMove()

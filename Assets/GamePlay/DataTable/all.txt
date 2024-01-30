@@ -43,10 +43,6 @@
 			"IconResPath": "Assets/GamePlay/Art/Skin/4.png"
 		},
 		{
-			"ID": 5,
-			"IconResPath": "Assets/GamePlay/Art/Skin/5.png"
-		},
-		{
 			"ID": 6,
 			"IconResPath": "Assets/GamePlay/Art/Skin/6.png"
 		},

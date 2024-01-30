@@ -75,6 +75,19 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
         RefreshLeveInfo();
         RefreshPropCount();
+
+        if(NormalDataHandler.Instance.CurrNormalLevelId <= 4)
+        {
+            btnSkip.gameObject.SetActive(false);
+            btnRollBack.gameObject.SetActive(false);
+            btnAddStick.gameObject.SetActive(false);
+            btnRestart.gameObject.SetActive(false);
+
+            if(NormalDataHandler.Instance.CurrNormalLevelId <= 2)
+            {
+                UIMgr.Instance.OpenUI<UIGuide>();
+            }
+        }
     }
 
     public override void OnOpen(object userData)
