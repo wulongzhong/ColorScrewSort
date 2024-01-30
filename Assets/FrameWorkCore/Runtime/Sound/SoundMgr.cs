@@ -23,6 +23,10 @@ public class SoundMgr : MonoBehaviour
 
     public void PlaySound(string soundId)
     {
+        if (!PlayerLocalCacheMgr.instance.IsEnableSound)
+        {
+            return;
+        }
         var cfg = DTSound.Instance.GetSoundById(soundId);
         var audioClip = resLoader.LoadAsset<AudioClip>(cfg.AssetPath);
         if (cfg.IsLoop)

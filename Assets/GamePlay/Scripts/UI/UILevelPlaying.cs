@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +26,20 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         });
 
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelNotContinueEvent>(this, (evtArg) => {
-
+            if (!this.tfNoMorePossibleMove.gameObject.activeSelf)
+            {
+                this.tfNoMorePossibleMove.gameObject.SetActive(true);
+                this.tfNoMorePossibleMove.anchoredPosition = Vector2.zero;
+                this.tfNoMorePossibleMove.DOAnchorPosY(100, 1.0f).OnComplete(() =>
+                {
+                    this.tfNoMorePossibleMove.gameObject.SetActive(false);
+                });
+            }
+            if (PlayerLocalCacheMgr.instance.IsPlayAddStickTip)
+            {
+                PlayerLocalCacheMgr.instance.IsPlayAddStickTip = false;
+                tfAddStickTip.gameObject.SetActive(true);
+            }
         });
 
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelMoveNutEvent>(this, (evtArg) => {
@@ -58,6 +72,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
                 bCurrGetPropUndo = false;
                 GetMoveProp();
             }
+            tfAddStickTip.gameObject.SetActive(false);
         });
         this.btnRestart.onClick.AddListener(() => {
             LevelPlayMgr.Instance.RefreshLevel();
@@ -75,19 +90,6 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
         RefreshLeveInfo();
         RefreshPropCount();
-
-        if(NormalDataHandler.Instance.CurrNormalLevelId <= 4)
-        {
-            btnSkip.gameObject.SetActive(false);
-            btnRollBack.gameObject.SetActive(false);
-            btnAddStick.gameObject.SetActive(false);
-            btnRestart.gameObject.SetActive(false);
-
-            if(NormalDataHandler.Instance.CurrNormalLevelId <= 2)
-            {
-                UIMgr.Instance.OpenUI<UIGuide>();
-            }
-        }
     }
 
     public override void OnOpen(object userData)
@@ -109,6 +111,13 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         }
     }
 
+    private async void PlayHardTip()
+    {
+        tfPopupStartLevel.gameObject.SetActive(true);
+        await UniTask.Delay(2375);
+        tfPopupStartLevel.gameObject.SetActive(false);
+    }
+
     public void RefreshLeveInfo()
     {
         if (NormalDataHandler.Instance.CurrIsNormalLevel)
@@ -117,13 +126,34 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             step.gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelId > 4);
 
             tLevel.text = NormalDataHandler.Instance.CurrNormalLevelId.ToString();
-            step.GetChild(0).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
+            step.GetChild(0).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
             step.GetChild(1).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
+
+            step.GetChild(2).gameObject.SetActive(!NormalDataHandler.Instance.CurrNormalLevelIsHard);
+            step.GetChild(3).gameObject.SetActive(NormalDataHandler.Instance.CurrNormalLevelIsHard);
         }
         else
         {
             tLevel.enabled = false;
             step.gameObject.SetActive(false);
+        }
+
+        if (NormalDataHandler.Instance.CurrNormalLevelId <= 4)
+        {
+            btnSkip.gameObject.SetActive(false);
+            btnRollBack.gameObject.SetActive(false);
+            btnAddStick.gameObject.SetActive(false);
+            btnRestart.gameObject.SetActive(false);
+
+            if (NormalDataHandler.Instance.CurrNormalLevelId <= 2)
+            {
+                UIMgr.Instance.OpenUI<UIGuide>();
+            }
+        }
+
+        if (LevelPlayMgr.Instance.levelData.Data.Count >= 8)
+        {
+            PlayHardTip();
         }
     }
 
@@ -148,16 +178,18 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         await UniTask.Delay(1000);
         winAnimator.Play("VictoryStepback");
         await UniTask.Delay(800);
-        UIMgr.Instance.CloseUI<UILevelPlaying>(true);
         
         if (bFinishLevel)
         {
+            UIMgr.Instance.CloseUI<UILevelPlaying>(true);
             UIMgr.Instance.OpenUI<UILevelComplete>(null);
         }
         else
         {
             LevelPlayMgr.Instance.LoadNextNormalLevel();
-            UIMgr.Instance.OpenUI<UIMain>(null);
+            RefreshLeveInfo();
+            RefreshPropCount();
+            LevelPlayMgr.Instance.bWaitPlay = false;
         }
     }
 

@@ -16,8 +16,14 @@ public partial class UIPause : UIBase, IEventHandle
         {
             UIMgr.Instance.CloseUI<UIPause>(false);
         });
-        this.btnHaptic.onClick.AddListener(() => { });
-        this.btnSound.onClick.AddListener(() => { });
+        this.btnHaptic.onClick.AddListener(() => {
+            PlayerLocalCacheMgr.instance.IsEnableShake = !PlayerLocalCacheMgr.instance.IsEnableShake;
+            RefreshBtnHaptic();
+        });
+        this.btnSound.onClick.AddListener(() => {
+            PlayerLocalCacheMgr.instance.IsEnableSound = !PlayerLocalCacheMgr.instance.IsEnableSound;
+            RefreshBtnSound();
+        });
         this.btnHome.onClick.AddListener(() => {
             UIMgr.Instance.CloseUI<UIPause>(false);
         });
@@ -28,6 +34,20 @@ public partial class UIPause : UIBase, IEventHandle
             UIMgr.Instance.OpenUI<UIMain>();
             LevelPlayMgr.Instance.LoadLevel(NormalDataHandler.Instance.CurrNormalLevelId, false);
         });
+
+        RefreshBtnSound();
+        RefreshBtnHaptic();
+    }
+
+    private void RefreshBtnSound()
+    {
+        btnSound.transform.GetChild(0).gameObject.SetActive(PlayerLocalCacheMgr.instance.IsEnableSound);
+        btnSound.transform.GetChild(1).gameObject.SetActive(!PlayerLocalCacheMgr.instance.IsEnableSound);
+    }
+    private void RefreshBtnHaptic()
+    {
+        btnHaptic.transform.GetChild(0).gameObject.SetActive(PlayerLocalCacheMgr.instance.IsEnableShake);
+        btnHaptic.transform.GetChild(1).gameObject.SetActive(!PlayerLocalCacheMgr.instance.IsEnableShake);
     }
 
     public override void OnOpen(object userData)

@@ -339,7 +339,7 @@ public class PlayerLocalCacheMgr: MonoBehaviour
         Debug.Log(playerLocalCache.ToString());
     }
 
-    #region ùùùù
+    #region cache
     public bool IsShowJoyStick
     {
         get { return GetBool(PlayerLocalCheType.ShowJoyStick, true); }
@@ -370,6 +370,15 @@ public class PlayerLocalCacheMgr: MonoBehaviour
         set
         {
             SetBool(PlayerLocalCheType.EnableSound, value);
+        }
+    }
+
+    public bool IsPlayAddStickTip
+    {
+        get { return GetBool(PlayerLocalCheType.ShowJoyStick, true); }
+        set
+        {
+            SetBool(PlayerLocalCheType.ShowJoyStick, value);
         }
     }
     #endregion

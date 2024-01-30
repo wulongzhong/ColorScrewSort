@@ -8,6 +8,8 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UnityEngine.RectTransform panelVictoryStep;
     [SerializeField]
+    protected UnityEngine.RectTransform tfPopupStartLevel;
+    [SerializeField]
     protected UnityEngine.UI.Button btnRemoveAds;
     [SerializeField]
     protected UnityEngine.UI.Button buttonListLevel;
@@ -30,6 +32,8 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UITopDiamond topDiamondUI;
     [SerializeField]
+    protected UnityEngine.RectTransform tfNoMorePossibleMove;
+    [SerializeField]
     protected UnityEngine.ParticleSystem fxNormal;
     [SerializeField]
     protected UnityEngine.ParticleSystem fxHard;
@@ -43,6 +47,8 @@ public partial class UILevelPlaying : UIBase
     protected UnityEngine.UI.Image tfRollAdd;
     [SerializeField]
     protected UnityEngine.UI.Image tfStickAdd;
+    [SerializeField]
+    protected UnityEngine.RectTransform tfAddStickTip;
     [SerializeField]
     protected TMPro.TextMeshProUGUI tRollBack;
     [SerializeField]

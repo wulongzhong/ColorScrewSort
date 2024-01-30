@@ -172,7 +172,5 @@ public class NormalDataHandler : IPlayerLocalDataHandler
             normalData.CurrSelectNutId = 1;
         }
         Instance = this;
-
-        normalData.NextSpecialLevelOpenId = normalData.CurrLevelId;
     }
 }
