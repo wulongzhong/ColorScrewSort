@@ -142,6 +142,55 @@
 			"IsLoop": false,
 			"IsMusic": false,
 			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/Coin.ogg",
+			"Id": "102",
+			"IsLoop": false,
+			"IsMusic": false,
+			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/Fly.ogg",
+			"Id": "103",
+			"IsLoop": false,
+			"IsMusic": false,
+			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/HandleScrewTurn_BW.8641.ogg",
+			"Id": "104",
+			"IsLoop": false,
+			"IsMusic": false,
+			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/Magical Win 1.ogg",
+			"Id": "105",
+			"IsLoop": false,
+			"IsMusic": false,
+			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/rotate.ogg",
+			"Id": "106",
+			"IsLoop": true,
+			"IsMusic": false,
+			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/Select.ogg",
+			"Id": "107",
+			"IsLoop": false,
+			"IsMusic": false,
+			"Volume": 1
+		},
+		{
+			"AssetPath": "Assets/GamePlay/Sound/Win.ogg",
+			"Id": "108",
+			"IsLoop": false,
+			"IsMusic": false,
+			"Volume": 1
 		}
 	],
 	"Theme": [

@@ -111,6 +111,7 @@ public class StickBev : MonoBehaviour
         var shape = doneEffect.shape;
         shape.scale = new Vector3(1, 1, size);
         doneEffect.Play();
+        SoundMgr.Instance.PlaySound("105");
         GpEventMgr.Instance.PostEvent(EventArgsPool.Get<StickEndEvent>());
     }
 

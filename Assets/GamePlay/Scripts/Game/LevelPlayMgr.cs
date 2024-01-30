@@ -242,7 +242,7 @@ public class LevelPlayMgr : MonoBehaviour
         }
 
         RefreshStickPos();
-
+        SoundMgr.Instance.PlaySound("106");
         for (int i = 0; i < levelData.Data.Count; i++)
         {
             CreateStickNuts(i, levelData.TypeLevel == LevelType.Mask);
@@ -283,6 +283,7 @@ public class LevelPlayMgr : MonoBehaviour
         if (colors.Count > 0 && colors[0] != 0)
         {
             bInitViewing = false;
+            SoundMgr.Instance.StopLoopSound("106");
         }
     }
 
@@ -456,18 +457,25 @@ public class LevelPlayMgr : MonoBehaviour
         float moveTime = (targetY - nutBev.transform.position.y) / upMoveSpeed;
         nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime);
         nutBev.transform.eulerAngles = Vector3.zero;
-        nutBev.transform.DORotate(new Vector3(0, -720, 0), moveTime, RotateMode.LocalAxisAdd);
+        SoundMgr.Instance.PlaySound("106");
+        nutBev.transform.DORotate(new Vector3(0, -720, 0), moveTime, RotateMode.LocalAxisAdd).OnComplete(() =>
+        {
+            SoundMgr.Instance.StopLoopSound("106");
+        });
         return true;
     }
 
     private void CancelPopStickFirst(StickBev stickBev)
     {
+        SoundMgr.Instance.PlaySound("106");
         var nutBev = stickBev.listNutBev[^1];
         float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
         float moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
         nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
         {
             nutBev.PlayDownEffect();
+            SoundMgr.Instance.PlaySound("104");
+            SoundMgr.Instance.StopLoopSound("106");
         });
         nutBev.transform.eulerAngles = Vector3.zero;
         nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
@@ -532,12 +540,13 @@ public class LevelPlayMgr : MonoBehaviour
              {
                  await UniTask.Delay(250);
                  nutBev.transform.parent = endStickBev.transform;
-
+                 SoundMgr.Instance.PlaySound("106");
                  float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
                  moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
                  nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
                  {
                      nutBev.PlayDownEffect();
+                     SoundMgr.Instance.PlaySound("104");
                  });
                  nutBev.transform.eulerAngles = Vector3.zero;
                  nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
@@ -547,6 +556,10 @@ public class LevelPlayMgr : MonoBehaviour
                      endStickBev.RefreshEffect();
                      CheckCanContinueGame();
                      CheckWin();
+                     if (!bInitViewing)
+                     {
+                         SoundMgr.Instance.StopLoopSound("106");
+                     }
                  }
              });
         }
@@ -666,6 +679,8 @@ public class LevelPlayMgr : MonoBehaviour
             }
             
         }
+
+        SoundMgr.Instance.PlaySound("108");
     }
 
     public bool CacelMove()

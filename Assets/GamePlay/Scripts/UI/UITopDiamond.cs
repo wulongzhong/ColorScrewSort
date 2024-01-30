@@ -41,6 +41,7 @@ public class UITopDiamond : MonoBehaviour
             transf.DOMove(tfDiamondIcon.position, 0.5f).OnComplete(() =>
             {
                 tDiamond.text = Mathf.RoundToInt(Mathf.Lerp(oldDiamondCount, targetDiamondCount, 1 - tempI * 1.0f / tfDiamondEffect.childCount)).ToString();
+                SoundMgr.Instance.PlaySound("102");
                 transf.gameObject.SetActive(false);
             });
             await UniTask.Delay(50);
