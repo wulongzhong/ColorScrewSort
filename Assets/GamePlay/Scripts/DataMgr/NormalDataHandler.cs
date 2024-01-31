@@ -1,4 +1,5 @@
 using Msg;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,6 +145,19 @@ public class NormalDataHandler : IPlayerLocalDataHandler
     {
         get { return normalData.PropAddRowCount; }
         set { normalData.PropAddRowCount = value; BDirty = true; }
+    }
+
+    public int StoreAdWatchCount
+    {
+        get {
+            var today = DateTime.Now.Day;
+            if(today != normalData.LastAdWatchDay)
+            {
+                normalData.LastAdWatchDay = today;
+                normalData.StoreAdWatchCount = 0;
+            }
+            return normalData.StoreAdWatchCount; }
+        set { normalData.StoreAdWatchCount = value; BDirty = true; }
     }
 
     public NormalDataHandler(PlayerData playerData)

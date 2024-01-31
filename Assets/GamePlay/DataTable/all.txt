@@ -1,7 +1,64 @@
 {
 	"@Tool": "github.com/davyxu/tabtoy",
 	"@Version": "3.1.4",
-	"GlobalCfg": null,
+	"GlobalCfg": [
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 10,
+			"Key": "StoreAd1GoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		},
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 30,
+			"Key": "StoreAd2GoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		},
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 50,
+			"Key": "StoreAd3GoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		},
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 100,
+			"Key": "StoreAd4GoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		},
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 10,
+			"Key": "CompleteLevelGoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		},
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 20,
+			"Key": "BoxGoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		},
+		{
+			"FloatValue": 0,
+			"IntArrValue": [],
+			"IntValue": 30,
+			"Key": "CompleteLevelAdGoldCount",
+			"LongValue": 0,
+			"StringValue": ""
+		}
+	],
 	"Localization": [
 		{
 			"ChineseSimplified": "元气特攻",

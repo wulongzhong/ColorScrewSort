@@ -10,6 +10,8 @@ public partial class UIStore : UIBase
     [SerializeField]
     protected UnityEngine.UI.Button btnClose;
     [SerializeField]
+    protected UnityEngine.RectTransform tfContent;
+    [SerializeField]
     protected UnityEngine.UI.Button btnWatch;
 
 }

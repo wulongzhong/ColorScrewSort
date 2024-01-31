@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +16,21 @@ public partial class UIStore : UIBase, IEventHandle
         this.btnWatch.onClick.AddListener(() => {
 
         });
+        RefreshState();
     }
 
     private void RefreshState()
     {
-
+        int watchCount = NormalDataHandler.Instance.StoreAdWatchCount;
+        for(int i = 0; i < tfContent.childCount; ++i)
+        {
+            var tf = tfContent.GetChild(i);
+            tf.Find("ImageSelected").gameObject.SetActive(i == watchCount);
+            tf.Find("ImageClaimed").gameObject.SetActive(i < watchCount);
+            var key = (ConfigPB.GlobalCfg.KeyType)((int)ConfigPB.GlobalCfg.KeyType.StoreAd1GoldCount + i);
+            tf.Find("ImageGem").Find("Value").GetComponent<TextMeshProUGUI>().text = DTGlobalCfg.Instance.GetIntByKey(key).ToString();
+        }
+        btnWatch.interactable = watchCount < tfContent.childCount;
     }
 
     public override void OnOpen(object userData)

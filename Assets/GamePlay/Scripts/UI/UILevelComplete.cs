@@ -178,8 +178,14 @@ public partial class UILevelComplete : UIBase, IEventHandle
         animing = false;
     }
 
+    private bool bGetedChest = false;
     private async void OnClickClaimChest()
     {
+        if (bGetedChest)
+        {
+            return;
+        }
+        bGetedChest = true;
         tfGem.DOAnchorPosX(0, 0.2f);
         if (tfUndo.gameObject.activeSelf)
         {

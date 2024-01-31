@@ -94,6 +94,10 @@ public class LevelPlayMgr : MonoBehaviour
         Instance = this;
         matBackGround = new Material(rendererBackGround.material);
         rendererBackGround.material = matBackGround;
+
+#if UNITY_ANDROID
+        Vibration.Init();
+#endif
     }
 
     public void Init()
@@ -499,8 +503,9 @@ public class LevelPlayMgr : MonoBehaviour
             return false;
         }
 
-#if UNITY_EDITOR && UNITY_ANDROID
-
+#if UNITY_ANDROID
+        if(PlayerLocalCacheMgr.instance.IsEnableShake)
+            Vibration.VibrateAndroid(30);
 #endif
 
         var nutBev = stickBev.listNutBev[^1];
@@ -527,8 +532,12 @@ public class LevelPlayMgr : MonoBehaviour
         return true;
     }
 
-    private void CancelPopStickFirst(StickBev stickBev)
+    private async void CancelPopStickFirst(StickBev stickBev)
     {
+#if UNITY_ANDROID
+        if (PlayerLocalCacheMgr.instance.IsEnableShake)
+            Vibration.VibrateAndroid(20);
+#endif
         SoundMgr.Instance.PlaySound("106");
         var nutBev = stickBev.listNutBev[^1];
         float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
@@ -542,6 +551,16 @@ public class LevelPlayMgr : MonoBehaviour
             nutBev.PlayDownEffect();
             SoundMgr.Instance.PlaySound("104");
             SoundMgr.Instance.StopLoopSound("106");
+            _ = UniTask.Create(
+            async () =>
+            {
+                await UniTask.Delay(150);
+#if UNITY_ANDROID
+                if (PlayerLocalCacheMgr.instance.IsEnableShake)
+                    Vibration.VibrateAndroid(30);
+#endif
+            }
+            );
         });
         nutBev.transform.eulerAngles = Vector3.zero;
         nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
@@ -593,6 +612,14 @@ public class LevelPlayMgr : MonoBehaviour
             int i = tempI;
             var nutBev = endStickBev.listNutBev[endStickBev.listNutBev.Count - moveCount + i];
 
+            if(i == 0)
+            {
+                while(nutBev.tweener != null && nutBev.tweener.IsActive())
+                {
+                    await UniTask.Delay(30);
+                }
+            }
+
             float moveTime = (topPosY - nutBev.transform.position.y) / upMoveSpeed;
             if(i > 0)
             {
@@ -628,8 +655,17 @@ public class LevelPlayMgr : MonoBehaviour
                  {
                      nutBev.PlayDownEffect();
                      SoundMgr.Instance.PlaySound("104");
+                     _ = UniTask.Create(
+                     async () =>
+                     {
+                         await UniTask.Delay(150);
+#if UNITY_ANDROID
+                         if (PlayerLocalCacheMgr.instance.IsEnableShake)
+                             Vibration.VibrateAndroid(30);
+#endif
+                     }
+                     );
                  });
-
                  if (i == moveCount - 1)
                  {
                      await UniTask.Delay(Mathf.RoundToInt(moveTime * 1000));
@@ -712,6 +748,7 @@ public class LevelPlayMgr : MonoBehaviour
 
     private void OnWin(bool bSkip)
     {
+        SoundMgr.Instance.StopLoopSound("106");
         bInitViewing = true;
         bool bFinish = false;
         if(!NormalDataHandler.Instance.CurrIsNormalLevel)

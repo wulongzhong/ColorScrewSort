@@ -24,7 +24,7 @@ namespace Msg {
     static PlayerDataReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChBQbGF5ZXJEYXRhLnByb3RvEgNNc2ci3wIKCk5vcm1hbERhdGESEQoJZ29s",
+            "ChBQbGF5ZXJEYXRhLnByb3RvEgNNc2cikgMKCk5vcm1hbERhdGESEQoJZ29s",
             "ZENvdW50GAEgASgFEhMKC2N1cnJMZXZlbElkGAIgASgFEhoKEmN1cnJTcGVj",
             "aWFsTGV2ZWxJZBgDIAEoBRIeChZuZXh0U3BlY2lhbExldmVsT3BlbklkGAQg",
             "ASgFEhwKFHVubG9ja2VkQmFja0dyb3VuZElkGAUgAygFEh4KFmN1cnJTZWxl",
@@ -32,13 +32,14 @@ namespace Msg {
             "Cg9jdXJyU2VsZWN0TnV0SWQYCCABKAUSGgoSY3VyckNoZXN0RnJhZ0NvdW50",
             "GAkgASgFEhoKEmN1cnJUaGVtZUZyYWdDb3VudBgKIAEoBRIXCg9jdXJyVGhl",
             "bWVGcmFnSWQYCyABKAUSFQoNcHJvcFVuZG9Db3VudBgMIAEoBRIXCg9wcm9w",
-            "QWRkUm93Q291bnQYDSABKAUiVwoKUGxheWVyRGF0YRIOCgZ1c2VySWQYASAB",
-            "KAMSFAoMdXNlckRldmljZUlkGAIgASgJEiMKCm5vcm1hbERhdGEYAyABKAsy",
-            "Dy5Nc2cuTm9ybWFsRGF0YWIGcHJvdG8z"));
+            "QWRkUm93Q291bnQYDSABKAUSGQoRc3RvcmVBZFdhdGNoQ291bnQYDiABKAUS",
+            "FgoObGFzdEFkV2F0Y2hEYXkYDyABKAUiVwoKUGxheWVyRGF0YRIOCgZ1c2Vy",
+            "SWQYASABKAMSFAoMdXNlckRldmljZUlkGAIgASgJEiMKCm5vcm1hbERhdGEY",
+            "AyABKAsyDy5Nc2cuTm9ybWFsRGF0YWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Msg.NormalData), global::Msg.NormalData.Parser, new[]{ "GoldCount", "CurrLevelId", "CurrSpecialLevelId", "NextSpecialLevelOpenId", "UnlockedBackGroundId", "CurrSelectBackGroundId", "UnlockedNutId", "CurrSelectNutId", "CurrChestFragCount", "CurrThemeFragCount", "CurrThemeFragId", "PropUndoCount", "PropAddRowCount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Msg.NormalData), global::Msg.NormalData.Parser, new[]{ "GoldCount", "CurrLevelId", "CurrSpecialLevelId", "NextSpecialLevelOpenId", "UnlockedBackGroundId", "CurrSelectBackGroundId", "UnlockedNutId", "CurrSelectNutId", "CurrChestFragCount", "CurrThemeFragCount", "CurrThemeFragId", "PropUndoCount", "PropAddRowCount", "StoreAdWatchCount", "LastAdWatchDay" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Msg.PlayerData), global::Msg.PlayerData.Parser, new[]{ "UserId", "UserDeviceId", "NormalData" }, null, null, null, null)
           }));
     }
@@ -94,6 +95,8 @@ namespace Msg {
       currThemeFragId_ = other.currThemeFragId_;
       propUndoCount_ = other.propUndoCount_;
       propAddRowCount_ = other.propAddRowCount_;
+      storeAdWatchCount_ = other.storeAdWatchCount_;
+      lastAdWatchDay_ = other.lastAdWatchDay_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -296,6 +299,36 @@ namespace Msg {
       }
     }
 
+    /// <summary>Field number for the "storeAdWatchCount" field.</summary>
+    public const int StoreAdWatchCountFieldNumber = 14;
+    private int storeAdWatchCount_;
+    /// <summary>
+    ///今日商店已看广告次数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int StoreAdWatchCount {
+      get { return storeAdWatchCount_; }
+      set {
+        storeAdWatchCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lastAdWatchDay" field.</summary>
+    public const int LastAdWatchDayFieldNumber = 15;
+    private int lastAdWatchDay_;
+    /// <summary>
+    ///上一次观看广告的天数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LastAdWatchDay {
+      get { return lastAdWatchDay_; }
+      set {
+        lastAdWatchDay_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -324,6 +357,8 @@ namespace Msg {
       if (CurrThemeFragId != other.CurrThemeFragId) return false;
       if (PropUndoCount != other.PropUndoCount) return false;
       if (PropAddRowCount != other.PropAddRowCount) return false;
+      if (StoreAdWatchCount != other.StoreAdWatchCount) return false;
+      if (LastAdWatchDay != other.LastAdWatchDay) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -344,6 +379,8 @@ namespace Msg {
       if (CurrThemeFragId != 0) hash ^= CurrThemeFragId.GetHashCode();
       if (PropUndoCount != 0) hash ^= PropUndoCount.GetHashCode();
       if (PropAddRowCount != 0) hash ^= PropAddRowCount.GetHashCode();
+      if (StoreAdWatchCount != 0) hash ^= StoreAdWatchCount.GetHashCode();
+      if (LastAdWatchDay != 0) hash ^= LastAdWatchDay.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -408,6 +445,14 @@ namespace Msg {
         output.WriteRawTag(104);
         output.WriteInt32(PropAddRowCount);
       }
+      if (StoreAdWatchCount != 0) {
+        output.WriteRawTag(112);
+        output.WriteInt32(StoreAdWatchCount);
+      }
+      if (LastAdWatchDay != 0) {
+        output.WriteRawTag(120);
+        output.WriteInt32(LastAdWatchDay);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -464,6 +509,14 @@ namespace Msg {
         output.WriteRawTag(104);
         output.WriteInt32(PropAddRowCount);
       }
+      if (StoreAdWatchCount != 0) {
+        output.WriteRawTag(112);
+        output.WriteInt32(StoreAdWatchCount);
+      }
+      if (LastAdWatchDay != 0) {
+        output.WriteRawTag(120);
+        output.WriteInt32(LastAdWatchDay);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -508,6 +561,12 @@ namespace Msg {
       }
       if (PropAddRowCount != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropAddRowCount);
+      }
+      if (StoreAdWatchCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(StoreAdWatchCount);
+      }
+      if (LastAdWatchDay != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LastAdWatchDay);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -555,6 +614,12 @@ namespace Msg {
       }
       if (other.PropAddRowCount != 0) {
         PropAddRowCount = other.PropAddRowCount;
+      }
+      if (other.StoreAdWatchCount != 0) {
+        StoreAdWatchCount = other.StoreAdWatchCount;
+      }
+      if (other.LastAdWatchDay != 0) {
+        LastAdWatchDay = other.LastAdWatchDay;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -625,6 +690,14 @@ namespace Msg {
             PropAddRowCount = input.ReadInt32();
             break;
           }
+          case 112: {
+            StoreAdWatchCount = input.ReadInt32();
+            break;
+          }
+          case 120: {
+            LastAdWatchDay = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -692,6 +765,14 @@ namespace Msg {
           }
           case 104: {
             PropAddRowCount = input.ReadInt32();
+            break;
+          }
+          case 112: {
+            StoreAdWatchCount = input.ReadInt32();
+            break;
+          }
+          case 120: {
+            LastAdWatchDay = input.ReadInt32();
             break;
           }
         }
