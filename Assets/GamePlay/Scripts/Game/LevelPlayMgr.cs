@@ -515,7 +515,7 @@ public class LevelPlayMgr : MonoBehaviour
         {
             nutBev.tweener.Kill();
         }
-        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime);
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.OutSine);
         nutBev.transform.eulerAngles = Vector3.zero;
         SoundMgr.Instance.PlaySound("106");
         nutBev.transform.DORotate(new Vector3(0, -720, 0), moveTime, RotateMode.LocalAxisAdd).OnComplete(() =>
@@ -620,7 +620,17 @@ public class LevelPlayMgr : MonoBehaviour
                 }
             }
 
-            float moveTime = (topPosY - nutBev.transform.position.y) / upMoveSpeed;
+            float upSpeed = upMoveSpeed;
+            if (i == 1)
+            {
+                upSpeed += 2;
+            }
+            else if (i > 1)
+            {
+                upSpeed += 4;
+            }
+
+            float moveTime = (topPosY - nutBev.transform.position.y) / upSpeed;
             if(i > 0)
             {
                 nutBev.transform.DOLocalMove(new Vector3(0, topPosY, 0), moveTime);
@@ -630,8 +640,21 @@ public class LevelPlayMgr : MonoBehaviour
             }
 
             nutBev.transform.parent = null;
-            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), 0.3f).SetEase(Ease.OutSine);
-            await UniTask.Delay(300);
+
+            int flyTime = 300;
+            if (i == 1)
+            {
+                flyTime = 250;
+            }
+            else if(i > 1)
+            {
+                flyTime = 200;
+            }
+
+            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(Ease.OutSine);
+            await UniTask.Delay(flyTime);
+
+
             if (i == moveCount - 1)
             {
                 startStickBev.bMoving = false;
@@ -650,7 +673,7 @@ public class LevelPlayMgr : MonoBehaviour
                  nutBev.transform.eulerAngles = Vector3.zero;
                  nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime + 0.1f, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
 
-                 await UniTask.Delay(100);
+                 //await UniTask.Delay(100);
                  nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
                  {
                      nutBev.PlayDownEffect();
