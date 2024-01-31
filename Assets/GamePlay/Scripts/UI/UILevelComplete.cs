@@ -194,6 +194,8 @@ public partial class UILevelComplete : UIBase, IEventHandle
 
         await UniTask.Delay(250);
 
+        NormalDataHandler.Instance.GoldCount += 20;
+
         topDiamondUI.PlayDiamondFly();
         await UniTask.Delay(500);
         PopupRewardChest.gameObject.SetActive(false);

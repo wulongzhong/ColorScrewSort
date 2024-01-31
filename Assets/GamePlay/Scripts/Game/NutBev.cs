@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class NutBev : MonoBehaviour
     public ParticleSystem ps;
 
     public Material mat;
+
+    public Tweener tweener;
 
     public void Init(int color, bool bMask)
     {

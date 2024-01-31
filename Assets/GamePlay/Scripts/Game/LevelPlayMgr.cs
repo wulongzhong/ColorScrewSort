@@ -285,11 +285,11 @@ public class LevelPlayMgr : MonoBehaviour
             nutBev.transform.DORotate(new Vector3(0, 360, 0), 0.3f, RotateMode.LocalAxisAdd);
             await UniTask.Delay(300);
             float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
-            float moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
+            float moveTime = (nutBev.transform.position.y - targetY) / 6.5f;
             nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine);
             nutBev.transform.eulerAngles = Vector3.zero;
             nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
-            await UniTask.Delay(400);
+            await UniTask.Delay(130);
         }
         stickBev.bMoving = false;
         stickBev.RefreshState();
@@ -498,10 +498,19 @@ public class LevelPlayMgr : MonoBehaviour
         {
             return false;
         }
+
+#if UNITY_EDITOR && UNITY_ANDROID
+
+#endif
+
         var nutBev = stickBev.listNutBev[^1];
         float targetY = stickBev.goTop.transform.position.y + 1;
         float moveTime = (targetY - nutBev.transform.position.y) / upMoveSpeed;
-        nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime);
+        if(nutBev.tweener != null && nutBev.tweener.IsActive())
+        {
+            nutBev.tweener.Kill();
+        }
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime);
         nutBev.transform.eulerAngles = Vector3.zero;
         SoundMgr.Instance.PlaySound("106");
         nutBev.transform.DORotate(new Vector3(0, -720, 0), moveTime, RotateMode.LocalAxisAdd).OnComplete(() =>
@@ -524,7 +533,11 @@ public class LevelPlayMgr : MonoBehaviour
         var nutBev = stickBev.listNutBev[^1];
         float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
         float moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
-        nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
+        if (nutBev.tweener != null && nutBev.tweener.IsActive())
+        {
+            nutBev.tweener.Kill();
+        }
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
         {
             nutBev.PlayDownEffect();
             SoundMgr.Instance.PlaySound("104");
@@ -590,8 +603,8 @@ public class LevelPlayMgr : MonoBehaviour
             }
 
             nutBev.transform.parent = null;
-            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), 0.2f);
-
+            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), 0.3f).SetEase(Ease.OutSine);
+            await UniTask.Delay(300);
             if (i == moveCount - 1)
             {
                 startStickBev.bMoving = false;
@@ -602,18 +615,21 @@ public class LevelPlayMgr : MonoBehaviour
             _ = UniTask.Create(
              async () =>
              {
-                 await UniTask.Delay(250);
+                 //await UniTask.Delay(200);
                  nutBev.transform.parent = endStickBev.transform;
                  SoundMgr.Instance.PlaySound("106");
                  float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
                  moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
+                 nutBev.transform.eulerAngles = Vector3.zero;
+                 nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime + 0.1f, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
+
+                 await UniTask.Delay(100);
                  nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
                  {
                      nutBev.PlayDownEffect();
                      SoundMgr.Instance.PlaySound("104");
                  });
-                 nutBev.transform.eulerAngles = Vector3.zero;
-                 nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
+
                  if (i == moveCount - 1)
                  {
                      await UniTask.Delay(Mathf.RoundToInt(moveTime * 1000));

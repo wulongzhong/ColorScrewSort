@@ -28,6 +28,11 @@ public partial class UIPause : UIBase, IEventHandle
             UIMgr.Instance.CloseUI<UIPause>(false);
         });
         this.btnRetry.onClick.AddListener(() => {
+            if(UIMgr.Instance.FindUI<UIGuide>() != null)
+            {
+                UIMgr.Instance.CloseUI<UIGuide>(false);
+            }
+
             NormalDataHandler.Instance.CurrNormalLevelIsHard = false;
             UIMgr.Instance.CloseUI<UIPause>(false);
             UIMgr.Instance.CloseUI<UILevelPlaying>(false);

@@ -193,7 +193,7 @@ public partial class UIShop : UIBase, IEventHandle
         {
             selectedThemeItem.goSelected.gameObject.SetActive(false);
             lastClickThemeItem.goSelected.gameObject.SetActive(true);
-            lastClickThemeItem.goSelecting.gameObject.SetActive(false);
+            //lastClickThemeItem.goSelecting.gameObject.SetActive(false);
             selectedThemeItem = lastClickThemeItem;
 
             NormalDataHandler.Instance.CurrSelectBackGroundId = selectedThemeItem.Id;
@@ -203,12 +203,15 @@ public partial class UIShop : UIBase, IEventHandle
         {
             selectedSkinItem.goSelected.gameObject.SetActive(false);
             lastClickSkinItem.goSelected.gameObject.SetActive(true);
-            lastClickSkinItem.goSelecting.gameObject.SetActive(false);
+            //lastClickSkinItem.goSelecting.gameObject.SetActive(false);
             selectedSkinItem = lastClickSkinItem;
 
             NormalDataHandler.Instance.CurrSelectNutId = selectedSkinItem.Id;
             LevelPlayMgr.Instance.RefreshNutSkin(NormalDataHandler.Instance.CurrSelectNutId);
         }
+
+        btnThemeSelect.gameObject.SetActive(false);
+        btnThemeSelected.gameObject.SetActive(true);
     }
 
     private void OnClickThemeRandom()

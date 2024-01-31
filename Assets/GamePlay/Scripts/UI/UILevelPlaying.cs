@@ -16,6 +16,9 @@ public partial class UILevelPlaying : UIBase, IEventHandle
     {
         base.OnInit();
 
+        this.btnSkip.gameObject.SetActive(false);
+        this.btnReward.gameObject.SetActive(false);
+
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evtArg) => {
             LevelPlayMgr.LevelWinEvent evt = (LevelPlayMgr.LevelWinEvent)evtArg;
             PlayWin(evt.bSkip, evt.bFinishLevel);
@@ -75,7 +78,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             tfAddStickTip.gameObject.SetActive(false);
         });
         this.btnRestart.onClick.AddListener(() => {
-            LevelPlayMgr.Instance.RefreshLevel();
+            //LevelPlayMgr.Instance.RefreshLevel();
         });
 
         this.btnPause.onClick.AddListener(() =>
@@ -134,7 +137,8 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         }
         else
         {
-            tLevel.enabled = false;
+            tLevel.enabled = true;
+            tLevel.text = $"SPECIAL";
             step.gameObject.SetActive(false);
         }
 
@@ -178,7 +182,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         await UniTask.Delay(1000);
         winAnimator.Play("VictoryStepback");
         await UniTask.Delay(800);
-        
+        panelVictoryStep.gameObject.SetActive(false);
         if (bFinishLevel)
         {
             UIMgr.Instance.CloseUI<UILevelPlaying>(true);
@@ -230,6 +234,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         }
         
         RefreshPropCount();
+        topDiamondUI.RefreshDiamondCount();
     }
 
     public void CloseGetMoveProp()
