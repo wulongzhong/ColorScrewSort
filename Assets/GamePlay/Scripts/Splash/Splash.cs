@@ -65,4 +65,9 @@ public class Splash : MonoBehaviour
     {
         bWaitUnloadScene = true;
     }
+
+    public void PlayToFull()
+    {
+
+    }
 }

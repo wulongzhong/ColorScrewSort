@@ -1,0 +1,136 @@
+apply plugin: 'com.android.application'
+
+dependencies {
+    implementation project(':unityLibrary')
+    }
+
+android {
+    compileSdkVersion **APIVERSION**
+    buildToolsVersion '**BUILDTOOLS**'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        applicationId '**APPLICATIONID**'
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+    }
+
+    aaptOptions {
+        noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }**SIGN**
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled **MINIFY_DEBUG**
+            proguardFiles getDefaultProguardFile('proguard-android.txt')**SIGNCONFIG**
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled **MINIFY_RELEASE**
+            proguardFiles getDefaultProguardFile('proguard-android.txt')**SIGNCONFIG**
+        }
+    }**PACKAGING_OPTIONS****PLAY_ASSET_PACKS****SPLITS**
+**BUILT_APK_LOCATION**
+    bundle {
+        language {
+            enableSplit = false
+        }
+        density {
+            enableSplit = false
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+    // Modify launchMode
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        def processManifest = output.getProcessManifestProvider().get()
+        processManifest.doLast { task ->
+            def outputDir = task.getManifestOutputDirectory()
+            File outputDirectory
+            if (outputDir instanceof File) {
+                outputDirectory = outputDir
+            } else {
+                outputDirectory = outputDir.get().asFile
+            }
+   
+            File manifestOutFile = file("$outputDirectory/AndroidManifest.xml")
+ 
+            if (manifestOutFile.exists() && manifestOutFile.canRead() && manifestOutFile.canWrite()) {
+                def newManifest = manifestOutFile.getText().replace("android:launchMode=\"singleTask\"", "android:launchMode=\"singleTop\"")
+                manifestOutFile.write(newManifest, 'UTF-8')
+            }
+   
+            // Make sure to modify bundle_manifest as well
+            outputDir = task.getBundleManifestOutputDirectory();
+   			if(outputDir == null) return;
+            if (outputDir instanceof File) {
+                outputDirectory = outputDir
+            } else {
+                outputDirectory = outputDir.get().asFile
+            }
+                   
+            manifestOutFile = file("$outputDirectory/AndroidManifest.xml")
+ 
+            if (manifestOutFile.exists() && manifestOutFile.canRead() && manifestOutFile.canWrite()) {
+                def bundleManifest = manifestOutFile.getText().replace("android:launchMode=\"singleTask\"", "android:launchMode=\"singleTop\"")
+                manifestOutFile.write(bundleManifest, 'UTF-8')
+            }
+        }
+    }
+}
+// Modify launchMode
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        def processManifest = output.getProcessManifestProvider().get()
+        processManifest.doLast { task ->
+            def outputDir = task.getManifestOutputDirectory()
+            File outputDirectory
+            if (outputDir instanceof File) {
+                outputDirectory = outputDir
+            } else {
+                outputDirectory = outputDir.get().asFile
+            }
+   
+            File manifestOutFile = file("$outputDirectory/AndroidManifest.xml")
+ 
+            if (manifestOutFile.exists() && manifestOutFile.canRead() && manifestOutFile.canWrite()) {
+                def newManifest = manifestOutFile.getText().replace("android:launchMode=\"singleTask\"", "android:launchMode=\"singleTop\"")
+                manifestOutFile.write(newManifest, 'UTF-8')
+            }
+   
+            // Make sure to modify bundle_manifest as well
+            outputDir = task.getBundleManifestOutputDirectory();
+   			if(outputDir == null) return;
+            if (outputDir instanceof File) {
+                outputDirectory = outputDir
+            } else {
+                outputDirectory = outputDir.get().asFile
+            }
+                   
+            manifestOutFile = file("$outputDirectory/AndroidManifest.xml")
+ 
+            if (manifestOutFile.exists() && manifestOutFile.canRead() && manifestOutFile.canWrite()) {
+                def bundleManifest = manifestOutFile.getText().replace("android:launchMode=\"singleTask\"", "android:launchMode=\"singleTop\"")
+                manifestOutFile.write(bundleManifest, 'UTF-8')
+            }
+        }
+    }
+}
+
+}**SPLITS_VERSION_CODE****LAUNCHER_SOURCE_BUILD_SETUP**
