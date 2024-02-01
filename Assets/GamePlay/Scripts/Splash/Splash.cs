@@ -54,7 +54,7 @@ public class Splash : MonoBehaviour
     {
         if (bWaitUnloadScene)
         {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
             if (bWaitOpenAd)
             {
                 float tempProgress = Mathf.RoundToInt(lastProgress + (Time.realtimeSinceStartup - startWaitUnloadSceneTime) * 20);

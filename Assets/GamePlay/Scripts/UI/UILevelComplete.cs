@@ -59,7 +59,7 @@ public partial class UILevelComplete : UIBase, IEventHandle
             {
                 BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.LevelWinProp, () =>
                 {
-                    OnClickClaimChest();
+                    GetAll();
                 });
             }
         });

@@ -262,7 +262,22 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
     private void OnClickWatchAdsItem()
     {
+        if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+        {
+            BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.SkipLevel, () =>
+            {
+                if (bCurrGetPropUndo)
+                {
+                    NormalDataHandler.Instance.PropUndoCount += 5;
+                }
+                else
+                {
+                    NormalDataHandler.Instance.PropAddRowCount += 5;
+                }
 
+                RefreshPropCount();
+            });
+        }
     }
 
     private void OnClickBuyItem()
@@ -321,7 +336,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         textReward.text = adRewardCount.ToString();
 
         tfRewardUndo.gameObject.SetActive(false);
-        tfAddStickTip.gameObject.SetActive(false);
+        tfRewardStick.gameObject.SetActive(false);
         tfRewardGem.gameObject.SetActive(false);
 
         switch (adRewardType)
@@ -330,7 +345,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
                 tfRewardUndo.gameObject.SetActive(true);
                 break;
             case AdRewardType.AddStick:
-                tfAddStickTip.gameObject.SetActive(true);
+                tfRewardStick.gameObject.SetActive(true);
                 break;
             case AdRewardType.GetGem:
                 tfRewardGem.gameObject.SetActive(true);
