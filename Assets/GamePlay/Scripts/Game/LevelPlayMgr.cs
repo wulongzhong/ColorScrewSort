@@ -704,7 +704,7 @@ public class LevelPlayMgr : MonoBehaviour
             _ = UniTask.Create(
              async () =>
              {
-                 //await UniTask.Delay(200);
+                 await UniTask.Delay(flyTime);
                  nutBev.transform.parent = endStickBev.transform;
                  SoundMgr.Instance.PlaySound("106");
                  float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
