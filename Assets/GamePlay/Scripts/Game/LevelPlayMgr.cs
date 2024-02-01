@@ -75,8 +75,15 @@ public class LevelPlayMgr : MonoBehaviour
     public float upMoveSpeed2 = 8;
     [Header("第3个球的上升速度")]
     public float upMoveSpeed3 = 10;
-    [Header("球的下降速度")]
+
+    [Header("第1个球的下降速度")]
     public float downMoveSpeed = 3;
+    [Header("第2个球的下降速度")]
+    public float downMoveSpeed2 = 3;
+    [Header("第3个球的下降速度")]
+    public float downMoveSpeed3 = 3;
+
+
     [Header("第1个球的平移飞行时间(毫秒)")]
     public int XZMoveTime = 300;
     [Header("第2个球的平移飞行时间(毫秒)")]
@@ -93,6 +100,9 @@ public class LevelPlayMgr : MonoBehaviour
 
     [Header("下落曲线")]
     public Ease easeDownMove = Ease.InSine;
+
+    [Header("平移飞行曲线")]
+    public Ease easeXZMove = Ease.OutSine;
 
     [Header("上升曲线")]
     public Ease easeUpMove = Ease.OutSine;
@@ -680,7 +690,7 @@ public class LevelPlayMgr : MonoBehaviour
                 waitTime = UpWaitTime4;
             }
 
-            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(easeUpMove);
+            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(easeXZMove);
             await UniTask.Delay(waitTime);
 
 
@@ -698,7 +708,18 @@ public class LevelPlayMgr : MonoBehaviour
                  nutBev.transform.parent = endStickBev.transform;
                  SoundMgr.Instance.PlaySound("106");
                  float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
-                 moveTime = (nutBev.transform.position.y - targetY) / downMoveSpeed;
+
+                 float downSpeed = downMoveSpeed;
+                 if(i == 1)
+                 {
+                     downSpeed = downMoveSpeed2;
+                 }
+                 else if(i > 1)
+                 {
+                     downSpeed = downMoveSpeed3;
+                 }
+
+                 moveTime = (nutBev.transform.position.y - targetY) / downSpeed;
                  nutBev.transform.eulerAngles = Vector3.zero;
                  nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime + 0.1f, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
 

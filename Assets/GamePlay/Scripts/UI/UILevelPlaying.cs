@@ -140,7 +140,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
         RefreshLeveInfo();
         RefreshPropCount();
-        RefreshAdReward();
+        RefreshAdReward(true);
     }
 
     public override void OnOpen(object userData)
@@ -293,22 +293,26 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         topDiamondUI.gameObject.SetActive(false);
     }
 
-    private void RefreshAdReward()
+    private void RefreshAdReward(bool bInit = false)
     {
-        if(Time.time - lastRefreshAdRewardTime < 15)
+        if(!bInit)
         {
-            return;
+            if (Time.time - lastRefreshAdRewardTime < 15)
+            {
+                return;
+            }
+
+            if (btnReward.gameObject.activeSelf)
+            {
+                btnReward.gameObject.SetActive(false);
+                return;
+            }
+            else
+            {
+                btnReward.gameObject.SetActive(true);
+            }
         }
 
-        if(btnReward.gameObject.activeSelf)
-        {
-            btnReward.gameObject.SetActive(false);
-            return;
-        }
-        else
-        {
-            btnReward.gameObject.SetActive(true);
-        }
         lastRefreshAdRewardTime = Time.time;
 
         adRewardType = (AdRewardType)UnityEngine.Random.Range((int)AdRewardType.UndoLastMove, (int)AdRewardType.GetGem + 1);

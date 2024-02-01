@@ -59,7 +59,29 @@
 			"StringValue": ""
 		}
 	],
-	"LevelAdReward": null,
+	"LevelAdReward": [
+		{
+			"RewardType": 0,
+			"addRewardCount": [
+				7,
+				10
+			]
+		},
+		{
+			"RewardType": 1,
+			"addRewardCount": [
+				2,
+				3
+			]
+		},
+		{
+			"RewardType": 2,
+			"addRewardCount": [
+				20,
+				30
+			]
+		}
+	],
 	"Localization": [
 		{
 			"ChineseSimplified": "元气特攻",

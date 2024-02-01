@@ -42,7 +42,10 @@ public partial class UILevelComplete : UIBase, IEventHandle
                     UIMgr.Instance.CloseUI<UILevelComplete>(true);
                     LevelPlayMgr.Instance.LoadNextNormalLevel();
                     UIMgr.Instance.OpenUI<UIMain>();
-                    BaseAdsManager.INSTANCE.ShowNormalInterstitial();
+                    if(NormalDataHandler.Instance.CurrNormalLevelId > 2)
+                    {
+                        BaseAdsManager.INSTANCE.ShowNormalInterstitial();
+                    }
                 }
             }
         });

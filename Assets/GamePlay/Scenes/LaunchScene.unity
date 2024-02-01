@@ -188,6 +188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1748378522057583450, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
+      propertyPath: packName
+      value: com.fullmetalgamedev.screwsnutscolorfulsort
+      objectReference: {fileID: 0}
     - target: {fileID: 6667669026990663265, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.718693
@@ -231,6 +235,22 @@ PrefabInstance:
     - target: {fileID: 6667669026990663267, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
       propertyPath: m_Name
       value: MAXAdsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002613901504377751, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
+      propertyPath: bannerAppid
+      value: 2bc552ecd689ae63
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002613901504377751, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
+      propertyPath: rewardedAppId
+      value: cfe94f3dced92355
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002613901504377751, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
+      propertyPath: openScreenAppId
+      value: 9f863ff3b3d6c1a6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002613901504377751, guid: 8e48aed41ca77614fa568816f2d1472a, type: 3}
+      propertyPath: interstitialAdsAppId
+      value: d5a0c37b3e1cb062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

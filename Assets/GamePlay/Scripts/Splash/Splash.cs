@@ -30,6 +30,8 @@ public class Splash : MonoBehaviour
     private bool bWaitUnloadScene = false;
     private bool bWaitOpenAd = true;
 
+    float startWaitUnloadSceneTime;
+
     private void Awake()
     {
         Instance = this;
@@ -52,12 +54,26 @@ public class Splash : MonoBehaviour
     {
         if (bWaitUnloadScene)
         {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
             if (bWaitOpenAd)
             {
-                return;
+                float tempProgress = Mathf.RoundToInt(lastProgress + (Time.realtimeSinceStartup - startWaitUnloadSceneTime) * 20);
+                if(tempProgress > 100)
+                {
+                    tempProgress = 100;
+                }
+                tLoading.text = $"Loading {tempProgress}/100";
+                imgFill.fillAmount = tempProgress * 0.01f;
+                if(tempProgress < 100)
+                {
+                    return;
+                }
             }
 #endif
+            if (bWaitOpenAd)
+            {
+                MAXAdsManager.INSTANCE.NotShowOpenAd();
+            }
             if(SceneManager.sceneCount > 1)
             {
                 if(SceneManager.UnloadSceneAsync(0) != null)
@@ -71,6 +87,7 @@ public class Splash : MonoBehaviour
     public void Finish()
     {
         bWaitUnloadScene = true;
+        startWaitUnloadSceneTime = Time.realtimeSinceStartup;
     }
 
     public void SkipOpenAd()
