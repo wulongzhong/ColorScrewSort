@@ -586,7 +586,12 @@ public class LevelPlayMgr : MonoBehaviour
         {
             nutBev.tweener.Kill();
         }
-        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeCancelPopDown).OnComplete(() =>
+        Ease ease = easeDownMove;
+        if(stickBev.listNutBev.Count == levelHeight)
+        {
+            ease = easeCancelPopDown;
+        }
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(ease).OnComplete(() =>
         {
             nutBev.PlayDownEffect();
             SoundMgr.Instance.PlaySound("104");
