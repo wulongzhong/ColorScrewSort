@@ -69,8 +69,20 @@ public class LevelPlayMgr : MonoBehaviour
 
     private const int maxStickCount = 15;
     private const int maxRowStickCount = 5;
-    private const float upMoveSpeed = 6;
-    private const float downMoveSpeed = 3;
+    [Header("第1个球的上升速度")]
+    public float upMoveSpeed = 6;
+    [Header("第2个球的上升速度")]
+    public float upMoveSpeed2 = 8;
+    [Header("第3个球的上升速度")]
+    public float upMoveSpeed3 = 10;
+    [Header("球的下降速度")]
+    public float downMoveSpeed = 3;
+    [Header("第1个球的平移飞行时间(毫秒)")]
+    public int XZMoveTime = 300;
+    [Header("第2个球的平移飞行时间(毫秒)")]
+    public int XZMoveTime2 = 250;
+    [Header("第3个球的平移飞行时间(毫秒)")]
+    public int XZMoveTime3 = 200;
 
     public Camera mainCamera;
     public MeshRenderer rendererBackGround;
@@ -624,11 +636,11 @@ public class LevelPlayMgr : MonoBehaviour
             float upSpeed = upMoveSpeed;
             if (i == 1)
             {
-                upSpeed += 2;
+                upSpeed = upMoveSpeed2;
             }
             else if (i > 1)
             {
-                upSpeed += 4;
+                upSpeed = upMoveSpeed3;
             }
 
             float moveTime = (topPosY - nutBev.transform.position.y) / upSpeed;
@@ -642,14 +654,14 @@ public class LevelPlayMgr : MonoBehaviour
 
             nutBev.transform.parent = null;
 
-            int flyTime = 300;
+            int flyTime = XZMoveTime;
             if (i == 1)
             {
-                flyTime = 250;
+                flyTime = XZMoveTime2;
             }
             else if(i > 1)
             {
-                flyTime = 200;
+                flyTime = XZMoveTime3;
             }
 
             nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(Ease.OutSine);
