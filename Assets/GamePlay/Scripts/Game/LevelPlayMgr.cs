@@ -681,7 +681,7 @@ public class LevelPlayMgr : MonoBehaviour
                 nutBev.transform.DOLocalMove(new Vector3(0, topPosY, 0), moveTime);
                 nutBev.transform.eulerAngles = Vector3.zero;
                 nutBev.transform.DORotate(new Vector3(0, -720, 0), moveTime, RotateMode.LocalAxisAdd);
-                await UniTask.Delay(Mathf.RoundToInt(moveTime * 1000) + 50);
+                await UniTask.Delay(Mathf.RoundToInt(moveTime * 1000));
             }
 
             nutBev.transform.parent = null;
@@ -723,7 +723,12 @@ public class LevelPlayMgr : MonoBehaviour
             _ = UniTask.Create(
              async () =>
              {
-                 await UniTask.Delay(flyTime);
+                 int nowWaitTime = flyTime - waitTime;
+                 if(nowWaitTime > 0)
+                 {
+                     await UniTask.Delay(nowWaitTime);
+                 }
+                 
 
                  nutBev.transform.parent = endStickBev.transform;
                  SoundMgr.Instance.PlaySound("106");
