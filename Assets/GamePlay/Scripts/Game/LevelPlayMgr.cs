@@ -677,21 +677,31 @@ public class LevelPlayMgr : MonoBehaviour
 
             nutBev.transform.parent = null;
 
-            int waitTime = UpWaitTime2;
+            int waitTime = 0;
             int flyTime = XZMoveTime;
             if (i == 1)
             {
                 flyTime = XZMoveTime2;
-                waitTime = UpWaitTime3;
+                waitTime = UpWaitTime2;
             }
             else if(i > 1)
             {
                 flyTime = XZMoveTime3;
-                waitTime = UpWaitTime4;
+                if(i == 2)
+                {
+                    waitTime = UpWaitTime3;
+                }
+                else
+                {
+                    waitTime = UpWaitTime4;
+                }
             }
 
             nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(easeXZMove);
-            await UniTask.Delay(waitTime);
+            if (waitTime > 0)
+            {
+                await UniTask.Delay(waitTime);
+            }
 
 
             if (i == moveCount - 1)
@@ -704,11 +714,8 @@ public class LevelPlayMgr : MonoBehaviour
             _ = UniTask.Create(
              async () =>
              {
-                 if(i > 0)
-                 {
-                     await UniTask.Delay(flyTime);
-                 }
-                 
+                 await UniTask.Delay(flyTime);
+
                  nutBev.transform.parent = endStickBev.transform;
                  SoundMgr.Instance.PlaySound("106");
                  float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
