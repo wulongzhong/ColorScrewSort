@@ -69,6 +69,10 @@ public class LevelPlayMgr : MonoBehaviour
 
     private const int maxStickCount = 15;
     private const int maxRowStickCount = 5;
+
+    [Header("取消弹出时的下落曲线")]
+    public Ease easeCancelPopDown = Ease.InSine;
+
     [Header("第1个球的上升速度")]
     public float upMoveSpeed = 6;
     [Header("第2个球的上升速度")]
@@ -582,7 +586,7 @@ public class LevelPlayMgr : MonoBehaviour
         {
             nutBev.tweener.Kill();
         }
-        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeDownMove).OnComplete(() =>
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeCancelPopDown).OnComplete(() =>
         {
             nutBev.PlayDownEffect();
             SoundMgr.Instance.PlaySound("104");
