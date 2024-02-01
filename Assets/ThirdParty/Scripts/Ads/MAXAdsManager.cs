@@ -137,7 +137,7 @@ public class MAXAdsManager : BaseAdsManager
         if (Splash.Instance != null)
         {
             //var init = CommonTools.FindSceneRoot("GameInit").GetComponent<GameInit>();
-            Splash.Instance.PlayToFull();
+            Splash.Instance.SkipOpenAd();
             ResetLoopInterstitial();
             ResetTouchInterstitial();
         }

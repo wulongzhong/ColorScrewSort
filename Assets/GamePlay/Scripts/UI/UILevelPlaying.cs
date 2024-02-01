@@ -53,8 +53,47 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         });
 
         this.btnSkip.onClick.AddListener(() => {
-            LevelPlayMgr.Instance.SkipLevel();
+            if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+            {
+                BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.SkipLevel, () =>
+                {
+                    LevelPlayMgr.Instance.SkipLevel();
+                });
+            }
         });
+
+        this.btnReward.onClick.AddListener(() => {
+            if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+            {
+                lastRefreshAdRewardTime = Time.time;
+                btnReward.gameObject.SetActive(false);
+                switch (adRewardType)
+                {
+                    case AdRewardType.UndoLastMove:
+                        BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.BattleAdPropUndoMove, () =>
+                        {
+                            NormalDataHandler.Instance.PropUndoCount += adRewardCount;
+                            RefreshPropCount();
+                        });
+                        break;
+                    case AdRewardType.AddStick:
+                        BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.BattleAdPropAddStick, () =>
+                        {
+                            NormalDataHandler.Instance.PropAddRowCount += adRewardCount;
+                            RefreshPropCount();
+                        });
+                        break;
+                    case AdRewardType.GetGem:
+                        BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.BattleAdGem, () =>
+                        {
+                            NormalDataHandler.Instance.GoldCount += adRewardCount;
+                            RefreshPropCount();
+                        });
+                        break;
+                }
+            }
+        });
+
         this.btnRollBack.onClick.AddListener(() => {
             if(NormalDataHandler.Instance.PropUndoCount > 0)
             {
@@ -81,7 +120,13 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             tfAddStickTip.gameObject.SetActive(false);
         });
         this.btnRestart.onClick.AddListener(() => {
-            //LevelPlayMgr.Instance.RefreshLevel();
+            if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+            {
+                BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.RefreshLevel, () =>
+                {
+                    LevelPlayMgr.Instance.RefreshLevel();
+                });
+            }
         });
 
         this.btnPause.onClick.AddListener(() =>
@@ -258,6 +303,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         if(btnReward.gameObject.activeSelf)
         {
             btnReward.gameObject.SetActive(false);
+            return;
         }
         else
         {

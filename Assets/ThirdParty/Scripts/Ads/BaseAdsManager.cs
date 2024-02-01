@@ -17,11 +17,14 @@ public class BaseAdsManager : MonoBehaviour
     public enum RewardType
     {
         Null,
-        Shop,//商店奖励
-        GiftBox,//礼盒
-        Lives,//生命值
-        Moves,//步数
-        Win,//胜利结算
+        SkipLevel = 1,//跳过关卡
+        RefreshLevel,//刷新关卡
+        BattleAdGem,//战斗界面宝石
+        BattleAdPropUndoMove,//战斗界面道具撤回
+        BattleAdPropAddStick,//战斗界面道具柱子
+        StoreGem,//商店宝石
+        LevelWinGem,//关卡结算宝石
+        LevelWinProp,//关卡结算道具
     }
 
     
@@ -114,29 +117,14 @@ public class BaseAdsManager : MonoBehaviour
     public string GetGAPlacementByRewardType()
     {
         string ret_str;
-        switch (rewardType)
+
+        if(rewardType == RewardType.Null)
         {
-            case RewardType.Null:
-                ret_str = string.Empty;
-                break;
-            case RewardType.Shop:
-                ret_str = "Shop";
-                break;
-            case RewardType.GiftBox:
-                ret_str = "GiftBox";
-                break;
-            case RewardType.Lives:
-                ret_str = "Lives";
-                break;
-            case RewardType.Moves:
-                ret_str = "Moves";
-                break;
-            case RewardType.Win:
-                ret_str = "Win";
-                break;
-            default:
-                ret_str = string.Empty;
-                break;
+            ret_str = string.Empty;
+        }
+        else
+        {
+            ret_str = rewardType.ToString();
         }
         return ret_str;
     }

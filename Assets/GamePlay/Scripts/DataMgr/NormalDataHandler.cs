@@ -7,6 +7,24 @@ using UnityEngine;
 
 public class NormalDataHandler : IPlayerLocalDataHandler
 {
+    public class GoldCountUpdateEvent : EventArgsBase
+    {
+        public int oldValue;
+        public int currValue;
+
+        public static GoldCountUpdateEvent Create(int oldValue, int currValue)
+        {
+            GoldCountUpdateEvent evt = EventArgsPool.Get<GoldCountUpdateEvent>();
+            evt.oldValue = oldValue;
+            evt.currValue = currValue;
+            return evt;
+        }
+
+        public override void Clear()
+        {
+        }
+    }
+
     public static NormalDataHandler Instance;
     public NormalData normalData;
 
@@ -21,7 +39,13 @@ public class NormalDataHandler : IPlayerLocalDataHandler
     public int GoldCount
     {
         get { return normalData.GoldCount; }
-        set { LastGoldCount = normalData.GoldCount; normalData.GoldCount = value; BDirty = true; BNowSave = true; }
+        set { 
+            LastGoldCount = normalData.GoldCount;
+            normalData.GoldCount = value;
+            BDirty = true;
+            BNowSave = true; 
+            GpEventMgr.Instance.PostEvent(GoldCountUpdateEvent.Create(LastGoldCount, normalData.GoldCount));
+        }
     }
 
 

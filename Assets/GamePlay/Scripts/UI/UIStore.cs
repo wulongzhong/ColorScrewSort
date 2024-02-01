@@ -14,9 +14,21 @@ public partial class UIStore : UIBase, IEventHandle
         this.btnClose.onClick.AddListener(()=>UIMgr.Instance.CloseUI<UIStore>(false));
         this.btnClose2.onClick.AddListener(()=>UIMgr.Instance.CloseUI<UIStore>(false));
         this.btnWatch.onClick.AddListener(() => {
-
+            if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+            {
+                BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.LevelWinProp, () =>
+                {
+                    var key = (ConfigPB.GlobalCfg.KeyType)((int)ConfigPB.GlobalCfg.KeyType.StoreAd1GoldCount + NormalDataHandler.Instance.StoreAdWatchCount);
+                    var addCount = DTGlobalCfg.Instance.GetIntByKey(key);
+                    NormalDataHandler.Instance.GoldCount += addCount;
+                    NormalDataHandler.Instance.StoreAdWatchCount++;
+                    RefreshState();
+                    topDiamondUI.PlayDiamondFly();
+                });
+            }
         });
         RefreshState();
+        topDiamondUI.RefreshDiamondCount();
     }
 
     private void RefreshState()

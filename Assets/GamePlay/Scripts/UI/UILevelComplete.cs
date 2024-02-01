@@ -12,9 +12,14 @@ public partial class UILevelComplete : UIBase, IEventHandle
 
     private bool animing = true;
 
+    private int newThemeId;
+    bool addPropUndo;
+
     public override void OnInit()
     {
         base.OnInit();
+
+        addPropUndo = UnityEngine.Random.value > 0.5f;
 
         this.btnNextLevel.onClick.AddListener(() =>
         {
@@ -37,6 +42,7 @@ public partial class UILevelComplete : UIBase, IEventHandle
                     UIMgr.Instance.CloseUI<UILevelComplete>(true);
                     LevelPlayMgr.Instance.LoadNextNormalLevel();
                     UIMgr.Instance.OpenUI<UIMain>();
+                    BaseAdsManager.INSTANCE.ShowNormalInterstitial();
                 }
             }
         });
@@ -44,9 +50,29 @@ public partial class UILevelComplete : UIBase, IEventHandle
         this.btnClaimChest.onClick.AddListener(() => {
             OnClickClaimChest();
         });
+        this.btnGetAllChest.onClick.AddListener(() =>
+        {
+            if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+            {
+                BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.LevelWinProp, () =>
+                {
+                    OnClickClaimChest();
+                });
+            }
+        });
 
         this.btnLaterTheme.onClick.AddListener(OnClickLaterTheme);
         this.btnClaimTheme.onClick.AddListener(OnClickUseTheme);
+
+        this.btnWatchAds.onClick.AddListener(() =>
+        {
+            BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.LevelWinGem, () =>
+            {
+                NormalDataHandler.Instance.GoldCount += 40;
+                topDiamondUI.PlayDiamondFly();
+                this.btnWatchAds.gameObject.SetActive(false);
+            });
+        });
 
         PlayAni();
     }
@@ -58,7 +84,6 @@ public partial class UILevelComplete : UIBase, IEventHandle
         this.tfThemeProcess.gameObject.SetActive(false);
     }
 
-    private int newThemeId;
     private async void PlayAni()
     {
         animing = true;
@@ -106,8 +131,6 @@ public partial class UILevelComplete : UIBase, IEventHandle
             PopupWin.gameObject.SetActive(false);
             PopupRewardChest.gameObject.SetActive(true);
             NormalDataHandler.Instance.CurrChestFragCount -= 4;
-
-            bool addPropUndo = UnityEngine.Random.value > 0.5f;
 
             tfGem.gameObject.SetActive(false);
             tfUndo.gameObject.SetActive(false);
@@ -201,6 +224,45 @@ public partial class UILevelComplete : UIBase, IEventHandle
         await UniTask.Delay(250);
 
         NormalDataHandler.Instance.GoldCount += 20;
+
+        topDiamondUI.PlayDiamondFly();
+        await UniTask.Delay(500);
+        PopupRewardChest.gameObject.SetActive(false);
+        PopupWin.GetComponent<Animator>().enabled = false;
+        PopupWin.gameObject.SetActive(true);
+    }
+
+    private async void GetAll()
+    {
+        if (bGetedChest)
+        {
+            return;
+        }
+        bGetedChest = true;
+        tfGem.DOAnchorPosX(0, 0.2f);
+        if (tfUndo.gameObject.activeSelf)
+        {
+            tfUndo.DOAnchorPosX(0, 0.2f);
+        }
+
+        if (tfAddRow.gameObject.activeSelf)
+        {
+            tfAddRow.DOAnchorPosX(0, 0.2f);
+        }
+        
+
+        await UniTask.Delay(250);
+
+        NormalDataHandler.Instance.GoldCount += 20;
+        if(addPropUndo)
+        {
+            NormalDataHandler.Instance.PropUndoCount += 1;
+        }
+        else
+        {
+            NormalDataHandler.Instance.PropAddRowCount += 1;
+        }
+        
 
         topDiamondUI.PlayDiamondFly();
         await UniTask.Delay(500);

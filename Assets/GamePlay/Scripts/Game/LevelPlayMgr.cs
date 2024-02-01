@@ -1,6 +1,7 @@
 using ConfigPB;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using GameAnalyticsSDK;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -803,6 +804,7 @@ public class LevelPlayMgr : MonoBehaviour
             {
                 if (NormalDataHandler.Instance.CurrNormalLevelIsHard)
                 {
+                    GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Level_{NormalDataHandler.Instance.CurrNormalLevelId}");
                     NormalDataHandler.Instance.CurrNormalLevelId++;
                     NormalDataHandler.Instance.CurrNormalLevelIsHard = false;
                 }
@@ -813,6 +815,7 @@ public class LevelPlayMgr : MonoBehaviour
             }
             else
             {
+                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Level_{NormalDataHandler.Instance.CurrNormalLevelId}");
                 NormalDataHandler.Instance.CurrNormalLevelId++;
             }
         }

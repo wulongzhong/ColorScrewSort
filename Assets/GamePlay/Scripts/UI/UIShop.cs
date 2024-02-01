@@ -1,3 +1,4 @@
+using GameAnalyticsSDK;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -254,6 +255,7 @@ public partial class UIShop : UIBase, IEventHandle
                 OnClickTheme(themeBev);
                 tfPopupRewardTheme.gameObject.SetActive(false);
             });
+            GameAnalytics.NewDesignEvent("RandomBgTheme");
         }
         else
         {
@@ -287,6 +289,7 @@ public partial class UIShop : UIBase, IEventHandle
                 OnClickSkin(skinBev);
                 tfPopupRewardTheme.gameObject.SetActive(false);
             });
+            GameAnalytics.NewDesignEvent("RandomNutSkin");
         }
     }
 

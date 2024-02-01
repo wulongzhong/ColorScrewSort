@@ -28,6 +28,7 @@ public class Splash : MonoBehaviour
     public static Splash Instance;
     private int lastProgress = 0;
     private bool bWaitUnloadScene = false;
+    private bool bWaitOpenAd = true;
 
     private void Awake()
     {
@@ -51,6 +52,12 @@ public class Splash : MonoBehaviour
     {
         if (bWaitUnloadScene)
         {
+#if !UNITY_EDITOR
+            if (bWaitOpenAd)
+            {
+                return;
+            }
+#endif
             if(SceneManager.sceneCount > 1)
             {
                 if(SceneManager.UnloadSceneAsync(0) != null)
@@ -66,8 +73,9 @@ public class Splash : MonoBehaviour
         bWaitUnloadScene = true;
     }
 
-    public void PlayToFull()
+    public void SkipOpenAd()
     {
-
+        bWaitOpenAd = false;
+        MAXAdsManager.INSTANCE.NotShowOpenAd();
     }
 }

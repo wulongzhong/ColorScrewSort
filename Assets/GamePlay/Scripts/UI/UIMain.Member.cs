@@ -13,5 +13,7 @@ public partial class UIMain : UIBase
     protected UnityEngine.UI.Button btnFreeGem;
     [SerializeField]
     protected UnityEngine.UI.Button btnCustomize;
+    [SerializeField]
+    protected TMPro.TextMeshProUGUI tFreeGem;
 
 }

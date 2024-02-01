@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public partial class UIMain : UIBase, IEventHandle
@@ -17,8 +18,19 @@ public partial class UIMain : UIBase, IEventHandle
 
         btnFreeGem.onClick.AddListener(() =>
         {
-
+            if (BaseAdsManager.INSTANCE.RewardedAdsIsReady())
+            {
+                BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.LevelWinProp, () =>
+                {
+                    var key = (ConfigPB.GlobalCfg.KeyType)((int)ConfigPB.GlobalCfg.KeyType.StoreAd1GoldCount + NormalDataHandler.Instance.StoreAdWatchCount);
+                    var addCount = DTGlobalCfg.Instance.GetIntByKey(key);
+                    NormalDataHandler.Instance.GoldCount += addCount;
+                    NormalDataHandler.Instance.StoreAdWatchCount++;
+                    RefreshFreeGem();
+                });
+            }
         });
+
 
         btnCustomize.onClick.AddListener(() =>
         {
@@ -32,6 +44,8 @@ public partial class UIMain : UIBase, IEventHandle
             UIMgr.Instance.CloseUI<UIMain>(true);
             UIMgr.Instance.OpenUI<UILevelPlaying>();
         });
+
+        RefreshFreeGem();
     }
     public override void OnOpen(object userData)
     {
@@ -48,5 +62,17 @@ public partial class UIMain : UIBase, IEventHandle
         {
             this.ClearUpEventHandle();
         }
+    }
+
+    private void RefreshFreeGem()
+    {
+        if(NormalDataHandler.Instance.StoreAdWatchCount >= 4)
+        {
+            btnFreeGem.gameObject.SetActive(false);
+            return;
+        }
+        var key = (ConfigPB.GlobalCfg.KeyType)((int)ConfigPB.GlobalCfg.KeyType.StoreAd1GoldCount + NormalDataHandler.Instance.StoreAdWatchCount);
+        var addCount = DTGlobalCfg.Instance.GetIntByKey(key);
+        tFreeGem.text = addCount.ToString();
     }
 }
