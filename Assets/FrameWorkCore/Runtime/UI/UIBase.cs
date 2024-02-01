@@ -128,6 +128,11 @@ public class UIBase : MonoBehaviour
         resLoader = null;
     }
 
+    private void Update()
+    {
+        OnUpdate();
+    }
+
     protected virtual void OnUpdate()
     {
         if (BPlayingOpenAnimation && Time.time > AnimationEndTime)

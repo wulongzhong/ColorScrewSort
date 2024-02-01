@@ -25,6 +25,9 @@ public partial class UIShop : UIBase, IEventHandle
     public override void OnInit()
     {
         base.OnInit();
+
+        GpEventMgr.Instance.Register<NormalDataHandler.GoldCountUpdateEvent>(this, (evtArg) => { topDiamondUI.RefreshDiamondCount(); });
+
         topDiamondUI.RefreshDiamondCount();
         this.btnBack.onClick.AddListener(() =>
         {

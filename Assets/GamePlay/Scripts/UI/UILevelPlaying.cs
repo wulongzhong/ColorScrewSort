@@ -20,8 +20,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
     public override void OnInit()
     {
         base.OnInit();
-
-        this.btnReward.gameObject.SetActive(false);
+        lastRefreshAdRewardTime = Time.time;
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evtArg) => {
             LevelPlayMgr.LevelWinEvent evt = (LevelPlayMgr.LevelWinEvent)evtArg;
             PlayWin(evt.bSkip, evt.bFinishLevel);
@@ -141,6 +140,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
         RefreshLeveInfo();
         RefreshPropCount();
+        RefreshAdReward();
     }
 
     public override void OnOpen(object userData)
@@ -309,6 +309,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         {
             btnReward.gameObject.SetActive(true);
         }
+        lastRefreshAdRewardTime = Time.time;
 
         adRewardType = (AdRewardType)UnityEngine.Random.Range((int)AdRewardType.UndoLastMove, (int)AdRewardType.GetGem + 1);
         var cfg = DTLevelAdReward.Instance.GetLevelAdRewardByRewardType(adRewardType);

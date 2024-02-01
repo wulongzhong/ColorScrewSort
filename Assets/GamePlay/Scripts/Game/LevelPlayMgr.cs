@@ -84,6 +84,19 @@ public class LevelPlayMgr : MonoBehaviour
     [Header("第3个球的平移飞行时间(毫秒)")]
     public int XZMoveTime3 = 200;
 
+    [Header("第2个起步等待时间")]
+    public int UpWaitTime2 = 300;
+    [Header("第3个起步等待时间")]
+    public int UpWaitTime3 = 250;
+    [Header("第4个起步等待时间")]
+    public int UpWaitTime4 = 200;
+
+    [Header("下落曲线")]
+    public Ease easeDownMove = Ease.InSine;
+
+    [Header("上升曲线")]
+    public Ease easeUpMove = Ease.OutSine;
+
     public Camera mainCamera;
     public MeshRenderer rendererBackGround;
     public GameObject stickPrefab;
@@ -303,7 +316,7 @@ public class LevelPlayMgr : MonoBehaviour
             await UniTask.Delay(300);
             float targetY = StickBev.distanceHop * nutBev.currPosY + 0.3f;
             float moveTime = (nutBev.transform.position.y - targetY) / 6.5f;
-            nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine);
+            nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeDownMove);
             nutBev.transform.eulerAngles = Vector3.zero;
             nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
             await UniTask.Delay(130);
@@ -425,9 +438,9 @@ public class LevelPlayMgr : MonoBehaviour
                 }
 
                 int selectStickIndex = listStickBev.IndexOf(stickBev);
-#if ENABLE_LOG
-                Debug.Log(selectStickIndex);
-#endif
+//#if ENABLE_LOG
+//                Debug.Log(selectStickIndex);
+//#endif
                 if (selectStickIndex == currSelectStickIndex)
                 {
                     CancelPopStickFirst(stickBev);
@@ -528,7 +541,7 @@ public class LevelPlayMgr : MonoBehaviour
         {
             nutBev.tweener.Kill();
         }
-        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.OutSine);
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeUpMove);
         nutBev.transform.eulerAngles = Vector3.zero;
         SoundMgr.Instance.PlaySound("106");
         nutBev.transform.DORotate(new Vector3(0, -720, 0), moveTime, RotateMode.LocalAxisAdd).OnComplete(() =>
@@ -559,7 +572,7 @@ public class LevelPlayMgr : MonoBehaviour
         {
             nutBev.tweener.Kill();
         }
-        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
+        nutBev.tweener = nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeDownMove).OnComplete(() =>
         {
             nutBev.PlayDownEffect();
             SoundMgr.Instance.PlaySound("104");
@@ -654,18 +667,21 @@ public class LevelPlayMgr : MonoBehaviour
 
             nutBev.transform.parent = null;
 
+            int waitTime = UpWaitTime2;
             int flyTime = XZMoveTime;
             if (i == 1)
             {
                 flyTime = XZMoveTime2;
+                waitTime = UpWaitTime3;
             }
             else if(i > 1)
             {
                 flyTime = XZMoveTime3;
+                waitTime = UpWaitTime4;
             }
 
-            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(Ease.OutSine);
-            await UniTask.Delay(flyTime);
+            nutBev.transform.DOMove(endStickBev.goTop.transform.position + new Vector3(0, 1, 0), flyTime * 0.001f).SetEase(easeUpMove);
+            await UniTask.Delay(waitTime);
 
 
             if (i == moveCount - 1)
@@ -687,7 +703,7 @@ public class LevelPlayMgr : MonoBehaviour
                  nutBev.transform.DORotate(new Vector3(0, 720, 0), moveTime + 0.1f, RotateMode.LocalAxisAdd).SetEase(Ease.InSine);
 
                  //await UniTask.Delay(100);
-                 nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(Ease.InSine).OnComplete(() =>
+                 nutBev.transform.DOLocalMove(new Vector3(0, targetY, 0), moveTime).SetEase(easeDownMove).OnComplete(() =>
                  {
                      nutBev.PlayDownEffect();
                      SoundMgr.Instance.PlaySound("104");

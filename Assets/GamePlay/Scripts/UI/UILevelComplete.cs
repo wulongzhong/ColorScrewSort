@@ -70,7 +70,8 @@ public partial class UILevelComplete : UIBase, IEventHandle
             {
                 NormalDataHandler.Instance.GoldCount += 40;
                 topDiamondUI.PlayDiamondFly();
-                this.btnWatchAds.gameObject.SetActive(false);
+                this.btnWatchAds.interactable = false;
+                this.btnWatchAds.transform.localPosition = new Vector3(-1000, 0, 0);
             });
         });
 
