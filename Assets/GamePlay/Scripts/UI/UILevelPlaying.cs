@@ -1,3 +1,4 @@
+using ConfigPB;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
@@ -12,13 +13,15 @@ public partial class UILevelPlaying : UIBase, IEventHandle
 
     private bool bCurrGetPropUndo = false;
 
+    private float lastRefreshAdRewardTime;
+    private AdRewardType adRewardType;
+    private int adRewardCount;
+
     public override void OnInit()
     {
         base.OnInit();
 
-        this.btnSkip.gameObject.SetActive(false);
         this.btnReward.gameObject.SetActive(false);
-
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelWinEvent>(this, (evtArg) => {
             LevelPlayMgr.LevelWinEvent evt = (LevelPlayMgr.LevelWinEvent)evtArg;
             PlayWin(evt.bSkip, evt.bFinishLevel);
@@ -103,6 +106,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
     protected override void OnUpdate()
     {
         base.OnUpdate();
+        RefreshAdReward();
     }
 
     public override void OnClose(bool bRecycle = true)
@@ -242,5 +246,44 @@ public partial class UILevelPlaying : UIBase, IEventHandle
         LevelPlayMgr.Instance.bPause = false;
         this.PopupAddItem.gameObject.SetActive(false);
         topDiamondUI.gameObject.SetActive(false);
+    }
+
+    private void RefreshAdReward()
+    {
+        if(Time.time - lastRefreshAdRewardTime < 15)
+        {
+            return;
+        }
+
+        if(btnReward.gameObject.activeSelf)
+        {
+            btnReward.gameObject.SetActive(false);
+        }
+        else
+        {
+            btnReward.gameObject.SetActive(true);
+        }
+
+        adRewardType = (AdRewardType)UnityEngine.Random.Range((int)AdRewardType.UndoLastMove, (int)AdRewardType.GetGem + 1);
+        var cfg = DTLevelAdReward.Instance.GetLevelAdRewardByRewardType(adRewardType);
+        adRewardCount = cfg.AddRewardCount[UnityEngine.Random.Range(0, cfg.AddRewardCount.Count)];
+        textReward.text = adRewardCount.ToString();
+
+        tfRewardUndo.gameObject.SetActive(false);
+        tfAddStickTip.gameObject.SetActive(false);
+        tfRewardGem.gameObject.SetActive(false);
+
+        switch (adRewardType)
+        {
+            case AdRewardType.UndoLastMove:
+                tfRewardUndo.gameObject.SetActive(true);
+                break;
+            case AdRewardType.AddStick:
+                tfAddStickTip.gameObject.SetActive(true);
+                break;
+            case AdRewardType.GetGem:
+                tfRewardGem.gameObject.SetActive(true);
+                break;
+        }
     }
 }

@@ -64,6 +64,7 @@ public class UIMgr : MonoBehaviour
         return uiBase;
     }
 
+    //todo UI回收功能有bug，临时屏蔽，待修复
     public void CloseUI<T>(bool bRecycle) where T : UIBase
     {
         string uiName = typeof(T).Name;

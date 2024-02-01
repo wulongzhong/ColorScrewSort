@@ -35,7 +35,7 @@ public partial class UIGuide : UIBase, IEventHandle
         bWaitPop = true;
         GpEventMgr.Instance.Register<LevelPlayMgr.LevelMoveNutEvent>(this, (evtarg) => { bWaitPop = false; });
         guide1.Find("GuidePromptText").gameObject.SetActive(false);
-        guide1.anchoredPosition = new Vector2(150, -190);
+        guide1.anchoredPosition = new Vector2(150, -172);
         while (bWaitPop)
         {
             await UniTask.Delay(50);

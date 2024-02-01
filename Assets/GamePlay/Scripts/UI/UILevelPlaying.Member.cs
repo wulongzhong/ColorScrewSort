@@ -50,6 +50,14 @@ public partial class UILevelPlaying : UIBase
     [SerializeField]
     protected UnityEngine.RectTransform tfAddStickTip;
     [SerializeField]
+    protected TMPro.TextMeshProUGUI textReward;
+    [SerializeField]
+    protected UnityEngine.RectTransform tfRewardGem;
+    [SerializeField]
+    protected UnityEngine.RectTransform tfRewardUndo;
+    [SerializeField]
+    protected UnityEngine.UI.Image tfRewardStick;
+    [SerializeField]
     protected TMPro.TextMeshProUGUI tRollBack;
     [SerializeField]
     protected TMPro.TextMeshProUGUI tAddStick;

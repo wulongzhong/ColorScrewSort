@@ -40,22 +40,28 @@ namespace ConfigPB {
             "GAIgASgJEg8KB0lzTXVzaWMYAyABKAgSDgoGSXNMb29wGAQgASgIEg4KBlZv",
             "bHVtZRgFIAEoAiI7CgVUaGVtZRIKCgJJRBgBIAEoBRIRCglCR1Jlc1BhdGgY",
             "AiABKAkSEwoLSWNvblJlc1BhdGgYAyABKAkiJwoEU2tpbhIKCgJJRBgBIAEo",
-            "BRITCgtJY29uUmVzUGF0aBgCIAEoCSK7AQoFVGFibGUSJgoJR2xvYmFsQ2Zn",
-            "GAEgAygLMhMuQ29uZmlnUEIuR2xvYmFsQ2ZnEiwKDExvY2FsaXphdGlvbhgC",
-            "IAMoCzIWLkNvbmZpZ1BCLkxvY2FsaXphdGlvbhIcCgRTa2luGAMgAygLMg4u",
-            "Q29uZmlnUEIuU2tpbhIeCgVTb3VuZBgEIAMoCzIPLkNvbmZpZ1BCLlNvdW5k",
-            "Eh4KBVRoZW1lGAUgAygLMg8uQ29uZmlnUEIuVGhlbWUqOQoWTG9jYWxpemF0",
-            "aW9uTW9kdWxlVHlwZRIKCgZHbG9iYWwQABIKCgZVSUhhbGwQARIHCgNNYXgQ",
-            "AmIGcHJvdG8z"));
+            "BRITCgtJY29uUmVzUGF0aBgCIAEoCSJTCg1MZXZlbEFkUmV3YXJkEioKClJl",
+            "d2FyZFR5cGUYASABKA4yFi5Db25maWdQQi5BZFJld2FyZFR5cGUSFgoOYWRk",
+            "UmV3YXJkQ291bnQYAiADKAUi6wEKBVRhYmxlEiYKCUdsb2JhbENmZxgBIAMo",
+            "CzITLkNvbmZpZ1BCLkdsb2JhbENmZxIuCg1MZXZlbEFkUmV3YXJkGAIgAygL",
+            "MhcuQ29uZmlnUEIuTGV2ZWxBZFJld2FyZBIsCgxMb2NhbGl6YXRpb24YAyAD",
+            "KAsyFi5Db25maWdQQi5Mb2NhbGl6YXRpb24SHAoEU2tpbhgEIAMoCzIOLkNv",
+            "bmZpZ1BCLlNraW4SHgoFU291bmQYBSADKAsyDy5Db25maWdQQi5Tb3VuZBIe",
+            "CgVUaGVtZRgGIAMoCzIPLkNvbmZpZ1BCLlRoZW1lKjkKFkxvY2FsaXphdGlv",
+            "bk1vZHVsZVR5cGUSCgoGR2xvYmFsEAASCgoGVUlIYWxsEAESBwoDTWF4EAIq",
+            "YQoMQWRSZXdhcmRUeXBlEh0KGUFkUmV3YXJkVHlwZV9VbmRvTGFzdE1vdmUQ",
+            "ABIZChVBZFJld2FyZFR5cGVfQWRkU3RpY2sQARIXChNBZFJld2FyZFR5cGVf",
+            "R2V0R2VtEAJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ConfigPB.LocalizationModuleType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ConfigPB.LocalizationModuleType), typeof(global::ConfigPB.AdRewardType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.GlobalCfg), global::ConfigPB.GlobalCfg.Parser, new[]{ "Key", "StringValue", "IntValue", "IntArrValue", "FloatValue", "LongValue" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Localization), global::ConfigPB.Localization.Parser, new[]{ "ModuleType", "Key", "ChineseSimplified", "English", "German", "French", "Italian", "ChineseTraditional", "Korean", "Thai", "Vietnamese", "Japanese", "Dutch", "Spanish", "Portuguese", "Polish", "Ukrainian", "Russian", "Indonesian" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Sound), global::ConfigPB.Sound.Parser, new[]{ "Id", "AssetPath", "IsMusic", "IsLoop", "Volume" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Theme), global::ConfigPB.Theme.Parser, new[]{ "ID", "BGResPath", "IconResPath" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Skin), global::ConfigPB.Skin.Parser, new[]{ "ID", "IconResPath" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Table), global::ConfigPB.Table.Parser, new[]{ "GlobalCfg", "Localization", "Skin", "Sound", "Theme" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.LevelAdReward), global::ConfigPB.LevelAdReward.Parser, new[]{ "RewardType", "AddRewardCount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ConfigPB.Table), global::ConfigPB.Table.Parser, new[]{ "GlobalCfg", "LevelAdReward", "Localization", "Skin", "Sound", "Theme" }, null, null, null, null)
           }));
     }
     #endregion
@@ -75,6 +81,21 @@ namespace ConfigPB {
     /// Max标记 
     /// </summary>
     [pbr::OriginalName("Max")] Max = 2,
+  }
+
+  public enum AdRewardType {
+    /// <summary>
+    /// 撤销上一步 
+    /// </summary>
+    [pbr::OriginalName("AdRewardType_UndoLastMove")] UndoLastMove = 0,
+    /// <summary>
+    /// 增加一根柱子 
+    /// </summary>
+    [pbr::OriginalName("AdRewardType_AddStick")] AddStick = 1,
+    /// <summary>
+    /// 获得钻石 
+    /// </summary>
+    [pbr::OriginalName("AdRewardType_GetGem")] GetGem = 2,
   }
 
   #endregion
@@ -2236,6 +2257,230 @@ namespace ConfigPB {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LevelAdReward : pb::IMessage<LevelAdReward>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LevelAdReward> _parser = new pb::MessageParser<LevelAdReward>(() => new LevelAdReward());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LevelAdReward> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::ConfigPB.PbDataTableReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LevelAdReward() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LevelAdReward(LevelAdReward other) : this() {
+      rewardType_ = other.rewardType_;
+      addRewardCount_ = other.addRewardCount_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LevelAdReward Clone() {
+      return new LevelAdReward(this);
+    }
+
+    /// <summary>Field number for the "RewardType" field.</summary>
+    public const int RewardTypeFieldNumber = 1;
+    private global::ConfigPB.AdRewardType rewardType_ = global::ConfigPB.AdRewardType.UndoLastMove;
+    /// <summary>
+    /// 奖励类型 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::ConfigPB.AdRewardType RewardType {
+      get { return rewardType_; }
+      set {
+        rewardType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "addRewardCount" field.</summary>
+    public const int AddRewardCountFieldNumber = 2;
+    private static readonly pb::FieldCodec<int> _repeated_addRewardCount_codec
+        = pb::FieldCodec.ForInt32(18);
+    private readonly pbc::RepeatedField<int> addRewardCount_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    /// 添加数量 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> AddRewardCount {
+      get { return addRewardCount_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LevelAdReward);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LevelAdReward other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RewardType != other.RewardType) return false;
+      if(!addRewardCount_.Equals(other.addRewardCount_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RewardType != global::ConfigPB.AdRewardType.UndoLastMove) hash ^= RewardType.GetHashCode();
+      hash ^= addRewardCount_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RewardType != global::ConfigPB.AdRewardType.UndoLastMove) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RewardType);
+      }
+      addRewardCount_.WriteTo(output, _repeated_addRewardCount_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RewardType != global::ConfigPB.AdRewardType.UndoLastMove) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) RewardType);
+      }
+      addRewardCount_.WriteTo(ref output, _repeated_addRewardCount_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RewardType != global::ConfigPB.AdRewardType.UndoLastMove) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RewardType);
+      }
+      size += addRewardCount_.CalculateSize(_repeated_addRewardCount_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LevelAdReward other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RewardType != global::ConfigPB.AdRewardType.UndoLastMove) {
+        RewardType = other.RewardType;
+      }
+      addRewardCount_.Add(other.addRewardCount_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            RewardType = (global::ConfigPB.AdRewardType) input.ReadEnum();
+            break;
+          }
+          case 18:
+          case 16: {
+            addRewardCount_.AddEntriesFrom(input, _repeated_addRewardCount_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            RewardType = (global::ConfigPB.AdRewardType) input.ReadEnum();
+            break;
+          }
+          case 18:
+          case 16: {
+            addRewardCount_.AddEntriesFrom(ref input, _repeated_addRewardCount_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   /// Combine struct
   /// </summary>
@@ -2254,7 +2499,7 @@ namespace ConfigPB {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ConfigPB.PbDataTableReflection.Descriptor.MessageTypes[5]; }
+      get { return global::ConfigPB.PbDataTableReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2275,6 +2520,7 @@ namespace ConfigPB {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Table(Table other) : this() {
       globalCfg_ = other.globalCfg_.Clone();
+      levelAdReward_ = other.levelAdReward_.Clone();
       localization_ = other.localization_.Clone();
       skin_ = other.skin_.Clone();
       sound_ = other.sound_.Clone();
@@ -2302,10 +2548,24 @@ namespace ConfigPB {
       get { return globalCfg_; }
     }
 
+    /// <summary>Field number for the "LevelAdReward" field.</summary>
+    public const int LevelAdRewardFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::ConfigPB.LevelAdReward> _repeated_levelAdReward_codec
+        = pb::FieldCodec.ForMessage(18, global::ConfigPB.LevelAdReward.Parser);
+    private readonly pbc::RepeatedField<global::ConfigPB.LevelAdReward> levelAdReward_ = new pbc::RepeatedField<global::ConfigPB.LevelAdReward>();
+    /// <summary>
+    /// table: LevelAdReward 
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::ConfigPB.LevelAdReward> LevelAdReward {
+      get { return levelAdReward_; }
+    }
+
     /// <summary>Field number for the "Localization" field.</summary>
-    public const int LocalizationFieldNumber = 2;
+    public const int LocalizationFieldNumber = 3;
     private static readonly pb::FieldCodec<global::ConfigPB.Localization> _repeated_localization_codec
-        = pb::FieldCodec.ForMessage(18, global::ConfigPB.Localization.Parser);
+        = pb::FieldCodec.ForMessage(26, global::ConfigPB.Localization.Parser);
     private readonly pbc::RepeatedField<global::ConfigPB.Localization> localization_ = new pbc::RepeatedField<global::ConfigPB.Localization>();
     /// <summary>
     /// table: Localization 
@@ -2317,9 +2577,9 @@ namespace ConfigPB {
     }
 
     /// <summary>Field number for the "Skin" field.</summary>
-    public const int SkinFieldNumber = 3;
+    public const int SkinFieldNumber = 4;
     private static readonly pb::FieldCodec<global::ConfigPB.Skin> _repeated_skin_codec
-        = pb::FieldCodec.ForMessage(26, global::ConfigPB.Skin.Parser);
+        = pb::FieldCodec.ForMessage(34, global::ConfigPB.Skin.Parser);
     private readonly pbc::RepeatedField<global::ConfigPB.Skin> skin_ = new pbc::RepeatedField<global::ConfigPB.Skin>();
     /// <summary>
     /// table: Skin 
@@ -2331,9 +2591,9 @@ namespace ConfigPB {
     }
 
     /// <summary>Field number for the "Sound" field.</summary>
-    public const int SoundFieldNumber = 4;
+    public const int SoundFieldNumber = 5;
     private static readonly pb::FieldCodec<global::ConfigPB.Sound> _repeated_sound_codec
-        = pb::FieldCodec.ForMessage(34, global::ConfigPB.Sound.Parser);
+        = pb::FieldCodec.ForMessage(42, global::ConfigPB.Sound.Parser);
     private readonly pbc::RepeatedField<global::ConfigPB.Sound> sound_ = new pbc::RepeatedField<global::ConfigPB.Sound>();
     /// <summary>
     /// table: Sound 
@@ -2345,9 +2605,9 @@ namespace ConfigPB {
     }
 
     /// <summary>Field number for the "Theme" field.</summary>
-    public const int ThemeFieldNumber = 5;
+    public const int ThemeFieldNumber = 6;
     private static readonly pb::FieldCodec<global::ConfigPB.Theme> _repeated_theme_codec
-        = pb::FieldCodec.ForMessage(42, global::ConfigPB.Theme.Parser);
+        = pb::FieldCodec.ForMessage(50, global::ConfigPB.Theme.Parser);
     private readonly pbc::RepeatedField<global::ConfigPB.Theme> theme_ = new pbc::RepeatedField<global::ConfigPB.Theme>();
     /// <summary>
     /// table: Theme 
@@ -2374,6 +2634,7 @@ namespace ConfigPB {
         return true;
       }
       if(!globalCfg_.Equals(other.globalCfg_)) return false;
+      if(!levelAdReward_.Equals(other.levelAdReward_)) return false;
       if(!localization_.Equals(other.localization_)) return false;
       if(!skin_.Equals(other.skin_)) return false;
       if(!sound_.Equals(other.sound_)) return false;
@@ -2386,6 +2647,7 @@ namespace ConfigPB {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= globalCfg_.GetHashCode();
+      hash ^= levelAdReward_.GetHashCode();
       hash ^= localization_.GetHashCode();
       hash ^= skin_.GetHashCode();
       hash ^= sound_.GetHashCode();
@@ -2409,6 +2671,7 @@ namespace ConfigPB {
       output.WriteRawMessage(this);
     #else
       globalCfg_.WriteTo(output, _repeated_globalCfg_codec);
+      levelAdReward_.WriteTo(output, _repeated_levelAdReward_codec);
       localization_.WriteTo(output, _repeated_localization_codec);
       skin_.WriteTo(output, _repeated_skin_codec);
       sound_.WriteTo(output, _repeated_sound_codec);
@@ -2424,6 +2687,7 @@ namespace ConfigPB {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       globalCfg_.WriteTo(ref output, _repeated_globalCfg_codec);
+      levelAdReward_.WriteTo(ref output, _repeated_levelAdReward_codec);
       localization_.WriteTo(ref output, _repeated_localization_codec);
       skin_.WriteTo(ref output, _repeated_skin_codec);
       sound_.WriteTo(ref output, _repeated_sound_codec);
@@ -2439,6 +2703,7 @@ namespace ConfigPB {
     public int CalculateSize() {
       int size = 0;
       size += globalCfg_.CalculateSize(_repeated_globalCfg_codec);
+      size += levelAdReward_.CalculateSize(_repeated_levelAdReward_codec);
       size += localization_.CalculateSize(_repeated_localization_codec);
       size += skin_.CalculateSize(_repeated_skin_codec);
       size += sound_.CalculateSize(_repeated_sound_codec);
@@ -2456,6 +2721,7 @@ namespace ConfigPB {
         return;
       }
       globalCfg_.Add(other.globalCfg_);
+      levelAdReward_.Add(other.levelAdReward_);
       localization_.Add(other.localization_);
       skin_.Add(other.skin_);
       sound_.Add(other.sound_);
@@ -2480,18 +2746,22 @@ namespace ConfigPB {
             break;
           }
           case 18: {
-            localization_.AddEntriesFrom(input, _repeated_localization_codec);
+            levelAdReward_.AddEntriesFrom(input, _repeated_levelAdReward_codec);
             break;
           }
           case 26: {
-            skin_.AddEntriesFrom(input, _repeated_skin_codec);
+            localization_.AddEntriesFrom(input, _repeated_localization_codec);
             break;
           }
           case 34: {
-            sound_.AddEntriesFrom(input, _repeated_sound_codec);
+            skin_.AddEntriesFrom(input, _repeated_skin_codec);
             break;
           }
           case 42: {
+            sound_.AddEntriesFrom(input, _repeated_sound_codec);
+            break;
+          }
+          case 50: {
             theme_.AddEntriesFrom(input, _repeated_theme_codec);
             break;
           }
@@ -2515,18 +2785,22 @@ namespace ConfigPB {
             break;
           }
           case 18: {
-            localization_.AddEntriesFrom(ref input, _repeated_localization_codec);
+            levelAdReward_.AddEntriesFrom(ref input, _repeated_levelAdReward_codec);
             break;
           }
           case 26: {
-            skin_.AddEntriesFrom(ref input, _repeated_skin_codec);
+            localization_.AddEntriesFrom(ref input, _repeated_localization_codec);
             break;
           }
           case 34: {
-            sound_.AddEntriesFrom(ref input, _repeated_sound_codec);
+            skin_.AddEntriesFrom(ref input, _repeated_skin_codec);
             break;
           }
           case 42: {
+            sound_.AddEntriesFrom(ref input, _repeated_sound_codec);
+            break;
+          }
+          case 50: {
             theme_.AddEntriesFrom(ref input, _repeated_theme_codec);
             break;
           }

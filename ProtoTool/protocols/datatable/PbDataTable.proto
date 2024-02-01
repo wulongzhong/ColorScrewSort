@@ -12,6 +12,13 @@ enum LocalizationModuleType
 	Max = 2; // Max标记 
 }
 
+enum AdRewardType
+{	
+	AdRewardType_UndoLastMove = 0; // 撤销上一步 
+	AdRewardType_AddStick = 1; // 增加一根柱子 
+	AdRewardType_GetGem = 2; // 获得钻石 
+}
+
 
 message GlobalCfg
 { 
@@ -68,14 +75,21 @@ message Skin
 	string IconResPath = 2; // Icon资源路径 
 }
 
+message LevelAdReward
+{ 
+	AdRewardType RewardType = 1; // 奖励类型 
+	repeated int32 addRewardCount = 2; // 添加数量 
+}
+
 
 // Combine struct
 message Table
 {	
 	repeated GlobalCfg GlobalCfg = 1; // table: GlobalCfg 
-	repeated Localization Localization = 2; // table: Localization 
-	repeated Skin Skin = 3; // table: Skin 
-	repeated Sound Sound = 4; // table: Sound 
-	repeated Theme Theme = 5; // table: Theme 
+	repeated LevelAdReward LevelAdReward = 2; // table: LevelAdReward 
+	repeated Localization Localization = 3; // table: Localization 
+	repeated Skin Skin = 4; // table: Skin 
+	repeated Sound Sound = 5; // table: Sound 
+	repeated Theme Theme = 6; // table: Theme 
 }
 

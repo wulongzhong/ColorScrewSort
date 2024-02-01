@@ -25,6 +25,7 @@ public class DataTableMgr : MonoBehaviour
         DTSound dTSound = new DTSound(table);
         DTTheme dTTheme = new DTTheme(table);
         DTSkin dTSkin = new DTSkin(table);
+        DTLevelAdReward dTLevelAdReward = new DTLevelAdReward(table);
 
         resLoader.Dispose();
 #if ENABLE_LOG

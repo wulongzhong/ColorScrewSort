@@ -59,6 +59,7 @@
 			"StringValue": ""
 		}
 	],
+	"LevelAdReward": null,
 	"Localization": [
 		{
 			"ChineseSimplified": "元气特攻",
