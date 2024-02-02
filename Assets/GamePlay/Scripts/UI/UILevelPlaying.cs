@@ -57,6 +57,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
                 BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.SkipLevel, () =>
                 {
                     LevelPlayMgr.Instance.SkipLevel();
+                    tfAddStickTip.gameObject.SetActive(false);
                 });
             }
         });
@@ -97,6 +98,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
             if(NormalDataHandler.Instance.PropUndoCount > 0)
             {
                 LevelPlayMgr.Instance.CacelMove();
+                tfAddStickTip.gameObject.SetActive(false);
                 RefreshPropCount();
             }
             else
@@ -124,6 +126,7 @@ public partial class UILevelPlaying : UIBase, IEventHandle
                 BaseAdsManager.INSTANCE.ShowRewardAds(BaseAdsManager.RewardType.RefreshLevel, () =>
                 {
                     LevelPlayMgr.Instance.RefreshLevel();
+                    tfAddStickTip.gameObject.SetActive(false);
                 });
             }
         });
