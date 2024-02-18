@@ -40,12 +40,24 @@ public class UIMgr : MonoBehaviour
             return null;
         }
         var cfg = globalCfg.GetUIBaseCfg(uiName);
-        var resLoader = new ResLoader();
-        var prefab = resLoader.LoadAsset<GameObject>(cfg.prefabPath);
-        var go = Instantiate(prefab, this.transform);
-        var uiBase = go.GetComponent<UIBase>();
-        uiBase.resLoader = resLoader;
-        uiBase.OnInit();
+
+        UIBase uiBase = null;
+
+        if (!dicUI.ContainsKey(uiName))
+        {
+            var resLoader = new ResLoader();
+            var prefab = resLoader.LoadAsset<GameObject>(cfg.prefabPath);
+            var go = Instantiate(prefab, this.transform);
+            uiBase = go.GetComponent<UIBase>();
+            uiBase.resLoader = resLoader;
+            uiBase.OnInit();
+        }
+        else
+        {
+            uiBase = dicUI[uiName].GetComponent<UIBase>();
+            uiBase.gameObject.SetActive(true);
+        }
+        
         uiBase.OnOpen(userData);
         int sortingOrder = 0;
         if (dicLayer2UIBaseBev[cfg.sortLayer].Count > 0)
@@ -59,7 +71,7 @@ public class UIMgr : MonoBehaviour
         uiBase.canvas.worldCamera = uiCamera;
         uiBase.canvas.planeDistance = 1;
         uiBase.canvas.sortingOrder = sortingOrder;
-        dicUI.Add(uiName, uiBase);
+        dicUI.TryAdd(uiName, uiBase);
         dicLayer2UIBaseBev[cfg.sortLayer].Add(uiBase);
         return uiBase;
     }
@@ -67,6 +79,7 @@ public class UIMgr : MonoBehaviour
     //todo UI回收功能有bug，临时屏蔽，待修复
     public void CloseUI<T>(bool bRecycle) where T : UIBase
     {
+        bRecycle = false;
         string uiName = typeof(T).Name;
         if (!dicUI.ContainsKey(uiName))
         {
@@ -76,15 +89,15 @@ public class UIMgr : MonoBehaviour
         dicUI[uiName].OnClose(bRecycle);
         dicLayer2UIBaseBev[cfg.sortLayer].Remove(dicUI[uiName]);
 
-        //if (!bRecycle)
+        if (!bRecycle)
         {
             Destroy(dicUI[uiName].gameObject);
             dicUI.Remove(uiName);
         }
-        //else
-        //{
-        //    dicUI[uiName].gameObject.SetActive(false);
-        //}
+        else
+        {
+            dicUI[uiName].gameObject.SetActive(false);
+        }
     }
 
     public T FindUI<T>() where T : UIBase
